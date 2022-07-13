@@ -1,0 +1,134 @@
+{
+    "sourceFile": "App.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 29,
+            "patches": [
+                {
+                    "date": 1657720865138,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1657720887862,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n \n export default function App() {\n \treturn (\n \t\t<View style={styles.container}>\n-\t\t\t<Text>Open up App.js to s on your app!</Text>\n+\t\t\t<Text>!</Text>\n \t\t\t<StatusBar style=\"auto\" />\n \t\t</View>\n \t);\n }\n"
+                },
+                {
+                    "date": 1657721231647,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,14 @@\n+import AppLoading from \"expo-app-loading\";\n import { StatusBar } from \"expo-status-bar\";\n import { StyleSheet, Text, View } from \"react-native\";\n \n export default function App() {\n+\tconst [loading, setLoading] = useState(true);\n+\n+\tif (loading) {\n+\t\treturn <AppLoading />;\n+\t}\n \treturn (\n \t\t<View style={styles.container}>\n \t\t\t<Text>!</Text>\n \t\t\t<StatusBar style=\"auto\" />\n"
+                },
+                {
+                    "date": 1657721255385,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n import AppLoading from \"expo-app-loading\";\n import { StatusBar } from \"expo-status-bar\";\n+import { useState } from \"react\";\n import { StyleSheet, Text, View } from \"react-native\";\n \n export default function App() {\n \tconst [loading, setLoading] = useState(true);\n"
+                },
+                {
+                    "date": 1657721342847,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,11 +4,11 @@\n import { StyleSheet, Text, View } from \"react-native\";\n \n export default function App() {\n \tconst [loading, setLoading] = useState(true);\n-\n+\tconst onFinish = () => setLoading(false);\n \tif (loading) {\n-\t\treturn <AppLoading />;\n+\t\treturn <AppLoading onError={console.warn} onFinish={onFinish} />;\n \t}\n \treturn (\n \t\t<View style={styles.container}>\n \t\t\t<Text>!</Text>\n"
+                },
+                {
+                    "date": 1657721580171,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,10 +5,17 @@\n \n export default function App() {\n \tconst [loading, setLoading] = useState(true);\n \tconst onFinish = () => setLoading(false);\n+\tconst preload = () => {};\n \tif (loading) {\n-\t\treturn <AppLoading onError={console.warn} onFinish={onFinish} />;\n+\t\treturn (\n+\t\t\t<AppLoading\n+\t\t\t\tstartAsync={preload}\n+\t\t\t\tonError={console.warn}\n+\t\t\t\tonFinish={onFinish}\n+\t\t\t/>\n+\t\t);\n \t}\n \treturn (\n \t\t<View style={styles.container}>\n \t\t\t<Text>!</Text>\n"
+                },
+                {
+                    "date": 1657721752741,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,17 @@\n import AppLoading from \"expo-app-loading\";\n import { StatusBar } from \"expo-status-bar\";\n import { useState } from \"react\";\n+import { Ionicons } from \"@expo/vector-icons\";\n import { StyleSheet, Text, View } from \"react-native\";\n \n export default function App() {\n \tconst [loading, setLoading] = useState(true);\n \tconst onFinish = () => setLoading(false);\n-\tconst preload = () => {};\n+\tconst preload = () => {\n+\t\tconst fontToLoad = [Ionicons.font];\n+\t\treturn Promise.all();\n+\t};\n \tif (loading) {\n \t\treturn (\n \t\t\t<AppLoading\n \t\t\t\tstartAsync={preload}\n"
+                },
+                {
+                    "date": 1657721871920,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,18 @@\n import AppLoading from \"expo-app-loading\";\n import { StatusBar } from \"expo-status-bar\";\n import { useState } from \"react\";\n import { Ionicons } from \"@expo/vector-icons\";\n+import * as Font from \"expo-font\";\n import { StyleSheet, Text, View } from \"react-native\";\n \n export default function App() {\n \tconst [loading, setLoading] = useState(true);\n \tconst onFinish = () => setLoading(false);\n \tconst preload = () => {\n \t\tconst fontToLoad = [Ionicons.font];\n+\t\tconst fontPromises = fontToLoad.map((font) => Font.loadAsync(font));\n+\t\tconsole.log(fontPromises);\n \t\treturn Promise.all();\n \t};\n \tif (loading) {\n \t\treturn (\n"
+                },
+                {
+                    "date": 1657722212803,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,9 @@\n \tconst [loading, setLoading] = useState(true);\n \tconst onFinish = () => setLoading(false);\n \tconst preload = () => {\n \t\tconst fontToLoad = [Ionicons.font];\n+\t\tconsole.log(fontToLoad);\n \t\tconst fontPromises = fontToLoad.map((font) => Font.loadAsync(font));\n \t\tconsole.log(fontPromises);\n \t\treturn Promise.all();\n \t};\n"
+                },
+                {
+                    "date": 1657722287625,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n \t\tconst fontToLoad = [Ionicons.font];\n \t\tconsole.log(fontToLoad);\n \t\tconst fontPromises = fontToLoad.map((font) => Font.loadAsync(font));\n \t\tconsole.log(fontPromises);\n-\t\treturn Promise.all();\n+\t\treturn Promise.all(fontPromises);\n \t};\n \tif (loading) {\n \t\treturn (\n \t\t\t<AppLoading\n"
+                },
+                {
+                    "date": 1657722896372,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,24 +6,20 @@\n import { StyleSheet, Text, View } from \"react-native\";\n \n export default function App() {\n \tconst [loading, setLoading] = useState(true);\n-\tconst onFinish = () => setLoading(false);\n+\tconst onFinish = () => {\n+\t\tpreload().then(() => {\n+\t\t\tsetLoading(false);\n+\t\t});\n+\t};\n \tconst preload = () => {\n \t\tconst fontToLoad = [Ionicons.font];\n-\t\tconsole.log(fontToLoad);\n \t\tconst fontPromises = fontToLoad.map((font) => Font.loadAsync(font));\n-\t\tconsole.log(fontPromises);\n \t\treturn Promise.all(fontPromises);\n \t};\n \tif (loading) {\n-\t\treturn (\n-\t\t\t<AppLoading\n-\t\t\t\tstartAsync={preload}\n-\t\t\t\tonError={console.warn}\n-\t\t\t\tonFinish={onFinish}\n-\t\t\t/>\n-\t\t);\n+\t\treturn <AppLoading />;\n \t}\n \treturn (\n \t\t<View style={styles.container}>\n \t\t\t<Text>!</Text>\n"
+                },
+                {
+                    "date": 1657722906018,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n \t\tconst fontPromises = fontToLoad.map((font) => Font.loadAsync(font));\n \t\treturn Promise.all(fontPromises);\n \t};\n \tif (loading) {\n-\t\treturn <AppLoading />;\n+\t\treturn <AppLoading autoHideSplash={onFinish} />;\n \t}\n \treturn (\n \t\t<View style={styles.container}>\n \t\t\t<Text>!</Text>\n"
+                },
+                {
+                    "date": 1657722925738,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,11 +7,16 @@\n \n export default function App() {\n \tconst [loading, setLoading] = useState(true);\n \tconst onFinish = () => {\n-\t\tpreload().then(() => {\n-\t\t\tsetLoading(false);\n-\t\t});\n+\t\tpreload()\n+\t\t\t.then(() => {\n+\t\t\t\tsetLoading(false);\n+\t\t\t\treturn false;\n+\t\t\t})\n+\t\t\t.catch(() => {\n+\t\t\t\treturn true;\n+\t\t\t});\n \t};\n \tconst preload = () => {\n \t\tconst fontToLoad = [Ionicons.font];\n \t\tconst fontPromises = fontToLoad.map((font) => Font.loadAsync(font));\n"
+                },
+                {
+                    "date": 1657722949141,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,8 @@\n \tconst [loading, setLoading] = useState(true);\n \tconst onFinish = () => {\n \t\tpreload()\n \t\t\t.then(() => {\n-\t\t\t\tsetLoading(false);\n \t\t\t\treturn false;\n \t\t\t})\n \t\t\t.catch(() => {\n \t\t\t\treturn true;\n@@ -22,9 +21,9 @@\n \t\tconst fontPromises = fontToLoad.map((font) => Font.loadAsync(font));\n \t\treturn Promise.all(fontPromises);\n \t};\n \tif (loading) {\n-\t\treturn <AppLoading autoHideSplash={onFinish} />;\n+\t\treturn <AppLoading autoHideSplash={setLoading(onFinish())} />;\n \t}\n \treturn (\n \t\t<View style={styles.container}>\n \t\t\t<Text>!</Text>\n"
+                },
+                {
+                    "date": 1657723025966,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,13 @@\n import { StyleSheet, Text, View } from \"react-native\";\n \n export default function App() {\n \tconst [loading, setLoading] = useState(true);\n+\tconst preload = () => {\n+\t\tconst fontToLoad = [Ionicons.font];\n+\t\tconst fontPromises = fontToLoad.map((font) => Font.loadAsync(font));\n+\t\treturn Promise.all(fontPromises);\n+\t};\n \tconst onFinish = () => {\n \t\tpreload()\n \t\t\t.then(() => {\n \t\t\t\treturn false;\n@@ -15,13 +20,9 @@\n \t\t\t.catch(() => {\n \t\t\t\treturn true;\n \t\t\t});\n \t};\n-\tconst preload = () => {\n-\t\tconst fontToLoad = [Ionicons.font];\n-\t\tconst fontPromises = fontToLoad.map((font) => Font.loadAsync(font));\n-\t\treturn Promise.all(fontPromises);\n-\t};\n+\n \tif (loading) {\n \t\treturn <AppLoading autoHideSplash={setLoading(onFinish())} />;\n \t}\n \treturn (\n"
+                },
+                {
+                    "date": 1657723226384,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n \t\t\t});\n \t};\n \n \tif (loading) {\n-\t\treturn <AppLoading autoHideSplash={setLoading(onFinish())} />;\n+\t\treturn <AppLoading />;\n \t}\n \treturn (\n \t\t<View style={styles.container}>\n \t\t\t<Text>!</Text>\n"
+                },
+                {
+                    "date": 1657723268065,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n import * as Font from \"expo-font\";\n import { StyleSheet, Text, View } from \"react-native\";\n \n export default function App() {\n-\tconst [loading, setLoading] = useState(true);\n+\tconst [loading, setLoading] = useState(false);\n \tconst preload = () => {\n \t\tconst fontToLoad = [Ionicons.font];\n \t\tconst fontPromises = fontToLoad.map((font) => Font.loadAsync(font));\n \t\treturn Promise.all(fontPromises);\n"
+                },
+                {
+                    "date": 1657723278619,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n import * as Font from \"expo-font\";\n import { StyleSheet, Text, View } from \"react-native\";\n \n export default function App() {\n-\tconst [loading, setLoading] = useState(false);\n+\tconst [loading, setLoading] = useState(true);\n \tconst preload = () => {\n \t\tconst fontToLoad = [Ionicons.font];\n \t\tconst fontPromises = fontToLoad.map((font) => Font.loadAsync(font));\n \t\treturn Promise.all(fontPromises);\n"
+                },
+                {
+                    "date": 1657723557710,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,31 @@\n import AppLoading from \"expo-app-loading\";\n import { StatusBar } from \"expo-status-bar\";\n-import { useState } from \"react\";\n+import { useEffect, useState } from \"react\";\n import { Ionicons } from \"@expo/vector-icons\";\n import * as Font from \"expo-font\";\n import { StyleSheet, Text, View } from \"react-native\";\n+import * as SplashScreen from \"expo-splash-screen\";\n \n+SplashScreen.preventAutoHideAsync();\n+\n export default function App() {\n-\tconst [loading, setLoading] = useState(true);\n+\tconst [loading, setLoading] = useState(false);\n+\n+\tuseEffect(() => {\n+\t\tasync function prepare() {\n+\t\t\ttry {\n+\t\t\t\tconst fontToLoad = [Ionicons.font];\n+\t\t\t\tconst fontPromises = fontToLoad.map((font) => Font.loadAsync(font));\n+\n+\t\t\t\tawait Promise.all(fontPromises);\n+\t\t\t} catch (e) {\n+\t\t\t\tconsole.warn(e);\n+\t\t\t} finally {\n+\t\t\t\tsetLoading(true);\n+\t\t\t}\n+\t\t}\n+\t});\n \tconst preload = () => {\n \t\tconst fontToLoad = [Ionicons.font];\n \t\tconst fontPromises = fontToLoad.map((font) => Font.loadAsync(font));\n \t\treturn Promise.all(fontPromises);\n"
+                },
+                {
+                    "date": 1657723678133,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import AppLoading from \"expo-app-loading\";\n import { StatusBar } from \"expo-status-bar\";\n-import { useEffect, useState } from \"react\";\n+import { useCallback, useEffect, useState } from \"react\";\n import { Ionicons } from \"@expo/vector-icons\";\n import * as Font from \"expo-font\";\n import { StyleSheet, Text, View } from \"react-native\";\n import * as SplashScreen from \"expo-splash-screen\";\n@@ -23,29 +23,24 @@\n \t\t\t} finally {\n \t\t\t\tsetLoading(true);\n \t\t\t}\n \t\t}\n-\t});\n-\tconst preload = () => {\n-\t\tconst fontToLoad = [Ionicons.font];\n-\t\tconst fontPromises = fontToLoad.map((font) => Font.loadAsync(font));\n-\t\treturn Promise.all(fontPromises);\n-\t};\n-\tconst onFinish = () => {\n-\t\tpreload()\n-\t\t\t.then(() => {\n-\t\t\t\treturn false;\n-\t\t\t})\n-\t\t\t.catch(() => {\n-\t\t\t\treturn true;\n-\t\t\t});\n-\t};\n \n-\tif (loading) {\n-\t\treturn <AppLoading />;\n+\t\tprepare();\n+\t}, []);\n+\n+\tconst onLayoutRootView = useCallback(async () => {\n+\t\tif (loading) {\n+\t\t\tawait SplashScreen.hideAsync();\n+\t\t}\n+\t}, [loading]);\n+\n+\tif (!loading) {\n+\t\treturn null;\n \t}\n+\n \treturn (\n-\t\t<View style={styles.container}>\n+\t\t<View style={styles.container} onLayout={onLayoutRootView}>\n \t\t\t<Text>!</Text>\n \t\t\t<StatusBar style=\"auto\" />\n \t\t</View>\n \t);\n"
+                },
+                {
+                    "date": 1657723754294,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -38,9 +38,9 @@\n \t\treturn null;\n \t}\n \n \treturn (\n-\t\t<View style={styles.container} onLayout={onLayoutRootView}>\n+\t\t<View style={styles.container}>\n \t\t\t<Text>!</Text>\n \t\t\t<StatusBar style=\"auto\" />\n \t\t</View>\n \t);\n"
+                },
+                {
+                    "date": 1657723762793,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,4 @@\n-import AppLoading from \"expo-app-loading\";\n import { StatusBar } from \"expo-status-bar\";\n import { useCallback, useEffect, useState } from \"react\";\n import { Ionicons } from \"@expo/vector-icons\";\n import * as Font from \"expo-font\";\n@@ -38,9 +37,9 @@\n \t\treturn null;\n \t}\n \n \treturn (\n-\t\t<View style={styles.container}>\n+\t\t<View style={styles.container} onLayout={onLayoutRootView}>\n \t\t\t<Text>!</Text>\n \t\t\t<StatusBar style=\"auto\" />\n \t\t</View>\n \t);\n"
+                },
+                {
+                    "date": 1657723790257,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,37 +9,10 @@\n \n export default function App() {\n \tconst [loading, setLoading] = useState(false);\n \n-\tuseEffect(() => {\n-\t\tasync function prepare() {\n-\t\t\ttry {\n-\t\t\t\tconst fontToLoad = [Ionicons.font];\n-\t\t\t\tconst fontPromises = fontToLoad.map((font) => Font.loadAsync(font));\n-\n-\t\t\t\tawait Promise.all(fontPromises);\n-\t\t\t} catch (e) {\n-\t\t\t\tconsole.warn(e);\n-\t\t\t} finally {\n-\t\t\t\tsetLoading(true);\n-\t\t\t}\n-\t\t}\n-\n-\t\tprepare();\n-\t}, []);\n-\n-\tconst onLayoutRootView = useCallback(async () => {\n-\t\tif (loading) {\n-\t\t\tawait SplashScreen.hideAsync();\n-\t\t}\n-\t}, [loading]);\n-\n-\tif (!loading) {\n-\t\treturn null;\n-\t}\n-\n \treturn (\n-\t\t<View style={styles.container} onLayout={onLayoutRootView}>\n+\t\t<View style={styles.container}>\n \t\t\t<Text>!</Text>\n \t\t\t<StatusBar style=\"auto\" />\n \t\t</View>\n \t);\n"
+                },
+                {
+                    "date": 1657723814299,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,10 +4,8 @@\n import * as Font from \"expo-font\";\n import { StyleSheet, Text, View } from \"react-native\";\n import * as SplashScreen from \"expo-splash-screen\";\n \n-SplashScreen.preventAutoHideAsync();\n-\n export default function App() {\n \tconst [loading, setLoading] = useState(false);\n \n \treturn (\n"
+                },
+                {
+                    "date": 1657723837076,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,7 @@\n import { StatusBar } from \"expo-status-bar\";\n-import { useCallback, useEffect, useState } from \"react\";\n-import { Ionicons } from \"@expo/vector-icons\";\n-import * as Font from \"expo-font\";\n+\n import { StyleSheet, Text, View } from \"react-native\";\n-import * as SplashScreen from \"expo-splash-screen\";\n \n export default function App() {\n \tconst [loading, setLoading] = useState(false);\n \n"
+                },
+                {
+                    "date": 1657723842978,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,10 +2,8 @@\n \n import { StyleSheet, Text, View } from \"react-native\";\n \n export default function App() {\n-\tconst [loading, setLoading] = useState(false);\n-\n \treturn (\n \t\t<View style={styles.container}>\n \t\t\t<Text>!</Text>\n \t\t\t<StatusBar style=\"auto\" />\n"
+                },
+                {
+                    "date": 1657723920987,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,45 @@\n import { StatusBar } from \"expo-status-bar\";\n-\n+import { useCallback, useEffect, useState } from \"react\";\n+import { Ionicons } from \"@expo/vector-icons\";\n+import * as Font from \"expo-font\";\n import { StyleSheet, Text, View } from \"react-native\";\n+import * as SplashScreen from \"expo-splash-screen\";\n \n+SplashScreen.preventAutoHideAsync();\n+\n export default function App() {\n+\tconst [loading, setLoading] = useState(false);\n+\n+\tuseEffect(() => {\n+\t\tasync function prepare() {\n+\t\t\ttry {\n+\t\t\t\tconst fontToLoad = [Ionicons.font];\n+\t\t\t\tconst fontPromises = fontToLoad.map((font) => Font.loadAsync(font));\n+\n+\t\t\t\tawait Promise.all(fontPromises);\n+\t\t\t} catch (e) {\n+\t\t\t\tconsole.warn(e);\n+\t\t\t} finally {\n+\t\t\t\tsetLoading(true);\n+\t\t\t}\n+\t\t}\n+\n+\t\tprepare();\n+\t}, []);\n+\n+\tconst onLayoutRootView = useCallback(async () => {\n+\t\tif (loading) {\n+\t\t\tawait SplashScreen.hideAsync();\n+\t\t}\n+\t}, [loading]);\n+\n+\tif (!loading) {\n+\t\treturn null;\n+\t}\n+\n \treturn (\n-\t\t<View style={styles.container}>\n+\t\t<View style={styles.container} onLayout={onLayoutRootView}>\n \t\t\t<Text>!</Text>\n \t\t\t<StatusBar style=\"auto\" />\n \t\t</View>\n \t);\n"
+                },
+                {
+                    "date": 1657723953057,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,8 +16,10 @@\n \t\t\t\tconst fontToLoad = [Ionicons.font];\n \t\t\t\tconst fontPromises = fontToLoad.map((font) => Font.loadAsync(font));\n \n \t\t\t\tawait Promise.all(fontPromises);\n+\n+\t\t\t\tawait setTimeout(() => {}, 3000);\n \t\t\t} catch (e) {\n \t\t\t\tconsole.warn(e);\n \t\t\t} finally {\n \t\t\t\tsetLoading(true);\n"
+                },
+                {
+                    "date": 1657723992684,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n \t\t\t\tconst fontPromises = fontToLoad.map((font) => Font.loadAsync(font));\n \n \t\t\t\tawait Promise.all(fontPromises);\n \n-\t\t\t\tawait setTimeout(() => {}, 3000);\n+\t\t\t\tawait new Promise((resolve) => setTimeout(resolve, 3000));\n \t\t\t} catch (e) {\n \t\t\t\tconsole.warn(e);\n \t\t\t} finally {\n \t\t\t\tsetLoading(true);\n"
+                },
+                {
+                    "date": 1657724011430,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,10 +16,8 @@\n \t\t\t\tconst fontToLoad = [Ionicons.font];\n \t\t\t\tconst fontPromises = fontToLoad.map((font) => Font.loadAsync(font));\n \n \t\t\t\tawait Promise.all(fontPromises);\n-\n-\t\t\t\tawait new Promise((resolve) => setTimeout(resolve, 3000));\n \t\t\t} catch (e) {\n \t\t\t\tconsole.warn(e);\n \t\t\t} finally {\n \t\t\t\tsetLoading(true);\n"
+                }
+            ],
+            "date": 1657720865138,
+            "name": "Commit-0",
+            "content": "import { StatusBar } from \"expo-status-bar\";\nimport { StyleSheet, Text, View } from \"react-native\";\n\nexport default function App() {\n\treturn (\n\t\t<View style={styles.container}>\n\t\t\t<Text>Open up App.js to s on your app!</Text>\n\t\t\t<StatusBar style=\"auto\" />\n\t\t</View>\n\t);\n}\n\nconst styles = StyleSheet.create({\n\tcontainer: {\n\t\tflex: 1,\n\t\tbackgroundColor: \"#fff\",\n\t\talignItems: \"center\",\n\t\tjustifyContent: \"center\",\n\t},\n});\n"
+        }
+    ]
+}
