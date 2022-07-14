@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 19,
+            "activePatchIndex": 62,
             "patches": [
                 {
                     "date": 1657786920065,
@@ -84,6 +84,178 @@
                 {
                     "date": 1657790435883,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n \t\t\t\t</View>\r\n \t\t\t</TouchableOpacity>\r\n \t\t\t<TouchableOpacity onPress={() => navigation.navigate(\"Login\")}>\r\n \t\t\t\t<View>\r\n-\t\t\t\t\t<Text>Go to Create Login</Text>\r\n+\t\t\t\t\t<Text>Go to Login</Text>\r\n \t\t\t\t</View>\r\n \t\t\t</TouchableOpacity>\r\n \t\t</View>\r\n \t);\r\n"
+                },
+                {
+                    "date": 1657810496323,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import React from \"react\";\r\n-import { View, Text, TouchableOpacity } from \"react-native\";\r\n+import styled from \"styled-components/native\";\r\n \r\n export default function Welcom({ navigation }) {\r\n \treturn (\r\n \t\t<View>\r\n"
+                },
+                {
+                    "date": 1657810532850,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,20 +1,9 @@\n import React from \"react\";\r\n+import { View } from \"react-native\";\r\n import styled from \"styled-components/native\";\r\n \r\n+const Container = styled.View``;\r\n+\r\n export default function Welcom({ navigation }) {\r\n-\treturn (\r\n-\t\t<View>\r\n-\t\t\t<Text>Welcome</Text>\r\n-\t\t\t<TouchableOpacity onPress={() => navigation.navigate(\"CreateAccount\")}>\r\n-\t\t\t\t<View>\r\n-\t\t\t\t\t<Text>Go to Create Account</Text>\r\n-\t\t\t\t</View>\r\n-\t\t\t</TouchableOpacity>\r\n-\t\t\t<TouchableOpacity onPress={() => navigation.navigate(\"Login\")}>\r\n-\t\t\t\t<View>\r\n-\t\t\t\t\t<Text>Go to Login</Text>\r\n-\t\t\t\t</View>\r\n-\t\t\t</TouchableOpacity>\r\n-\t\t</View>\r\n-\t);\r\n+\treturn <View></View>;\r\n }\r\n"
+                },
+                {
+                    "date": 1657810549097,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,12 @@\n import React from \"react\";\r\n import { View } from \"react-native\";\r\n import styled from \"styled-components/native\";\r\n \r\n-const Container = styled.View``;\r\n+const Container = styled.View`\r\n+\tflex: 1;\r\n+\tbackground-color: black;\r\n+`;\r\n \r\n export default function Welcom({ navigation }) {\r\n \treturn <View></View>;\r\n }\r\n"
+                },
+                {
+                    "date": 1657810560541,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,6 +7,6 @@\n \tbackground-color: black;\r\n `;\r\n \r\n export default function Welcom({ navigation }) {\r\n-\treturn <View></View>;\r\n+\treturn <Container></Container>;\r\n }\r\n"
+                },
+                {
+                    "date": 1657810616389,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,7 +6,13 @@\n \tflex: 1;\r\n \tbackground-color: black;\r\n `;\r\n \r\n+const Logo = styled.Image`\r\n+\r\n+`;\r\n+\r\n export default function Welcom({ navigation }) {\r\n-\treturn <Container></Container>;\r\n+\treturn <Container>\r\n+\t\t<Logo source={required(\"../assets/logo.png\")}\r\n+\t</Container>;\r\n }\r\n"
+                },
+                {
+                    "date": 1657810661612,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,6 +13,6 @@\n \r\n export default function Welcom({ navigation }) {\r\n \treturn <Container>\r\n \t\t<Logo source={required(\"../assets/logo.png\")}\r\n-\t</Container>;\r\n+\t</Container>\r\n }\r\n"
+                },
+                {
+                    "date": 1657810675953,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,13 +6,13 @@\n \tflex: 1;\r\n \tbackground-color: black;\r\n `;\r\n \r\n-const Logo = styled.Image`\r\n+const Logo = styled.Image``;\r\n \r\n-`;\r\n-\r\n export default function Welcom({ navigation }) {\r\n-\treturn <Container>\r\n-\t\t<Logo source={required(\"../assets/logo.png\")}\r\n-\t</Container>\r\n+\treturn (\r\n+\t\t<Container>\r\n+\t\t\t<Logo source={required(\"../assets/logo.png\")}></Logo>\r\n+\t\t</Container>\r\n+\t);\r\n }\r\n"
+                },
+                {
+                    "date": 1657810739944,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,8 @@\n \r\n export default function Welcom({ navigation }) {\r\n \treturn (\r\n \t\t<Container>\r\n-\t\t\t<Logo source={required(\"../assets/logo.png\")}></Logo>\r\n+\t\t\t<Logo source={require(\"../assets/logo.png\")}></Logo>\r\n \t\t</Container>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1657810762705,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,8 @@\n \r\n export default function Welcom({ navigation }) {\r\n \treturn (\r\n \t\t<Container>\r\n-\t\t\t<Logo source={require(\"../assets/logo.png\")}></Logo>\r\n+\t\t\t<Logo resizeMode=\"center\" source={require(\"../assets/logo.png\")}></Logo>\r\n \t\t</Container>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1657810786326,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,11 @@\n \tflex: 1;\r\n \tbackground-color: black;\r\n `;\r\n \r\n-const Logo = styled.Image``;\r\n+const Logo = styled.Image`\r\n+\tmax-width: 50%;\r\n+`;\r\n \r\n export default function Welcom({ navigation }) {\r\n \treturn (\r\n \t\t<Container>\r\n"
+                },
+                {
+                    "date": 1657810798496,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,10 @@\n import styled from \"styled-components/native\";\r\n \r\n const Container = styled.View`\r\n \tflex: 1;\r\n+\talign-items: center;\r\n+\tjustify-content: center;\r\n \tbackground-color: black;\r\n `;\r\n \r\n const Logo = styled.Image`\r\n"
+                },
+                {
+                    "date": 1657810901211,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,11 +12,14 @@\n const Logo = styled.Image`\r\n \tmax-width: 50%;\r\n `;\r\n \r\n+const CreateAccount = styled.View``;\r\n+\r\n export default function Welcom({ navigation }) {\r\n \treturn (\r\n \t\t<Container>\r\n \t\t\t<Logo resizeMode=\"center\" source={require(\"../assets/logo.png\")}></Logo>\r\n+\t\t\t<CreateAccount></CreateAccount>\r\n \t\t</Container>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1657810907169,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n \r\n export default function Welcom({ navigation }) {\r\n \treturn (\r\n \t\t<Container>\r\n-\t\t\t<Logo resizeMode=\"center\" source={require(\"../assets/logo.png\")}></Logo>\r\n+\t\t\t<Logo resizeMode=\"contain\" source={require(\"../assets/logo.png\")}></Logo>\r\n \t\t\t<CreateAccount></CreateAccount>\r\n \t\t</Container>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1657810926000,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,9 @@\n `;\r\n \r\n const Logo = styled.Image`\r\n \tmax-width: 50%;\r\n+\tbackground-color: black;\r\n `;\r\n \r\n const CreateAccount = styled.View``;\r\n \r\n"
+                },
+                {
+                    "date": 1657810932286,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,14 +5,12 @@\n const Container = styled.View`\r\n \tflex: 1;\r\n \talign-items: center;\r\n \tjustify-content: center;\r\n-\tbackground-color: black;\r\n `;\r\n \r\n const Logo = styled.Image`\r\n \tmax-width: 50%;\r\n-\tbackground-color: black;\r\n `;\r\n \r\n const CreateAccount = styled.View``;\r\n \r\n"
+                },
+                {
+                    "date": 1657810958601,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n const Container = styled.View`\r\n \tflex: 1;\r\n \talign-items: center;\r\n \tjustify-content: center;\r\n+\tbackground-color: black;\r\n `;\r\n \r\n const Logo = styled.Image`\r\n \tmax-width: 50%;\r\n"
+                },
+                {
+                    "date": 1657810972848,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,8 +13,9 @@\n \tmax-width: 50%;\r\n `;\r\n \r\n const CreateAccount = styled.View``;\r\n+const CreateAccountText = styled.Text``;\r\n \r\n export default function Welcom({ navigation }) {\r\n \treturn (\r\n \t\t<Container>\r\n"
+                },
+                {
+                    "date": 1657810986493,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,8 +19,10 @@\n export default function Welcom({ navigation }) {\r\n \treturn (\r\n \t\t<Container>\r\n \t\t\t<Logo resizeMode=\"contain\" source={require(\"../assets/logo.png\")}></Logo>\r\n-\t\t\t<CreateAccount></CreateAccount>\r\n+\t\t\t<CreateAccount>\r\n+\t\t\t\t<CreateAccountText>Create Account</CreateAccountText>\r\n+\t\t\t</CreateAccount>\r\n \t\t</Container>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1657810996954,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,11 @@\n \tmax-width: 50%;\r\n `;\r\n \r\n const CreateAccount = styled.View``;\r\n-const CreateAccountText = styled.Text``;\r\n+const CreateAccountText = styled.Text`\r\n+\tcolor: white;\r\n+`;\r\n \r\n export default function Welcom({ navigation }) {\r\n \treturn (\r\n \t\t<Container>\r\n"
+                },
+                {
+                    "date": 1657811007077,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,11 @@\n const Logo = styled.Image`\r\n \tmax-width: 50%;\r\n `;\r\n \r\n-const CreateAccount = styled.View``;\r\n+const CreateAccount = styled.View`\r\n+\tbackground-color: #0095f6;\r\n+`;\r\n const CreateAccountText = styled.Text`\r\n \tcolor: white;\r\n `;\r\n \r\n"
+                },
+                {
+                    "date": 1657811074365,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n import React from \"react\";\r\n import { View } from \"react-native\";\r\n import styled from \"styled-components/native\";\r\n+import { colors } from \"../color\";\r\n \r\n const Container = styled.View`\r\n \tflex: 1;\r\n \talign-items: center;\r\n@@ -13,9 +14,9 @@\n \tmax-width: 50%;\r\n `;\r\n \r\n const CreateAccount = styled.View`\r\n-\tbackground-color: #0095f6;\r\n+\tbackground-color: ${colors.blue};\r\n `;\r\n const CreateAccountText = styled.Text`\r\n \tcolor: white;\r\n `;\r\n"
+                },
+                {
+                    "date": 1657811097438,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,9 @@\n `;\r\n \r\n const CreateAccount = styled.View`\r\n \tbackground-color: ${colors.blue};\r\n+\tpadding: 10px 5px;\r\n `;\r\n const CreateAccountText = styled.Text`\r\n \tcolor: white;\r\n `;\r\n"
+                },
+                {
+                    "date": 1657811130134,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,10 @@\n `;\r\n \r\n const CreateAccount = styled.View`\r\n \tbackground-color: ${colors.blue};\r\n-\tpadding: 10px 5px;\r\n+\tpadding: 5px 10px\r\n+\tborder-radius: 7px\r\n `;\r\n const CreateAccountText = styled.Text`\r\n \tcolor: white;\r\n `;\r\n"
+                },
+                {
+                    "date": 1657811140048,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,13 +15,14 @@\n `;\r\n \r\n const CreateAccount = styled.View`\r\n \tbackground-color: ${colors.blue};\r\n-\tpadding: 5px 10px\r\n-\tborder-radius: 7px\r\n+\tpadding: 5px 10px;\r\n+\tborder-radius: 7px;\r\n `;\r\n const CreateAccountText = styled.Text`\r\n \tcolor: white;\r\n+\tfont-weight: 600px;\r\n `;\r\n \r\n export default function Welcom({ navigation }) {\r\n \treturn (\r\n"
+                },
+                {
+                    "date": 1657811157655,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n \tborder-radius: 7px;\r\n `;\r\n const CreateAccountText = styled.Text`\r\n \tcolor: white;\r\n-\tfont-weight: 600px;\r\n+\tfont-weight: 600;\r\n `;\r\n \r\n export default function Welcom({ navigation }) {\r\n \treturn (\r\n"
+                },
+                {
+                    "date": 1657811225366,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,9 @@\n `;\r\n \r\n const Logo = styled.Image`\r\n \tmax-width: 50%;\r\n+\tbackground-image: image(\"../assets/logo.png\");\r\n `;\r\n \r\n const CreateAccount = styled.View`\r\n \tbackground-color: ${colors.blue};\r\n@@ -26,9 +27,9 @@\n \r\n export default function Welcom({ navigation }) {\r\n \treturn (\r\n \t\t<Container>\r\n-\t\t\t<Logo resizeMode=\"contain\" source={require(\"../assets/logo.png\")}></Logo>\r\n+\t\t\t<Logo resizeMode=\"contain\"></Logo>\r\n \t\t\t<CreateAccount>\r\n \t\t\t\t<CreateAccountText>Create Account</CreateAccountText>\r\n \t\t\t</CreateAccount>\r\n \t\t</Container>\r\n"
+                },
+                {
+                    "date": 1657811233555,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n `;\r\n \r\n const Logo = styled.Image`\r\n \tmax-width: 50%;\r\n-\tbackground-image: image(\"../assets/logo.png\");\r\n+\tbackground-image: \"../assets/logo.png\";\r\n `;\r\n \r\n const CreateAccount = styled.View`\r\n \tbackground-color: ${colors.blue};\r\n"
+                },
+                {
+                    "date": 1657811243194,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,8 @@\n `;\r\n \r\n const Logo = styled.Image`\r\n \tmax-width: 50%;\r\n-\tbackground-image: \"../assets/logo.png\";\r\n `;\r\n \r\n const CreateAccount = styled.View`\r\n \tbackground-color: ${colors.blue};\r\n@@ -27,9 +26,9 @@\n \r\n export default function Welcom({ navigation }) {\r\n \treturn (\r\n \t\t<Container>\r\n-\t\t\t<Logo resizeMode=\"contain\"></Logo>\r\n+\t\t\t<Logo resizeMode=\"contain\" source={require(\"../assets/logo.png\")}></Logo>\r\n \t\t\t<CreateAccount>\r\n \t\t\t\t<CreateAccountText>Create Account</CreateAccountText>\r\n \t\t\t</CreateAccount>\r\n \t\t</Container>\r\n"
+                },
+                {
+                    "date": 1657811318928,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,8 +11,9 @@\n `;\r\n \r\n const Logo = styled.Image`\r\n \tmax-width: 50%;\r\n+\tbackground-color: black;\r\n `;\r\n \r\n const CreateAccount = styled.View`\r\n \tbackground-color: ${colors.blue};\r\n"
+                },
+                {
+                    "date": 1657811550074,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n import React from \"react\";\r\n import { View } from \"react-native\";\r\n+import { TouchableOpacity } from \"react-native-web\";\r\n import styled from \"styled-components/native\";\r\n import { colors } from \"../color\";\r\n \r\n const Container = styled.View`\r\n@@ -11,9 +12,8 @@\n `;\r\n \r\n const Logo = styled.Image`\r\n \tmax-width: 50%;\r\n-\tbackground-color: black;\r\n `;\r\n \r\n const CreateAccount = styled.View`\r\n \tbackground-color: ${colors.blue};\r\n@@ -28,10 +28,12 @@\n export default function Welcom({ navigation }) {\r\n \treturn (\r\n \t\t<Container>\r\n \t\t\t<Logo resizeMode=\"contain\" source={require(\"../assets/logo.png\")}></Logo>\r\n-\t\t\t<CreateAccount>\r\n-\t\t\t\t<CreateAccountText>Create Account</CreateAccountText>\r\n-\t\t\t</CreateAccount>\r\n+\t\t\t<TouchableOpacity>\r\n+\t\t\t\t<CreateAccount>\r\n+\t\t\t\t\t<CreateAccountText>Create Account</CreateAccountText>\r\n+\t\t\t\t</CreateAccount>\r\n+\t\t\t</TouchableOpacity>\r\n \t\t</Container>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1657811576683,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import React from \"react\";\r\n import { View } from \"react-native\";\r\n-import { TouchableOpacity } from \"react-native-web\";\r\n+import { TouchableOpacity } from \"react-native\";\r\n import styled from \"styled-components/native\";\r\n import { colors } from \"../color\";\r\n \r\n const Container = styled.View`\r\n"
+                },
+                {
+                    "date": 1657811610026,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,8 +24,12 @@\n \tcolor: white;\r\n \tfont-weight: 600;\r\n `;\r\n \r\n+const LoginLink = styled.Text`\r\n+\tcolor: ${colors.blue};\r\n+`;\r\n+\r\n export default function Welcom({ navigation }) {\r\n \treturn (\r\n \t\t<Container>\r\n \t\t\t<Logo resizeMode=\"contain\" source={require(\"../assets/logo.png\")}></Logo>\r\n"
+                },
+                {
+                    "date": 1657811620359,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,7 +37,8 @@\n \t\t\t\t<CreateAccount>\r\n \t\t\t\t\t<CreateAccountText>Create Account</CreateAccountText>\r\n \t\t\t\t</CreateAccount>\r\n \t\t\t</TouchableOpacity>\r\n+\t\t\t<LoginLink>Log in</LoginLink>\r\n \t\t</Container>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1657811632204,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,8 +26,10 @@\n `;\r\n \r\n const LoginLink = styled.Text`\r\n \tcolor: ${colors.blue};\r\n+\tfont-weight: 600;\r\n+\tmargin-top: 10px;\r\n `;\r\n \r\n export default function Welcom({ navigation }) {\r\n \treturn (\r\n"
+                },
+                {
+                    "date": 1657811673657,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,8 +12,9 @@\n `;\r\n \r\n const Logo = styled.Image`\r\n \tmax-width: 50%;\r\n+\theight: 100px;\r\n `;\r\n \r\n const CreateAccount = styled.View`\r\n \tbackground-color: ${colors.blue};\r\n"
+                },
+                {
+                    "date": 1657811703212,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,8 +40,10 @@\n \t\t\t\t<CreateAccount>\r\n \t\t\t\t\t<CreateAccountText>Create Account</CreateAccountText>\r\n \t\t\t\t</CreateAccount>\r\n \t\t\t</TouchableOpacity>\r\n-\t\t\t<LoginLink>Log in</LoginLink>\r\n+\t\t\t<TouchableOpacity>\r\n+\t\t\t\t<LoginLink>Log in</LoginLink>\r\n+\t\t\t</TouchableOpacity>\r\n \t\t</Container>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1657811816892,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,17 +32,20 @@\n \tmargin-top: 10px;\r\n `;\r\n \r\n export default function Welcom({ navigation }) {\r\n+\tconst goToCreateAccount = () => navigation.navigate(\"CreateAccount\");\r\n+\tconst goToLogin = () => navigation.navigate(\"Login\");\r\n+\r\n \treturn (\r\n \t\t<Container>\r\n \t\t\t<Logo resizeMode=\"contain\" source={require(\"../assets/logo.png\")}></Logo>\r\n-\t\t\t<TouchableOpacity>\r\n+\t\t\t<TouchableOpacity onPress={goToCreateAccount}>\r\n \t\t\t\t<CreateAccount>\r\n \t\t\t\t\t<CreateAccountText>Create Account</CreateAccountText>\r\n \t\t\t\t</CreateAccount>\r\n \t\t\t</TouchableOpacity>\r\n-\t\t\t<TouchableOpacity>\r\n+\t\t\t<TouchableOpacity onPress={goToLogin}>\r\n \t\t\t\t<LoginLink>Log in</LoginLink>\r\n \t\t\t</TouchableOpacity>\r\n \t\t</Container>\r\n \t);\r\n"
+                },
+                {
+                    "date": 1657811833965,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,8 @@\n const Container = styled.View`\r\n \tflex: 1;\r\n \talign-items: center;\r\n \tjustify-content: center;\r\n-\tbackground-color: black;\r\n `;\r\n \r\n const Logo = styled.Image`\r\n \tmax-width: 50%;\r\n"
+                },
+                {
+                    "date": 1657811839287,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,9 @@\n const Container = styled.View`\r\n \tflex: 1;\r\n \talign-items: center;\r\n \tjustify-content: center;\r\n+\tbackground-color: black;\r\n `;\r\n \r\n const Logo = styled.Image`\r\n \tmax-width: 50%;\r\n"
+                },
+                {
+                    "date": 1657811956749,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n \tflex: 1;\r\n \talign-items: center;\r\n \tjustify-content: center;\r\n \tbackground-color: black;\r\n+\tbackground-image: url(\"../assets/logo.png\");\r\n `;\r\n \r\n const Logo = styled.Image`\r\n \tmax-width: 50%;\r\n@@ -37,9 +38,9 @@\n \tconst goToLogin = () => navigation.navigate(\"Login\");\r\n \r\n \treturn (\r\n \t\t<Container>\r\n-\t\t\t<Logo resizeMode=\"contain\" source={require(\"../assets/logo.png\")}></Logo>\r\n+\t\t\t<Logo resizeMode=\"contain\"></Logo>\r\n \t\t\t<TouchableOpacity onPress={goToCreateAccount}>\r\n \t\t\t\t<CreateAccount>\r\n \t\t\t\t\t<CreateAccountText>Create Account</CreateAccountText>\r\n \t\t\t\t</CreateAccount>\r\n"
+                },
+                {
+                    "date": 1657811973512,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,14 +8,14 @@\n \tflex: 1;\r\n \talign-items: center;\r\n \tjustify-content: center;\r\n \tbackground-color: black;\r\n-\tbackground-image: url(\"../assets/logo.png\");\r\n `;\r\n \r\n const Logo = styled.Image`\r\n \tmax-width: 50%;\r\n \theight: 100px;\r\n+\tbackground-image: url(\"../assets/logo.png\");\r\n `;\r\n \r\n const CreateAccount = styled.View`\r\n \tbackground-color: ${colors.blue};\r\n@@ -38,9 +38,9 @@\n \tconst goToLogin = () => navigation.navigate(\"Login\");\r\n \r\n \treturn (\r\n \t\t<Container>\r\n-\t\t\t<Logo resizeMode=\"contain\"></Logo>\r\n+\t\t\t<Logo resizeMode=\"contain\" source={require(\"../assets/logo.png\")}></Logo>\r\n \t\t\t<TouchableOpacity onPress={goToCreateAccount}>\r\n \t\t\t\t<CreateAccount>\r\n \t\t\t\t\t<CreateAccountText>Create Account</CreateAccountText>\r\n \t\t\t\t</CreateAccount>\r\n"
+                },
+                {
+                    "date": 1657812014425,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n \r\n const Logo = styled.Image`\r\n \tmax-width: 50%;\r\n \theight: 100px;\r\n-\tbackground-image: url(\"../assets/logo.png\");\r\n+\topacity: 0;\r\n `;\r\n \r\n const CreateAccount = styled.View`\r\n \tbackground-color: ${colors.blue};\r\n"
+                },
+                {
+                    "date": 1657812023053,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n \r\n const Logo = styled.Image`\r\n \tmax-width: 50%;\r\n \theight: 100px;\r\n-\topacity: 0;\r\n+\tbackground-color: rgba(0, 0, 0, 0);\r\n `;\r\n \r\n const CreateAccount = styled.View`\r\n \tbackground-color: ${colors.blue};\r\n"
                 }
             ],
             "date": 1657786920065,

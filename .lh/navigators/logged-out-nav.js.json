@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 17,
+            "activePatchIndex": 18,
             "patches": [
                 {
                     "date": 1657787116217,
@@ -76,6 +76,10 @@
                 {
                     "date": 1657790349022,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,10 @@\n \r\n export default function LoggedOutNav() {\r\n \treturn (\r\n \t\t<Stack.Navigator>\r\n+\t\t\t<Stack.Screen name=\"Welcome\" component={Welcome} />\r\n+\t\t\t<Stack.Screen name=\"Login\" component={Login} />\r\n \t\t\t<Stack.Screen name=\"CreateAccount\" component={CreateAccount} />\r\n \t\t</Stack.Navigator>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1657810469328,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,15 @@\n \r\n export default function LoggedOutNav() {\r\n \treturn (\r\n \t\t<Stack.Navigator>\r\n-\t\t\t<Stack.Screen name=\"Welcome\" component={Welcome} />\r\n+\t\t\t<Stack.Screen\r\n+\t\t\t\tname=\"Welcome\"\r\n+\t\t\t\toptions={{\r\n+\t\t\t\t\theaderShown: false,\r\n+\t\t\t\t}}\r\n+\t\t\t\tcomponent={Welcome}\r\n+\t\t\t/>\r\n \t\t\t<Stack.Screen name=\"Login\" component={Login} />\r\n \t\t\t<Stack.Screen name=\"CreateAccount\" component={CreateAccount} />\r\n \t\t</Stack.Navigator>\r\n \t);\r\n"
                 }
             ],
             "date": 1657787116217,

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 93,
+            "activePatchIndex": 104,
             "patches": [
                 {
                     "date": 1657720865138,
@@ -380,6 +380,50 @@
                 {
                     "date": 1657790732642,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,9 +43,8 @@\n \n \tif (loading) {\n \t\treturn <View onLayout={onLayoutRootView}></View>;\n \t}\n-\t//<View style={styles.container} onLayout={onLayoutRootView}></View>;\n \n \treturn (\n \t\t<NavigationContainer>\n \t\t\t<LoggedOutNav />\n"
+                },
+                {
+                    "date": 1657809578030,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n import * as SplashScreen from \"expo-splash-screen\";\n import { Asset } from \"expo-asset\";\n import LoggedOutNav from \"./navigators/logged-out-nav\";\n import { NavigationContainer } from \"@react-navigation/native\";\n+import { Appearance } from \"react-native\";\n \n SplashScreen.preventAutoHideAsync();\n \n export default function App() {\n"
+                },
+                {
+                    "date": 1657809591211,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,11 +46,13 @@\n \t\treturn <View onLayout={onLayoutRootView}></View>;\n \t}\n \n \treturn (\n-\t\t<NavigationContainer>\n-\t\t\t<LoggedOutNav />\n-\t\t</NavigationContainer>\n+\t\t<Appearance>\n+\t\t\t<NavigationContainer>\n+\t\t\t\t<LoggedOutNav />\n+\t\t\t</NavigationContainer>\n+\t\t</Appearance>\n \t);\n }\n \n const styles = StyleSheet.create({\n"
+                },
+                {
+                    "date": 1657809606247,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,8 +45,9 @@\n \tif (loading) {\n \t\treturn <View onLayout={onLayoutRootView}></View>;\n \t}\n \n+\tconsole.log(Appearance);\n \treturn (\n \t\t<Appearance>\n \t\t\t<NavigationContainer>\n \t\t\t\t<LoggedOutNav />\n"
+                },
+                {
+                    "date": 1657809618599,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,9 +45,9 @@\n \tif (loading) {\n \t\treturn <View onLayout={onLayoutRootView}></View>;\n \t}\n \n-\tconsole.log(Appearance);\n+\tconsole.log(Appearance.getColorScheme());\n \treturn (\n \t\t<Appearance>\n \t\t\t<NavigationContainer>\n \t\t\t\t<LoggedOutNav />\n"
+                },
+                {
+                    "date": 1657809735334,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,9 @@\n import { Asset } from \"expo-asset\";\n import LoggedOutNav from \"./navigators/logged-out-nav\";\n import { NavigationContainer } from \"@react-navigation/native\";\n import { Appearance } from \"react-native\";\n+import { AppearanceProvider } from \"react-native-appearance\";\n \n SplashScreen.preventAutoHideAsync();\n \n export default function App() {\n@@ -47,13 +48,13 @@\n \t}\n \n \tconsole.log(Appearance.getColorScheme());\n \treturn (\n-\t\t<Appearance>\n+\t\t<AppearanceProvider>\n \t\t\t<NavigationContainer>\n \t\t\t\t<LoggedOutNav />\n \t\t\t</NavigationContainer>\n-\t\t</Appearance>\n+\t\t</AppearanceProvider>\n \t);\n }\n \n const styles = StyleSheet.create({\n"
+                },
+                {
+                    "date": 1657809929257,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,9 +46,8 @@\n \tif (loading) {\n \t\treturn <View onLayout={onLayoutRootView}></View>;\n \t}\n \n-\tconsole.log(Appearance.getColorScheme());\n \treturn (\n \t\t<AppearanceProvider>\n \t\t\t<NavigationContainer>\n \t\t\t\t<LoggedOutNav />\n"
+                },
+                {
+                    "date": 1657810116630,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n import { StyleSheet, Text, View } from \"react-native\";\n import * as SplashScreen from \"expo-splash-screen\";\n import { Asset } from \"expo-asset\";\n import LoggedOutNav from \"./navigators/logged-out-nav\";\n-import { NavigationContainer } from \"@react-navigation/native\";\n+import { NavigationContainer, ThemeProvider } from \"@react-navigation/native\";\n import { Appearance } from \"react-native\";\n import { AppearanceProvider } from \"react-native-appearance\";\n \n SplashScreen.preventAutoHideAsync();\n@@ -46,8 +46,12 @@\n \tif (loading) {\n \t\treturn <View onLayout={onLayoutRootView}></View>;\n \t}\n \n+\tconst subscription = Appearance.addChangeListener(({ colorScheme }) => {\n+\t\tconsole.log(colorScheme);\n+\t});\n+\n \treturn (\n \t\t<AppearanceProvider>\n \t\t\t<NavigationContainer>\n \t\t\t\t<LoggedOutNav />\n"
+                },
+                {
+                    "date": 1657810277637,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,13 +51,11 @@\n \t\tconsole.log(colorScheme);\n \t});\n \n \treturn (\n-\t\t<AppearanceProvider>\n-\t\t\t<NavigationContainer>\n-\t\t\t\t<LoggedOutNav />\n-\t\t\t</NavigationContainer>\n-\t\t</AppearanceProvider>\n+\t\t<NavigationContainer>\n+\t\t\t<LoggedOutNav />\n+\t\t</NavigationContainer>\n \t);\n }\n \n const styles = StyleSheet.create({\n"
+                },
+                {
+                    "date": 1657810292109,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,9 +6,8 @@\n import { Asset } from \"expo-asset\";\n import LoggedOutNav from \"./navigators/logged-out-nav\";\n import { NavigationContainer, ThemeProvider } from \"@react-navigation/native\";\n import { Appearance } from \"react-native\";\n-import { AppearanceProvider } from \"react-native-appearance\";\n \n SplashScreen.preventAutoHideAsync();\n \n export default function App() {\n"
+                },
+                {
+                    "date": 1657810299392,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n import { StyleSheet, Text, View } from \"react-native\";\n import * as SplashScreen from \"expo-splash-screen\";\n import { Asset } from \"expo-asset\";\n import LoggedOutNav from \"./navigators/logged-out-nav\";\n-import { NavigationContainer, ThemeProvider } from \"@react-navigation/native\";\n+import { NavigationContainer } from \"@react-navigation/native\";\n import { Appearance } from \"react-native\";\n \n SplashScreen.preventAutoHideAsync();\n \n"
+                },
+                {
+                    "date": 1657810469311,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,12 +45,8 @@\n \tif (loading) {\n \t\treturn <View onLayout={onLayoutRootView}></View>;\n \t}\n \n-\tconst subscription = Appearance.addChangeListener(({ colorScheme }) => {\n-\t\tconsole.log(colorScheme);\n-\t});\n-\n \treturn (\n \t\t<NavigationContainer>\n \t\t\t<LoggedOutNav />\n \t\t</NavigationContainer>\n"
                 }
             ],
             "date": 1657720865138,

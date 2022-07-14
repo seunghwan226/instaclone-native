@@ -6,6 +6,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { Asset } from "expo-asset";
 import LoggedOutNav from "./navigators/logged-out-nav";
 import { NavigationContainer } from "@react-navigation/native";
+import { Appearance } from "react-native";
 
 SplashScreen.preventAutoHideAsync();
 
