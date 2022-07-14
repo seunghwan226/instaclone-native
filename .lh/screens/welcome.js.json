@@ -1,0 +1,94 @@
+{
+    "sourceFile": "screens/welcome.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 19,
+            "patches": [
+                {
+                    "date": 1657786920065,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1657788255226,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import React from \"react\";\r\n import { View, Text } from \"react-native\";\r\n \r\n-export default function Welcom() {\r\n+export default function Welcom(props) {\r\n \treturn (\r\n \t\t<View>\r\n \t\t\t<Text>Welcome</Text>\r\n \t\t</View>\r\n"
+                },
+                {
+                    "date": 1657788362605,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,15 @@\n import React from \"react\";\r\n-import { View, Text } from \"react-native\";\r\n+import { View, Text, TouchableOpacity } from \"react-native\";\r\n \r\n export default function Welcom(props) {\r\n \treturn (\r\n \t\t<View>\r\n \t\t\t<Text>Welcome</Text>\r\n+\t\t\t<TouchableOpacity>\r\n+\t\t\t\t<View>\r\n+\t\t\t\t\t<Text>Go to Create Account</Text>\r\n+\t\t\t\t</View>\r\n+\t\t\t</TouchableOpacity>\r\n \t\t</View>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1657788370305,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import React from \"react\";\r\n import { View, Text, TouchableOpacity } from \"react-native\";\r\n \r\n-export default function Welcom(props) {\r\n+export default function Welcome(props) {\r\n \treturn (\r\n \t\t<View>\r\n \t\t\t<Text>Welcome</Text>\r\n \t\t\t<TouchableOpacity>\r\n"
+                },
+                {
+                    "date": 1657788396629,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,12 +4,7 @@\n export default function Welcome(props) {\r\n \treturn (\r\n \t\t<View>\r\n \t\t\t<Text>Welcome</Text>\r\n-\t\t\t<TouchableOpacity>\r\n-\t\t\t\t<View>\r\n-\t\t\t\t\t<Text>Go to Create Account</Text>\r\n-\t\t\t\t</View>\r\n-\t\t\t</TouchableOpacity>\r\n \t\t</View>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1657788682790,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,22 @@\n import React from \"react\";\r\n import { View, Text, TouchableOpacity } from \"react-native\";\r\n+import CreateAccount from \"./create-account\";\r\n+import Login from \"./login\";\r\n \r\n export default function Welcome(props) {\r\n \treturn (\r\n \t\t<View>\r\n \t\t\t<Text>Welcome</Text>\r\n+\t\t\t<TouchableOpacity onPress={() => navigation.navigate(\"CreateAccount\")}>\r\n+\t\t\t\t<View>\r\n+\t\t\t\t\t<Text>Go to Create Account</Text>\r\n+\t\t\t\t</View>\r\n+\t\t\t</TouchableOpacity>\r\n+\t\t\t<TouchableOpacity onPress={() => navigation.navigate(\"Login\")}>\r\n+\t\t\t\t<View>\r\n+\t\t\t\t\t<Text>Go to Create Account</Text>\r\n+\t\t\t\t</View>\r\n+\t\t\t</TouchableOpacity>\r\n \t\t</View>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1657788723561,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,9 +2,9 @@\n import { View, Text, TouchableOpacity } from \"react-native\";\r\n import CreateAccount from \"./create-account\";\r\n import Login from \"./login\";\r\n \r\n-export default function Welcome(props) {\r\n+export default function Welcome({ navigation }) {\r\n \treturn (\r\n \t\t<View>\r\n \t\t\t<Text>Welcome</Text>\r\n \t\t\t<TouchableOpacity onPress={() => navigation.navigate(\"CreateAccount\")}>\r\n"
+                },
+                {
+                    "date": 1657788852799,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,6 @@\n import React from \"react\";\r\n import { View, Text, TouchableOpacity } from \"react-native\";\r\n-import CreateAccount from \"./create-account\";\r\n-import Login from \"./login\";\r\n \r\n export default function Welcome({ navigation }) {\r\n \treturn (\r\n \t\t<View>\r\n"
+                },
+                {
+                    "date": 1657789023122,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,20 +1,12 @@\n import React from \"react\";\r\n import { View, Text, TouchableOpacity } from \"react-native\";\r\n+import CreateAccount from \"./create-account\";\r\n+import Login from \"./login\";\r\n \r\n export default function Welcome({ navigation }) {\r\n \treturn (\r\n \t\t<View>\r\n \t\t\t<Text>Welcome</Text>\r\n-\t\t\t<TouchableOpacity onPress={() => navigation.navigate(\"CreateAccount\")}>\r\n-\t\t\t\t<View>\r\n-\t\t\t\t\t<Text>Go to Create Account</Text>\r\n-\t\t\t\t</View>\r\n-\t\t\t</TouchableOpacity>\r\n-\t\t\t<TouchableOpacity onPress={() => navigation.navigate(\"Login\")}>\r\n-\t\t\t\t<View>\r\n-\t\t\t\t\t<Text>Go to Create Account</Text>\r\n-\t\t\t\t</View>\r\n-\t\t\t</TouchableOpacity>\r\n \t\t</View>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1657789028928,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +0,0 @@\n-import React from \"react\";\r\n-import { View, Text, TouchableOpacity } from \"react-native\";\r\n-import CreateAccount from \"./create-account\";\r\n-import Login from \"./login\";\r\n-\r\n-export default function Welcome({ navigation }) {\r\n-\treturn (\r\n-\t\t<View>\r\n-\t\t\t<Text>Welcome</Text>\r\n-\t\t</View>\r\n-\t);\r\n-}\r\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1657789057868,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,7 @@\n-\n+\r\n+\r\n+export default function Welcome({ navigation }) {\r\n+\treturn (\r\n+\r\n+\t);\r\n+}\r\n"
+                },
+                {
+                    "date": 1657789073187,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,10 @@\n+import React from \"react\";\r\n+import { View, Text, TouchableOpacity } from \"react-native\";\r\n \r\n-\r\n export default function Welcome({ navigation }) {\r\n \treturn (\r\n-\r\n+\t\t<View>\r\n+\t\t\t<Text>Welcome</Text>\r\n+\t\t</View>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1657789112694,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,22 @@\n import React from \"react\";\r\n import { View, Text, TouchableOpacity } from \"react-native\";\r\n+import CreateAccount from \"./create-account\";\r\n+import Login from \"./login\";\r\n \r\n export default function Welcome({ navigation }) {\r\n \treturn (\r\n \t\t<View>\r\n \t\t\t<Text>Welcome</Text>\r\n+\t\t\t<TouchableOpacity onPress={() => navigation.navigate(\"CreateAccount\")}>\r\n+\t\t\t\t<View>\r\n+\t\t\t\t\t<Text>Go to Create Account</Text>\r\n+\t\t\t\t</View>\r\n+\t\t\t</TouchableOpacity>\r\n+\t\t\t<TouchableOpacity onPress={() => navigation.navigate(\"Login\")}>\r\n+\t\t\t\t<View>\r\n+\t\t\t\t\t<Text>Go to Create Account</Text>\r\n+\t\t\t\t</View>\r\n+\t\t\t</TouchableOpacity>\r\n \t\t</View>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1657789165436,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,6 @@\n import React from \"react\";\r\n import { View, Text, TouchableOpacity } from \"react-native\";\r\n-import CreateAccount from \"./create-account\";\r\n-import Login from \"./login\";\r\n-\r\n export default function Welcome({ navigation }) {\r\n \treturn (\r\n \t\t<View>\r\n \t\t\t<Text>Welcome</Text>\r\n"
+                },
+                {
+                    "date": 1657789177498,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,19 +1,10 @@\n import React from \"react\";\r\n import { View, Text, TouchableOpacity } from \"react-native\";\r\n-export default function Welcome({ navigation }) {\r\n+\r\n+export default function Welcome(props) {\r\n \treturn (\r\n \t\t<View>\r\n \t\t\t<Text>Welcome</Text>\r\n-\t\t\t<TouchableOpacity onPress={() => navigation.navigate(\"CreateAccount\")}>\r\n-\t\t\t\t<View>\r\n-\t\t\t\t\t<Text>Go to Create Account</Text>\r\n-\t\t\t\t</View>\r\n-\t\t\t</TouchableOpacity>\r\n-\t\t\t<TouchableOpacity onPress={() => navigation.navigate(\"Login\")}>\r\n-\t\t\t\t<View>\r\n-\t\t\t\t\t<Text>Go to Create Account</Text>\r\n-\t\t\t\t</View>\r\n-\t\t\t</TouchableOpacity>\r\n \t\t</View>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1657789222523,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import React from \"react\";\r\n-import { View, Text, TouchableOpacity } from \"react-native\";\r\n+import { View, Text } from \"react-native\";\r\n \r\n-export default function Welcome(props) {\r\n+export default function Welcom() {\r\n \treturn (\r\n \t\t<View>\r\n \t\t\t<Text>Welcome</Text>\r\n \t\t</View>\r\n"
+                },
+                {
+                    "date": 1657790318968,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,15 @@\n import React from \"react\";\r\n-import { View, Text } from \"react-native\";\r\n+import { View, Text, TouchableOpacity } from \"react-native\";\r\n \r\n-export default function Welcom() {\r\n+export default function Welcom({ navigation }) {\r\n \treturn (\r\n \t\t<View>\r\n \t\t\t<Text>Welcome</Text>\r\n+\t\t\t<TouchableOpacity onPress={() => navigation.navigate(\"CreateAccount\")}>\r\n+\t\t\t\t<View>\r\n+\t\t\t\t\t<Text>Go to Create Account</Text>\r\n+\t\t\t\t</View>\r\n+\t\t\t</TouchableOpacity>\r\n \t\t</View>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1657790419856,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,7 +9,12 @@\n \t\t\t\t<View>\r\n \t\t\t\t\t<Text>Go to Create Account</Text>\r\n \t\t\t\t</View>\r\n \t\t\t</TouchableOpacity>\r\n+\t\t\t<TouchableOpacity onPress={() => navigation.navigate(\"Login\")}>\r\n+\t\t\t\t<View>\r\n+\t\t\t\t\t<Text>Go to Create Account</Text>\r\n+\t\t\t\t</View>\r\n+\t\t\t</TouchableOpacity>\r\n \t\t</View>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1657790428355,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n \t\t\t\t</View>\r\n \t\t\t</TouchableOpacity>\r\n \t\t\t<TouchableOpacity onPress={() => navigation.navigate(\"Login\")}>\r\n \t\t\t\t<View>\r\n-\t\t\t\t\t<Text>Go to Create Account</Text>\r\n+\t\t\t\t\t<Text>Go to Create Login</Text>\r\n \t\t\t\t</View>\r\n \t\t\t</TouchableOpacity>\r\n \t\t</View>\r\n \t);\r\n"
+                },
+                {
+                    "date": 1657790435883,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n \t\t\t\t</View>\r\n \t\t\t</TouchableOpacity>\r\n \t\t\t<TouchableOpacity onPress={() => navigation.navigate(\"Login\")}>\r\n \t\t\t\t<View>\r\n-\t\t\t\t\t<Text>Go to Create Login</Text>\r\n+\t\t\t\t\t<Text>Go to Login</Text>\r\n \t\t\t\t</View>\r\n \t\t\t</TouchableOpacity>\r\n \t\t</View>\r\n \t);\r\n"
+                }
+            ],
+            "date": 1657786920065,
+            "name": "Commit-0",
+            "content": "import React from \"react\";\r\nimport { View, Text } from \"react-native\";\r\n\r\nexport default function Welcom() {\r\n\treturn (\r\n\t\t<View>\r\n\t\t\t<Text>Welcome</Text>\r\n\t\t</View>\r\n\t);\r\n}\r\n"
+        }
+    ]
+}

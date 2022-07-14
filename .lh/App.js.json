@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 29,
+            "activePatchIndex": 93,
             "patches": [
                 {
                     "date": 1657720865138,
@@ -124,6 +124,262 @@
                 {
                     "date": 1657724011430,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,10 +16,8 @@\n \t\t\t\tconst fontToLoad = [Ionicons.font];\n \t\t\t\tconst fontPromises = fontToLoad.map((font) => Font.loadAsync(font));\n \n \t\t\t\tawait Promise.all(fontPromises);\n-\n-\t\t\t\tawait new Promise((resolve) => setTimeout(resolve, 3000));\n \t\t\t} catch (e) {\n \t\t\t\tconsole.warn(e);\n \t\t\t} finally {\n \t\t\t\tsetLoading(true);\n"
+                },
+                {
+                    "date": 1657786287978,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,12 @@\n \t\tasync function prepare() {\n \t\t\ttry {\n \t\t\t\tconst fontToLoad = [Ionicons.font];\n \t\t\t\tconst fontPromises = fontToLoad.map((font) => Font.loadAsync(font));\n-\n+\t\t\t\tconst imagesToLoad = [\n+\t\t\t\t\trequire(\"./asasets/logo.png\"),\n+\t\t\t\t\t\"http://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/840px-Instagram_logo.svg.png\",\n+\t\t\t\t];\n \t\t\t\tawait Promise.all(fontPromises);\n \t\t\t} catch (e) {\n \t\t\t\tconsole.warn(e);\n \t\t\t} finally {\n"
+                },
+                {
+                    "date": 1657786303537,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,8 @@\n \t\t\ttry {\n \t\t\t\tconst fontToLoad = [Ionicons.font];\n \t\t\t\tconst fontPromises = fontToLoad.map((font) => Font.loadAsync(font));\n \t\t\t\tconst imagesToLoad = [\n-\t\t\t\t\trequire(\"./asasets/logo.png\"),\n \t\t\t\t\t\"http://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/840px-Instagram_logo.svg.png\",\n \t\t\t\t];\n \t\t\t\tawait Promise.all(fontPromises);\n \t\t\t} catch (e) {\n"
+                },
+                {
+                    "date": 1657786317103,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,9 @@\n \t\t\ttry {\n \t\t\t\tconst fontToLoad = [Ionicons.font];\n \t\t\t\tconst fontPromises = fontToLoad.map((font) => Font.loadAsync(font));\n \t\t\t\tconst imagesToLoad = [\n+\t\t\t\t\trequire(\"./asasets/icon.png\"),\n \t\t\t\t\t\"http://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/840px-Instagram_logo.svg.png\",\n \t\t\t\t];\n \t\t\t\tawait Promise.all(fontPromises);\n \t\t\t} catch (e) {\n"
+                },
+                {
+                    "date": 1657786327827,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n \t\t\ttry {\n \t\t\t\tconst fontToLoad = [Ionicons.font];\n \t\t\t\tconst fontPromises = fontToLoad.map((font) => Font.loadAsync(font));\n \t\t\t\tconst imagesToLoad = [\n-\t\t\t\t\trequire(\"./asasets/icon.png\"),\n+\t\t\t\t\trequire(\"./asssets/icon.png\"),\n \t\t\t\t\t\"http://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/840px-Instagram_logo.svg.png\",\n \t\t\t\t];\n \t\t\t\tawait Promise.all(fontPromises);\n \t\t\t} catch (e) {\n"
+                },
+                {
+                    "date": 1657786412157,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,9 @@\n import { Ionicons } from \"@expo/vector-icons\";\n import * as Font from \"expo-font\";\n import { StyleSheet, Text, View } from \"react-native\";\n import * as SplashScreen from \"expo-splash-screen\";\n+import {Asset} from \"expo-asset\"\n \n SplashScreen.preventAutoHideAsync();\n \n export default function App() {\n@@ -15,11 +16,12 @@\n \t\t\ttry {\n \t\t\t\tconst fontToLoad = [Ionicons.font];\n \t\t\t\tconst fontPromises = fontToLoad.map((font) => Font.loadAsync(font));\n \t\t\t\tconst imagesToLoad = [\n-\t\t\t\t\trequire(\"./asssets/icon.png\"),\n+\t\t\t\t\trequire(\"./assets/icon.png\"),\n \t\t\t\t\t\"http://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/840px-Instagram_logo.svg.png\",\n \t\t\t\t];\n+\t\t\t\tconst imagePromises = imagesToLoad.map(image => )\n \t\t\t\tawait Promise.all(fontPromises);\n \t\t\t} catch (e) {\n \t\t\t\tconsole.warn(e);\n \t\t\t} finally {\n"
+                },
+                {
+                    "date": 1657786432752,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,9 +3,9 @@\n import { Ionicons } from \"@expo/vector-icons\";\n import * as Font from \"expo-font\";\n import { StyleSheet, Text, View } from \"react-native\";\n import * as SplashScreen from \"expo-splash-screen\";\n-import {Asset} from \"expo-asset\"\n+import { Asset } from \"expo-asset\";\n \n SplashScreen.preventAutoHideAsync();\n \n export default function App() {\n@@ -19,10 +19,12 @@\n \t\t\t\tconst imagesToLoad = [\n \t\t\t\t\trequire(\"./assets/icon.png\"),\n \t\t\t\t\t\"http://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/840px-Instagram_logo.svg.png\",\n \t\t\t\t];\n-\t\t\t\tconst imagePromises = imagesToLoad.map(image => )\n-\t\t\t\tawait Promise.all(fontPromises);\n+\t\t\t\tconst imagePromises = imagesToLoad.map((image) =>\n+\t\t\t\t\tAsset.loadAsync(image)\n+\t\t\t\t);\n+\t\t\t\tawait Promise.all(fontPromises, imagePromises);\n \t\t\t} catch (e) {\n \t\t\t\tconsole.warn(e);\n \t\t\t} finally {\n \t\t\t\tsetLoading(true);\n"
+                },
+                {
+                    "date": 1657786460683,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n \t\t\t\t];\n \t\t\t\tconst imagePromises = imagesToLoad.map((image) =>\n \t\t\t\t\tAsset.loadAsync(image)\n \t\t\t\t);\n-\t\t\t\tawait Promise.all(fontPromises, imagePromises);\n+\t\t\t\tawait Promise.all([...fontPromises, ...imagePromises]);\n \t\t\t} catch (e) {\n \t\t\t\tconsole.warn(e);\n \t\t\t} finally {\n \t\t\t\tsetLoading(true);\n"
+                },
+                {
+                    "date": 1657787186891,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,11 @@\n-import { StatusBar } from \"expo-status-bar\";\n import { useCallback, useEffect, useState } from \"react\";\n import { Ionicons } from \"@expo/vector-icons\";\n import * as Font from \"expo-font\";\n import { StyleSheet, Text, View } from \"react-native\";\n import * as SplashScreen from \"expo-splash-screen\";\n import { Asset } from \"expo-asset\";\n+import LoggedOutNav from \"./navigators/logged-out-nav\";\n \n SplashScreen.preventAutoHideAsync();\n \n export default function App() {\n@@ -45,10 +45,9 @@\n \t}\n \n \treturn (\n \t\t<View style={styles.container} onLayout={onLayoutRootView}>\n-\t\t\t<Text>!</Text>\n-\t\t\t<StatusBar style=\"auto\" />\n+\t\t\t<LoggedOutNav></LoggedOutNav>\n \t\t</View>\n \t);\n }\n \n"
+                },
+                {
+                    "date": 1657787479721,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,9 @@\n import { StyleSheet, Text, View } from \"react-native\";\n import * as SplashScreen from \"expo-splash-screen\";\n import { Asset } from \"expo-asset\";\n import LoggedOutNav from \"./navigators/logged-out-nav\";\n+import { NavigationContainer } from \"@react-navigation/native\";\n \n SplashScreen.preventAutoHideAsync();\n \n export default function App() {\n@@ -45,9 +46,11 @@\n \t}\n \n \treturn (\n \t\t<View style={styles.container} onLayout={onLayoutRootView}>\n-\t\t\t<LoggedOutNav></LoggedOutNav>\n+\t\t\t<NavigationContainer>\n+\t\t\t\t<LoggedOutNav></LoggedOutNav>\n+\t\t\t</NavigationContainer>\n \t\t</View>\n \t);\n }\n \n"
+                },
+                {
+                    "date": 1657787539019,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,8 +46,9 @@\n \t}\n \n \treturn (\n \t\t<View style={styles.container} onLayout={onLayoutRootView}>\n+\t\t\t123\n \t\t\t<NavigationContainer>\n \t\t\t\t<LoggedOutNav></LoggedOutNav>\n \t\t\t</NavigationContainer>\n \t\t</View>\n"
+                },
+                {
+                    "date": 1657787545318,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,9 +46,8 @@\n \t}\n \n \treturn (\n \t\t<View style={styles.container} onLayout={onLayoutRootView}>\n-\t\t\t123\n \t\t\t<NavigationContainer>\n \t\t\t\t<LoggedOutNav></LoggedOutNav>\n \t\t\t</NavigationContainer>\n \t\t</View>\n"
+                },
+                {
+                    "date": 1657787551964,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,8 +46,9 @@\n \t}\n \n \treturn (\n \t\t<View style={styles.container} onLayout={onLayoutRootView}>\n+\t\t\t<Text>123</Text>\n \t\t\t<NavigationContainer>\n \t\t\t\t<LoggedOutNav></LoggedOutNav>\n \t\t\t</NavigationContainer>\n \t\t</View>\n"
+                },
+                {
+                    "date": 1657787557713,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,9 +46,9 @@\n \t}\n \n \treturn (\n \t\t<View style={styles.container} onLayout={onLayoutRootView}>\n-\t\t\t<Text>123</Text>\n+\t\t\t<Text>!</Text>\n \t\t\t<NavigationContainer>\n \t\t\t\t<LoggedOutNav></LoggedOutNav>\n \t\t\t</NavigationContainer>\n \t\t</View>\n"
+                },
+                {
+                    "date": 1657787574431,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,11 +46,10 @@\n \t}\n \n \treturn (\n \t\t<View style={styles.container} onLayout={onLayoutRootView}>\n-\t\t\t<Text>!</Text>\n \t\t\t<NavigationContainer>\n-\t\t\t\t<LoggedOutNav></LoggedOutNav>\n+\t\t\t\t<LoggedOutNav>123</LoggedOutNav>\n \t\t\t</NavigationContainer>\n \t\t</View>\n \t);\n }\n"
+                },
+                {
+                    "date": 1657787631198,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,16 +40,12 @@\n \t\t\tawait SplashScreen.hideAsync();\n \t\t}\n \t}, [loading]);\n \n-\tif (!loading) {\n-\t\treturn null;\n-\t}\n-\n \treturn (\n \t\t<View style={styles.container} onLayout={onLayoutRootView}>\n \t\t\t<NavigationContainer>\n-\t\t\t\t<LoggedOutNav>123</LoggedOutNav>\n+\t\t\t\t<LoggedOutNav></LoggedOutNav>\n \t\t\t</NavigationContainer>\n \t\t</View>\n \t);\n }\n"
+                },
+                {
+                    "date": 1657787645346,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,10 +40,14 @@\n \t\t\tawait SplashScreen.hideAsync();\n \t\t}\n \t}, [loading]);\n \n+\tif (!loading) {\n+\t\treturn null;\n+\t}\n+\n \treturn (\n-\t\t<View style={styles.container} onLayout={onLayoutRootView}>\n+\t\t<View style={styles.container}>\n \t\t\t<NavigationContainer>\n \t\t\t\t<LoggedOutNav></LoggedOutNav>\n \t\t\t</NavigationContainer>\n \t\t</View>\n"
+                },
+                {
+                    "date": 1657787650874,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,9 +45,9 @@\n \t\treturn null;\n \t}\n \n \treturn (\n-\t\t<View style={styles.container}>\n+\t\t<View style={styles.container} onLayout={onLayoutRootView}>\n \t\t\t<NavigationContainer>\n \t\t\t\t<LoggedOutNav></LoggedOutNav>\n \t\t\t</NavigationContainer>\n \t\t</View>\n"
+                },
+                {
+                    "date": 1657787679712,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,18 +14,8 @@\n \n \tuseEffect(() => {\n \t\tasync function prepare() {\n \t\t\ttry {\n-\t\t\t\tconst fontToLoad = [Ionicons.font];\n-\t\t\t\tconst fontPromises = fontToLoad.map((font) => Font.loadAsync(font));\n-\t\t\t\tconst imagesToLoad = [\n-\t\t\t\t\trequire(\"./assets/icon.png\"),\n-\t\t\t\t\t\"http://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/840px-Instagram_logo.svg.png\",\n-\t\t\t\t];\n-\t\t\t\tconst imagePromises = imagesToLoad.map((image) =>\n-\t\t\t\t\tAsset.loadAsync(image)\n-\t\t\t\t);\n-\t\t\t\tawait Promise.all([...fontPromises, ...imagePromises]);\n \t\t\t} catch (e) {\n \t\t\t\tconsole.warn(e);\n \t\t\t} finally {\n \t\t\t\tsetLoading(true);\n"
+                },
+                {
+                    "date": 1657787694194,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,35 +9,10 @@\n \n SplashScreen.preventAutoHideAsync();\n \n export default function App() {\n-\tconst [loading, setLoading] = useState(false);\n-\n-\tuseEffect(() => {\n-\t\tasync function prepare() {\n-\t\t\ttry {\n-\t\t\t} catch (e) {\n-\t\t\t\tconsole.warn(e);\n-\t\t\t} finally {\n-\t\t\t\tsetLoading(true);\n-\t\t\t}\n-\t\t}\n-\n-\t\tprepare();\n-\t}, []);\n-\n-\tconst onLayoutRootView = useCallback(async () => {\n-\t\tif (loading) {\n-\t\t\tawait SplashScreen.hideAsync();\n-\t\t}\n-\t}, [loading]);\n-\n-\tif (!loading) {\n-\t\treturn null;\n-\t}\n-\n \treturn (\n-\t\t<View style={styles.container} onLayout={onLayoutRootView}>\n+\t\t<View style={styles.container}>\n \t\t\t<NavigationContainer>\n \t\t\t\t<LoggedOutNav></LoggedOutNav>\n \t\t\t</NavigationContainer>\n \t\t</View>\n"
+                },
+                {
+                    "date": 1657787721567,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,10 +6,8 @@\n import { Asset } from \"expo-asset\";\n import LoggedOutNav from \"./navigators/logged-out-nav\";\n import { NavigationContainer } from \"@react-navigation/native\";\n \n-SplashScreen.preventAutoHideAsync();\n-\n export default function App() {\n \treturn (\n \t\t<View style={styles.container}>\n \t\t\t<NavigationContainer>\n"
+                },
+                {
+                    "date": 1657787746623,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,11 +6,48 @@\n import { Asset } from \"expo-asset\";\n import LoggedOutNav from \"./navigators/logged-out-nav\";\n import { NavigationContainer } from \"@react-navigation/native\";\n \n+SplashScreen.preventAutoHideAsync();\n+\n export default function App() {\n+\tconst [loading, setLoading] = useState(false);\n+\n+\tuseEffect(() => {\n+\t\tasync function prepare() {\n+\t\t\ttry {\n+\t\t\t\tconst fontToLoad = [Ionicons.font];\n+\t\t\t\tconst fontPromises = fontToLoad.map((font) => Font.loadAsync(font));\n+\t\t\t\tconst imagesToLoad = [\n+\t\t\t\t\trequire(\"./assets/icon.png\"),\n+\t\t\t\t\t\"http://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/840px-Instagram_logo.svg.png\",\n+\t\t\t\t];\n+\t\t\t\tconst imagePromises = imagesToLoad.map((image) =>\n+\t\t\t\t\tAsset.loadAsync(image)\n+\t\t\t\t);\n+\t\t\t\tawait Promise.all([...fontPromises, ...imagePromises]);\n+\t\t\t} catch (e) {\n+\t\t\t\tconsole.warn(e);\n+\t\t\t} finally {\n+\t\t\t\tsetLoading(true);\n+\t\t\t}\n+\t\t}\n+\n+\t\tprepare();\n+\t}, []);\n+\n+\tconst onLayoutRootView = useCallback(async () => {\n+\t\tif (loading) {\n+\t\t\tawait SplashScreen.hideAsync();\n+\t\t}\n+\t}, [loading]);\n+\n+\tif (!loading) {\n+\t\treturn null;\n+\t}\n+\n \treturn (\n-\t\t<View style={styles.container}>\n+\t\t<View style={styles.container} onLayout={onLayoutRootView}>\n \t\t\t<NavigationContainer>\n \t\t\t\t<LoggedOutNav></LoggedOutNav>\n \t\t\t</NavigationContainer>\n \t\t</View>\n"
+                },
+                {
+                    "date": 1657787775050,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -49,8 +49,9 @@\n \t\t<View style={styles.container} onLayout={onLayoutRootView}>\n \t\t\t<NavigationContainer>\n \t\t\t\t<LoggedOutNav></LoggedOutNav>\n \t\t\t</NavigationContainer>\n+\t\t\t<Text>asdf</Text>\n \t\t</View>\n \t);\n }\n \n"
+                },
+                {
+                    "date": 1657787783842,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -49,9 +49,8 @@\n \t\t<View style={styles.container} onLayout={onLayoutRootView}>\n \t\t\t<NavigationContainer>\n \t\t\t\t<LoggedOutNav></LoggedOutNav>\n \t\t\t</NavigationContainer>\n-\t\t\t<Text>asdf</Text>\n \t\t</View>\n \t);\n }\n \n"
+                },
+                {
+                    "date": 1657787819149,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,12 +45,10 @@\n \t\treturn null;\n \t}\n \n \treturn (\n-\t\t<View style={styles.container} onLayout={onLayoutRootView}>\n-\t\t\t<NavigationContainer>\n-\t\t\t\t<LoggedOutNav></LoggedOutNav>\n-\t\t\t</NavigationContainer>\n+\t\t<View>\n+\t\t\t<Text>123432</Text>\n \t\t</View>\n \t);\n }\n \n"
+                },
+                {
+                    "date": 1657787832574,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,10 +45,10 @@\n \t\treturn null;\n \t}\n \n \treturn (\n-\t\t<View>\n-\t\t\t<Text>123432</Text>\n+\t\t<View style={styles.container} onLayout={onLayoutRootView}>\n+\t\t\t<Text>12</Text>\n \t\t</View>\n \t);\n }\n \n"
+                },
+                {
+                    "date": 1657787840170,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,9 +46,11 @@\n \t}\n \n \treturn (\n \t\t<View style={styles.container} onLayout={onLayoutRootView}>\n-\t\t\t<Text>12</Text>\n+\t\t\t<NavigationContainer>\n+\t\t\t\t<LoggedOutNav></LoggedOutNav>\n+\t\t\t</NavigationContainer>\n \t\t</View>\n \t);\n }\n \n"
+                },
+                {
+                    "date": 1657787849309,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,11 +46,9 @@\n \t}\n \n \treturn (\n \t\t<View style={styles.container} onLayout={onLayoutRootView}>\n-\t\t\t<NavigationContainer>\n-\t\t\t\t<LoggedOutNav></LoggedOutNav>\n-\t\t\t</NavigationContainer>\n+\t\t\t<Text>12</Text>\n \t\t</View>\n \t);\n }\n \n"
+                },
+                {
+                    "date": 1657787915230,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,9 +46,9 @@\n \t}\n \n \treturn (\n \t\t<View style={styles.container} onLayout={onLayoutRootView}>\n-\t\t\t<Text>12</Text>\n+\t\t\t<Text>123</Text>\n \t\t</View>\n \t);\n }\n \n"
+                },
+                {
+                    "date": 1657787926461,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,8 +47,11 @@\n \n \treturn (\n \t\t<View style={styles.container} onLayout={onLayoutRootView}>\n \t\t\t<Text>123</Text>\n+\t\t\t<NavigationContainer>\n+\t\t\t\t<LoggedOutNav></LoggedOutNav>\n+\t\t\t</NavigationContainer>\n \t\t</View>\n \t);\n }\n \n"
+                },
+                {
+                    "date": 1657787932003,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,9 +46,8 @@\n \t}\n \n \treturn (\n \t\t<View style={styles.container} onLayout={onLayoutRootView}>\n-\t\t\t<Text>123</Text>\n \t\t\t<NavigationContainer>\n \t\t\t\t<LoggedOutNav></LoggedOutNav>\n \t\t\t</NavigationContainer>\n \t\t</View>\n"
+                },
+                {
+                    "date": 1657787939641,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,20 +45,11 @@\n \t\treturn null;\n \t}\n \n \treturn (\n-\t\t<View style={styles.container} onLayout={onLayoutRootView}>\n+\t\t<View onLayout={onLayoutRootView}>\n \t\t\t<NavigationContainer>\n \t\t\t\t<LoggedOutNav></LoggedOutNav>\n \t\t\t</NavigationContainer>\n \t\t</View>\n \t);\n }\n-\n-const styles = StyleSheet.create({\n-\tcontainer: {\n-\t\tflex: 1,\n-\t\tbackgroundColor: \"#fff\",\n-\t\talignItems: \"center\",\n-\t\tjustifyContent: \"center\",\n-\t},\n-});\n"
+                },
+                {
+                    "date": 1657787948505,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,11 +45,20 @@\n \t\treturn null;\n \t}\n \n \treturn (\n-\t\t<View onLayout={onLayoutRootView}>\n+\t\t<View style={styles.container} onLayout={onLayoutRootView}>\n \t\t\t<NavigationContainer>\n \t\t\t\t<LoggedOutNav></LoggedOutNav>\n \t\t\t</NavigationContainer>\n \t\t</View>\n \t);\n }\n+\n+const styles = StyleSheet.create({\n+\tcontainer: {\n+\t\tflex: 1,\n+\t\tbackgroundColor: \"#fff\",\n+\t\talignItems: \"center\",\n+\t\tjustifyContent: \"center\",\n+\t},\n+});\n"
+                },
+                {
+                    "date": 1657787968374,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,9 @@\n \n \treturn (\n \t\t<View style={styles.container} onLayout={onLayoutRootView}>\n \t\t\t<NavigationContainer>\n-\t\t\t\t<LoggedOutNav></LoggedOutNav>\n+\t\t\t\t<LoggedOutNav />\n \t\t\t</NavigationContainer>\n \t\t</View>\n \t);\n }\n"
+                },
+                {
+                    "date": 1657788069396,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,13 +45,11 @@\n \t\treturn null;\n \t}\n \n \treturn (\n-\t\t<View style={styles.container} onLayout={onLayoutRootView}>\n-\t\t\t<NavigationContainer>\n-\t\t\t\t<LoggedOutNav />\n-\t\t\t</NavigationContainer>\n-\t\t</View>\n+\t\t<NavigationContainer>\n+\t\t\t<LoggedOutNav />\n+\t\t</NavigationContainer>\n \t);\n }\n \n const styles = StyleSheet.create({\n"
+                },
+                {
+                    "date": 1657788119099,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,11 +45,15 @@\n \t\treturn null;\n \t}\n \n \treturn (\n-\t\t<NavigationContainer>\n-\t\t\t<LoggedOutNav />\n-\t\t</NavigationContainer>\n+\n+\t\t\t<NavigationContainer>\n+\t\t\t\t\t\t<View style={styles.container} onLayout={onLayoutRootView}></View>\n+\t\t\t\t<LoggedOutNav />\n+\t\t</View>\n+\n+\t\t\t</NavigationContainer>\n \t);\n }\n \n const styles = StyleSheet.create({\n"
+                },
+                {
+                    "date": 1657788135794,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,15 +45,13 @@\n \t\treturn null;\n \t}\n \n \treturn (\n-\n-\t\t\t<NavigationContainer>\n-\t\t\t\t\t\t<View style={styles.container} onLayout={onLayoutRootView}></View>\n+\t\t<NavigationContainer>\n+\t\t\t<View style={styles.container} onLayout={onLayoutRootView}>\n \t\t\t\t<LoggedOutNav />\n-\t\t</View>\n-\n-\t\t\t</NavigationContainer>\n+\t\t\t</View>\n+\t\t</NavigationContainer>\n \t);\n }\n \n const styles = StyleSheet.create({\n"
+                },
+                {
+                    "date": 1657788144463,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,13 +52,4 @@\n \t\t\t</View>\n \t\t</NavigationContainer>\n \t);\n }\n-\n-const styles = StyleSheet.create({\n-\tcontainer: {\n-\t\tflex: 1,\n-\t\tbackgroundColor: \"#fff\",\n-\t\talignItems: \"center\",\n-\t\tjustifyContent: \"center\",\n-\t},\n-});\n"
+                },
+                {
+                    "date": 1657788161015,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,13 +43,21 @@\n \n \tif (!loading) {\n \t\treturn null;\n \t}\n+\t<View style={styles.container} onLayout={onLayoutRootView}></View>;\n \n \treturn (\n \t\t<NavigationContainer>\n-\t\t\t<View style={styles.container} onLayout={onLayoutRootView}>\n-\t\t\t\t<LoggedOutNav />\n-\t\t\t</View>\n+\t\t\t<LoggedOutNav />\n \t\t</NavigationContainer>\n \t);\n }\n+\n+const styles = StyleSheet.create({\n+\tcontainer: {\n+\t\tflex: 1,\n+\t\tbackgroundColor: \"#fff\",\n+\t\talignItems: \"center\",\n+\t\tjustifyContent: \"center\",\n+\t},\n+});\n"
+                },
+                {
+                    "date": 1657789140909,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,14 +43,14 @@\n \n \tif (!loading) {\n \t\treturn null;\n \t}\n-\t<View style={styles.container} onLayout={onLayoutRootView}></View>;\n+\t//<View style={styles.container} onLayout={onLayoutRootView}></View>;\n \n \treturn (\n-\t\t<NavigationContainer>\n-\t\t\t<LoggedOutNav />\n-\t\t</NavigationContainer>\n+\t\t<View>\n+\t\t\t<Text>123</Text>\n+\t\t</View>\n \t);\n }\n \n const styles = StyleSheet.create({\n"
+                },
+                {
+                    "date": 1657789149893,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,11 +46,11 @@\n \t}\n \t//<View style={styles.container} onLayout={onLayoutRootView}></View>;\n \n \treturn (\n-\t\t<View>\n-\t\t\t<Text>123</Text>\n-\t\t</View>\n+\t\t<NavigationContainer>\n+\t\t\t<LoggedOutNav />\n+\t\t</NavigationContainer>\n \t);\n }\n \n const styles = StyleSheet.create({\n"
+                },
+                {
+                    "date": 1657789679373,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,11 +3,10 @@\n import * as Font from \"expo-font\";\n import { StyleSheet, Text, View } from \"react-native\";\n import * as SplashScreen from \"expo-splash-screen\";\n import { Asset } from \"expo-asset\";\n-import LoggedOutNav from \"./navigators/logged-out-nav\";\n-import { NavigationContainer } from \"@react-navigation/native\";\n \n+\n SplashScreen.preventAutoHideAsync();\n \n export default function App() {\n \tconst [loading, setLoading] = useState(false);\n@@ -46,11 +45,8 @@\n \t}\n \t//<View style={styles.container} onLayout={onLayoutRootView}></View>;\n \n \treturn (\n-\t\t<NavigationContainer>\n-\t\t\t<LoggedOutNav />\n-\t\t</NavigationContainer>\n \t);\n }\n \n const styles = StyleSheet.create({\n"
+                },
+                {
+                    "date": 1657789685329,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,8 @@\n import { StyleSheet, Text, View } from \"react-native\";\n import * as SplashScreen from \"expo-splash-screen\";\n import { Asset } from \"expo-asset\";\n \n-\n SplashScreen.preventAutoHideAsync();\n \n export default function App() {\n \tconst [loading, setLoading] = useState(false);\n@@ -45,8 +44,11 @@\n \t}\n \t//<View style={styles.container} onLayout={onLayoutRootView}></View>;\n \n \treturn (\n+\t\t<Text>\n+\t\t\t<View>1</View>\n+\t\t</Text>\n \t);\n }\n \n const styles = StyleSheet.create({\n"
+                },
+                {
+                    "date": 1657789703291,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,11 +44,11 @@\n \t}\n \t//<View style={styles.container} onLayout={onLayoutRootView}></View>;\n \n \treturn (\n-\t\t<Text>\n-\t\t\t<View>1</View>\n-\t\t</Text>\n+\t\t<View>\n+\t\t\t<Text>1</Text>\n+\t\t</View>\n \t);\n }\n \n const styles = StyleSheet.create({\n"
+                },
+                {
+                    "date": 1657789805685,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,10 @@\n import * as Font from \"expo-font\";\n import { StyleSheet, Text, View } from \"react-native\";\n import * as SplashScreen from \"expo-splash-screen\";\n import { Asset } from \"expo-asset\";\n+import LoggedOutNav from \"./navigators/logged-out-nav\";\n+import { NavigationContainer } from \"@react-navigation/native\";\n \n SplashScreen.preventAutoHideAsync();\n \n export default function App() {\n@@ -44,11 +46,11 @@\n \t}\n \t//<View style={styles.container} onLayout={onLayoutRootView}></View>;\n \n \treturn (\n-\t\t<View>\n-\t\t\t<Text>1</Text>\n-\t\t</View>\n+\t\t<NavigationContainer>\n+\t\t\t<LoggedOutNav />\n+\t\t</NavigationContainer>\n \t);\n }\n \n const styles = StyleSheet.create({\n"
+                },
+                {
+                    "date": 1657789999716,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,10 +3,8 @@\n import * as Font from \"expo-font\";\n import { StyleSheet, Text, View } from \"react-native\";\n import * as SplashScreen from \"expo-splash-screen\";\n import { Asset } from \"expo-asset\";\n-import LoggedOutNav from \"./navigators/logged-out-nav\";\n-import { NavigationContainer } from \"@react-navigation/native\";\n \n SplashScreen.preventAutoHideAsync();\n \n export default function App() {\n@@ -43,14 +41,12 @@\n \n \tif (!loading) {\n \t\treturn null;\n \t}\n-\t//<View style={styles.container} onLayout={onLayoutRootView}></View>;\n \n \treturn (\n-\t\t<NavigationContainer>\n-\t\t\t<LoggedOutNav />\n-\t\t</NavigationContainer>\n+\t<View style={styles.container} onLayout={onLayoutRootView}></View>;\n+\n \t);\n }\n \n const styles = StyleSheet.create({\n"
+                },
+                {
+                    "date": 1657790005225,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,12 +42,9 @@\n \tif (!loading) {\n \t\treturn null;\n \t}\n \n-\treturn (\n-\t<View style={styles.container} onLayout={onLayoutRootView}></View>;\n-\n-\t);\n+\treturn <View style={styles.container} onLayout={onLayoutRootView}></View>;\n }\n \n const styles = StyleSheet.create({\n \tcontainer: {\n"
+                },
+                {
+                    "date": 1657790010331,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,13 @@\n \tif (!loading) {\n \t\treturn null;\n \t}\n \n-\treturn <View style={styles.container} onLayout={onLayoutRootView}></View>;\n+\treturn (\n+\t\t<View style={styles.container} onLayout={onLayoutRootView}>\n+\t\t\t123\n+\t\t</View>\n+\t);\n }\n \n const styles = StyleSheet.create({\n \tcontainer: {\n"
+                },
+                {
+                    "date": 1657790020086,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,9 +44,9 @@\n \t}\n \n \treturn (\n \t\t<View style={styles.container} onLayout={onLayoutRootView}>\n-\t\t\t123\n+\t\t\t<Text>123</Text>\n \t\t</View>\n \t);\n }\n \n"
+                },
+                {
+                    "date": 1657790031085,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,8 +3,10 @@\n import * as Font from \"expo-font\";\n import { StyleSheet, Text, View } from \"react-native\";\n import * as SplashScreen from \"expo-splash-screen\";\n import { Asset } from \"expo-asset\";\n+import LoggedOutNav from \"./navigators/logged-out-nav\";\n+import { NavigationContainer } from \"@react-navigation/native\";\n \n SplashScreen.preventAutoHideAsync();\n \n export default function App() {\n@@ -41,13 +43,14 @@\n \n \tif (!loading) {\n \t\treturn null;\n \t}\n+\t//<View style={styles.container} onLayout={onLayoutRootView}></View>;\n \n \treturn (\n-\t\t<View style={styles.container} onLayout={onLayoutRootView}>\n-\t\t\t<Text>123</Text>\n-\t\t</View>\n+\t\t<NavigationContainer>\n+\t\t\t<LoggedOutNav />\n+\t\t</NavigationContainer>\n \t);\n }\n \n const styles = StyleSheet.create({\n"
+                },
+                {
+                    "date": 1657790101226,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,13 +45,9 @@\n \t\treturn null;\n \t}\n \t//<View style={styles.container} onLayout={onLayoutRootView}></View>;\n \n-\treturn (\n-\t\t<NavigationContainer>\n-\t\t\t<LoggedOutNav />\n-\t\t</NavigationContainer>\n-\t);\n+\treturn <NavigationContainer></NavigationContainer>;\n }\n \n const styles = StyleSheet.create({\n \tcontainer: {\n"
+                },
+                {
+                    "date": 1657790119878,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,14 +40,15 @@\n \t\t\tawait SplashScreen.hideAsync();\n \t\t}\n \t}, [loading]);\n \n-\tif (!loading) {\n-\t\treturn null;\n-\t}\n \t//<View style={styles.container} onLayout={onLayoutRootView}></View>;\n \n-\treturn <NavigationContainer></NavigationContainer>;\n+\treturn (\n+\t\t<NavigationContainer>\n+\t\t\t<LoggedOutNav />\n+\t\t</NavigationContainer>\n+\t);\n }\n \n const styles = StyleSheet.create({\n \tcontainer: {\n"
+                },
+                {
+                    "date": 1657790139988,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,14 +40,17 @@\n \t\t\tawait SplashScreen.hideAsync();\n \t\t}\n \t}, [loading]);\n \n+\tif (!loading) {\n+\t\treturn null;\n+\t}\n \t//<View style={styles.container} onLayout={onLayoutRootView}></View>;\n \n \treturn (\n-\t\t<NavigationContainer>\n-\t\t\t<LoggedOutNav />\n-\t\t</NavigationContainer>\n+\t\t<View>\n+\t\t\t<Text>123</Text>\n+\t\t</View>\n \t);\n }\n \n const styles = StyleSheet.create({\n"
+                },
+                {
+                    "date": 1657790155028,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,10 +3,8 @@\n import * as Font from \"expo-font\";\n import { StyleSheet, Text, View } from \"react-native\";\n import * as SplashScreen from \"expo-splash-screen\";\n import { Asset } from \"expo-asset\";\n-import LoggedOutNav from \"./navigators/logged-out-nav\";\n-import { NavigationContainer } from \"@react-navigation/native\";\n \n SplashScreen.preventAutoHideAsync();\n \n export default function App() {\n"
+                },
+                {
+                    "date": 1657790175717,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,13 +43,9 @@\n \t\treturn null;\n \t}\n \t//<View style={styles.container} onLayout={onLayoutRootView}></View>;\n \n-\treturn (\n-\t\t<View>\n-\t\t\t<Text>123</Text>\n-\t\t</View>\n-\t);\n+\treturn <View style={styles.container} onLayout={onLayoutRootView}></View>;\n }\n \n const styles = StyleSheet.create({\n \tcontainer: {\n"
+                },
+                {
+                    "date": 1657790185500,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,9 +43,13 @@\n \t\treturn null;\n \t}\n \t//<View style={styles.container} onLayout={onLayoutRootView}></View>;\n \n-\treturn <View style={styles.container} onLayout={onLayoutRootView}></View>;\n+\treturn (\n+\t\t<View style={styles.container} onLayout={onLayoutRootView}>\n+\t\t\t<Text>1</Text>\n+\t\t</View>\n+\t);\n }\n \n const styles = StyleSheet.create({\n \tcontainer: {\n"
+                },
+                {
+                    "date": 1657790199123,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,11 +44,8 @@\n \t}\n \t//<View style={styles.container} onLayout={onLayoutRootView}></View>;\n \n \treturn (\n-\t\t<View style={styles.container} onLayout={onLayoutRootView}>\n-\t\t\t<Text>1</Text>\n-\t\t</View>\n \t);\n }\n \n const styles = StyleSheet.create({\n"
+                },
+                {
+                    "date": 1657790204714,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,8 +44,11 @@\n \t}\n \t//<View style={styles.container} onLayout={onLayoutRootView}></View>;\n \n \treturn (\n+\t\t<View>\n+\t\t\t<Text>123</Text>\n+\t\t</View>\n \t);\n }\n \n const styles = StyleSheet.create({\n"
+                },
+                {
+                    "date": 1657790226736,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,42 +7,42 @@\n \n SplashScreen.preventAutoHideAsync();\n \n export default function App() {\n-\tconst [loading, setLoading] = useState(false);\n+\t// const [loading, setLoading] = useState(false);\n \n-\tuseEffect(() => {\n-\t\tasync function prepare() {\n-\t\t\ttry {\n-\t\t\t\tconst fontToLoad = [Ionicons.font];\n-\t\t\t\tconst fontPromises = fontToLoad.map((font) => Font.loadAsync(font));\n-\t\t\t\tconst imagesToLoad = [\n-\t\t\t\t\trequire(\"./assets/icon.png\"),\n-\t\t\t\t\t\"http://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/840px-Instagram_logo.svg.png\",\n-\t\t\t\t];\n-\t\t\t\tconst imagePromises = imagesToLoad.map((image) =>\n-\t\t\t\t\tAsset.loadAsync(image)\n-\t\t\t\t);\n-\t\t\t\tawait Promise.all([...fontPromises, ...imagePromises]);\n-\t\t\t} catch (e) {\n-\t\t\t\tconsole.warn(e);\n-\t\t\t} finally {\n-\t\t\t\tsetLoading(true);\n-\t\t\t}\n-\t\t}\n+\t// useEffect(() => {\n+\t// \tasync function prepare() {\n+\t// \t\ttry {\n+\t// \t\t\tconst fontToLoad = [Ionicons.font];\n+\t// \t\t\tconst fontPromises = fontToLoad.map((font) => Font.loadAsync(font));\n+\t// \t\t\tconst imagesToLoad = [\n+\t// \t\t\t\trequire(\"./assets/icon.png\"),\n+\t// \t\t\t\t\"http://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/840px-Instagram_logo.svg.png\",\n+\t// \t\t\t];\n+\t// \t\t\tconst imagePromises = imagesToLoad.map((image) =>\n+\t// \t\t\t\tAsset.loadAsync(image)\n+\t// \t\t\t);\n+\t// \t\t\tawait Promise.all([...fontPromises, ...imagePromises]);\n+\t// \t\t} catch (e) {\n+\t// \t\t\tconsole.warn(e);\n+\t// \t\t} finally {\n+\t// \t\t\tsetLoading(true);\n+\t// \t\t}\n+\t// \t}\n \n-\t\tprepare();\n-\t}, []);\n+\t// \tprepare();\n+\t// }, []);\n \n-\tconst onLayoutRootView = useCallback(async () => {\n-\t\tif (loading) {\n-\t\t\tawait SplashScreen.hideAsync();\n-\t\t}\n-\t}, [loading]);\n+\t// const onLayoutRootView = useCallback(async () => {\n+\t// \tif (loading) {\n+\t// \t\tawait SplashScreen.hideAsync();\n+\t// \t}\n+\t// }, [loading]);\n \n-\tif (!loading) {\n-\t\treturn null;\n-\t}\n+\t// if (!loading) {\n+\t// \treturn null;\n+\t// }\n \t//<View style={styles.container} onLayout={onLayoutRootView}></View>;\n \n \treturn (\n \t\t<View>\n"
+                },
+                {
+                    "date": 1657790244041,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,12 +1,12 @@\n-import { useCallback, useEffect, useState } from \"react\";\n-import { Ionicons } from \"@expo/vector-icons\";\n-import * as Font from \"expo-font\";\n+//import { useCallback, useEffect, useState } from \"react\";\n+//import { Ionicons } from \"@expo/vector-icons\";\n+//import * as Font from \"expo-font\";\n import { StyleSheet, Text, View } from \"react-native\";\n-import * as SplashScreen from \"expo-splash-screen\";\n-import { Asset } from \"expo-asset\";\n+//import * as SplashScreen from \"expo-splash-screen\";\n+//import { Asset } from \"expo-asset\";\n \n-SplashScreen.preventAutoHideAsync();\n+//SplashScreen.preventAutoHideAsync();\n \n export default function App() {\n \t// const [loading, setLoading] = useState(false);\n \n"
+                },
+                {
+                    "date": 1657790254992,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,54 +1,56 @@\n-//import { useCallback, useEffect, useState } from \"react\";\n-//import { Ionicons } from \"@expo/vector-icons\";\n-//import * as Font from \"expo-font\";\n+import { useCallback, useEffect, useState } from \"react\";\n+import { Ionicons } from \"@expo/vector-icons\";\n+import * as Font from \"expo-font\";\n import { StyleSheet, Text, View } from \"react-native\";\n-//import * as SplashScreen from \"expo-splash-screen\";\n-//import { Asset } from \"expo-asset\";\n+import * as SplashScreen from \"expo-splash-screen\";\n+import { Asset } from \"expo-asset\";\n+import LoggedOutNav from \"./navigators/logged-out-nav\";\n+import { NavigationContainer } from \"@react-navigation/native\";\n \n-//SplashScreen.preventAutoHideAsync();\n+SplashScreen.preventAutoHideAsync();\n \n export default function App() {\n-\t// const [loading, setLoading] = useState(false);\n+\tconst [loading, setLoading] = useState(false);\n \n-\t// useEffect(() => {\n-\t// \tasync function prepare() {\n-\t// \t\ttry {\n-\t// \t\t\tconst fontToLoad = [Ionicons.font];\n-\t// \t\t\tconst fontPromises = fontToLoad.map((font) => Font.loadAsync(font));\n-\t// \t\t\tconst imagesToLoad = [\n-\t// \t\t\t\trequire(\"./assets/icon.png\"),\n-\t// \t\t\t\t\"http://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/840px-Instagram_logo.svg.png\",\n-\t// \t\t\t];\n-\t// \t\t\tconst imagePromises = imagesToLoad.map((image) =>\n-\t// \t\t\t\tAsset.loadAsync(image)\n-\t// \t\t\t);\n-\t// \t\t\tawait Promise.all([...fontPromises, ...imagePromises]);\n-\t// \t\t} catch (e) {\n-\t// \t\t\tconsole.warn(e);\n-\t// \t\t} finally {\n-\t// \t\t\tsetLoading(true);\n-\t// \t\t}\n-\t// \t}\n+\tuseEffect(() => {\n+\t\tasync function prepare() {\n+\t\t\ttry {\n+\t\t\t\tconst fontToLoad = [Ionicons.font];\n+\t\t\t\tconst fontPromises = fontToLoad.map((font) => Font.loadAsync(font));\n+\t\t\t\tconst imagesToLoad = [\n+\t\t\t\t\trequire(\"./assets/icon.png\"),\n+\t\t\t\t\t\"http://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/840px-Instagram_logo.svg.png\",\n+\t\t\t\t];\n+\t\t\t\tconst imagePromises = imagesToLoad.map((image) =>\n+\t\t\t\t\tAsset.loadAsync(image)\n+\t\t\t\t);\n+\t\t\t\tawait Promise.all([...fontPromises, ...imagePromises]);\n+\t\t\t} catch (e) {\n+\t\t\t\tconsole.warn(e);\n+\t\t\t} finally {\n+\t\t\t\tsetLoading(true);\n+\t\t\t}\n+\t\t}\n \n-\t// \tprepare();\n-\t// }, []);\n+\t\tprepare();\n+\t}, []);\n \n-\t// const onLayoutRootView = useCallback(async () => {\n-\t// \tif (loading) {\n-\t// \t\tawait SplashScreen.hideAsync();\n-\t// \t}\n-\t// }, [loading]);\n+\tconst onLayoutRootView = useCallback(async () => {\n+\t\tif (loading) {\n+\t\t\tawait SplashScreen.hideAsync();\n+\t\t}\n+\t}, [loading]);\n \n-\t// if (!loading) {\n-\t// \treturn null;\n-\t// }\n+\tif (!loading) {\n+\t\treturn null;\n+\t}\n \t//<View style={styles.container} onLayout={onLayoutRootView}></View>;\n \n \treturn (\n-\t\t<View>\n-\t\t\t<Text>123</Text>\n-\t\t</View>\n+\t\t<NavigationContainer>\n+\t\t\t<LoggedOutNav />\n+\t\t</NavigationContainer>\n \t);\n }\n \n const styles = StyleSheet.create({\n"
+                },
+                {
+                    "date": 1657790383083,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,11 +46,11 @@\n \t}\n \t//<View style={styles.container} onLayout={onLayoutRootView}></View>;\n \n \treturn (\n-\t\t<NavigationContainer>\n-\t\t\t<LoggedOutNav />\n-\t\t</NavigationContainer>\n+\t\t<View style={styles.container} onLayout={onLayoutRootView}>\n+\t\t\t<Text>123</Text>\n+\t\t</View>\n \t);\n }\n \n const styles = StyleSheet.create({\n"
+                },
+                {
+                    "date": 1657790388356,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,11 +46,11 @@\n \t}\n \t//<View style={styles.container} onLayout={onLayoutRootView}></View>;\n \n \treturn (\n-\t\t<View style={styles.container} onLayout={onLayoutRootView}>\n-\t\t\t<Text>123</Text>\n-\t\t</View>\n+\t\t<NavigationContainer>\n+\t\t\t<LoggedOutNav />\n+\t\t</NavigationContainer>\n \t);\n }\n \n const styles = StyleSheet.create({\n"
+                },
+                {
+                    "date": 1657790717708,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,9 @@\n \n SplashScreen.preventAutoHideAsync();\n \n export default function App() {\n-\tconst [loading, setLoading] = useState(false);\n+\tconst [loading, setLoading] = useState(true);\n \n \tuseEffect(() => {\n \t\tasync function prepare() {\n \t\t\ttry {\n@@ -27,9 +27,9 @@\n \t\t\t\tawait Promise.all([...fontPromises, ...imagePromises]);\n \t\t\t} catch (e) {\n \t\t\t\tconsole.warn(e);\n \t\t\t} finally {\n-\t\t\t\tsetLoading(true);\n+\t\t\t\tsetLoading(false);\n \t\t\t}\n \t\t}\n \n \t\tprepare();\n@@ -40,10 +40,10 @@\n \t\t\tawait SplashScreen.hideAsync();\n \t\t}\n \t}, [loading]);\n \n-\tif (!loading) {\n-\t\treturn null;\n+\tif (loading) {\n+\t\treturn <View onLayout={onLayoutRootView}></View>;\n \t}\n \t//<View style={styles.container} onLayout={onLayoutRootView}></View>;\n \n \treturn (\n"
+                },
+                {
+                    "date": 1657790732642,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,9 +43,8 @@\n \n \tif (loading) {\n \t\treturn <View onLayout={onLayoutRootView}></View>;\n \t}\n-\t//<View style={styles.container} onLayout={onLayoutRootView}></View>;\n \n \treturn (\n \t\t<NavigationContainer>\n \t\t\t<LoggedOutNav />\n"
                 }
             ],
             "date": 1657720865138,

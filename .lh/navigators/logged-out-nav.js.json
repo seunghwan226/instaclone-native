@@ -1,0 +1,86 @@
+{
+    "sourceFile": "navigators/logged-out-nav.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 17,
+            "patches": [
+                {
+                    "date": 1657787116217,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1657787231900,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import { createNativeStackNavigator } from \"@react-navigation/native-stack\";\r\n import React from \"react\";\r\n import { View, Text } from \"react-native\";\r\n-import Welcom from \"../screens/welcome\";\r\n+import Welcome from \"../screens/welcome\";\r\n import Login from \"../screens/login\";\r\n import CreateAccount from \"../screens/create-account\";\r\n \r\n const Stack = createNativeStackNavigator();\r\n"
+                },
+                {
+                    "date": 1657787878075,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,11 @@\n \r\n export default function LoggedOutNav() {\r\n \treturn (\r\n \t\t<Stack.Navigator>\r\n-\t\t\t<Stack.Screen name=\"Welcome\" component={Welcome}></Stack.Screen>\r\n+\t\t\t<Stack.Screen name=\"Welcome\" component={Welcome}>\r\n+\t\t\t\t123\r\n+\t\t\t</Stack.Screen>\r\n \t\t\t<Stack.Screen name=\"Login\" component={Login}></Stack.Screen>\r\n \t\t\t<Stack.Screen\r\n \t\t\t\tname=\"CreateAccount\"\r\n \t\t\t\tcomponent={CreateAccount}\r\n"
+                },
+                {
+                    "date": 1657787886200,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,11 +9,9 @@\n \r\n export default function LoggedOutNav() {\r\n \treturn (\r\n \t\t<Stack.Navigator>\r\n-\t\t\t<Stack.Screen name=\"Welcome\" component={Welcome}>\r\n-\t\t\t\t123\r\n-\t\t\t</Stack.Screen>\r\n+\t\t\t<Stack.Screen name=\"Welcome\" component={Welcome}></Stack.Screen>\r\n \t\t\t<Stack.Screen name=\"Login\" component={Login}></Stack.Screen>\r\n \t\t\t<Stack.Screen\r\n \t\t\t\tname=\"CreateAccount\"\r\n \t\t\t\tcomponent={CreateAccount}\r\n"
+                },
+                {
+                    "date": 1657787894069,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,10 +9,10 @@\n \r\n export default function LoggedOutNav() {\r\n \treturn (\r\n \t\t<Stack.Navigator>\r\n-\t\t\t<Stack.Screen name=\"Welcome\" component={Welcome}></Stack.Screen>\r\n-\t\t\t<Stack.Screen name=\"Login\" component={Login}></Stack.Screen>\r\n+\t\t\t<Stack.Screen name=\"Welcome\" component={Welcome} />\r\n+\t\t\t<Stack.Screen name=\"Login\" component={Login} />\r\n \t\t\t<Stack.Screen\r\n \t\t\t\tname=\"CreateAccount\"\r\n \t\t\t\tcomponent={CreateAccount}\r\n \t\t\t></Stack.Screen>\r\n"
+                },
+                {
+                    "date": 1657787899596,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,11 +11,8 @@\n \treturn (\r\n \t\t<Stack.Navigator>\r\n \t\t\t<Stack.Screen name=\"Welcome\" component={Welcome} />\r\n \t\t\t<Stack.Screen name=\"Login\" component={Login} />\r\n-\t\t\t<Stack.Screen\r\n-\t\t\t\tname=\"CreateAccount\"\r\n-\t\t\t\tcomponent={CreateAccount}\r\n-\t\t\t></Stack.Screen>\r\n+\t\t\t<Stack.Screen name=\"CreateAccount\" component={CreateAccount} />\r\n \t\t</Stack.Navigator>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1657787979906,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,10 +9,10 @@\n \r\n export default function LoggedOutNav() {\r\n \treturn (\r\n \t\t<Stack.Navigator>\r\n+\t\t\t<Stack.Screen name=\"Login\" component={Login} />\r\n \t\t\t<Stack.Screen name=\"Welcome\" component={Welcome} />\r\n-\t\t\t<Stack.Screen name=\"Login\" component={Login} />\r\n \t\t\t<Stack.Screen name=\"CreateAccount\" component={CreateAccount} />\r\n \t\t</Stack.Navigator>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1657788682790,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,10 +9,10 @@\n \r\n export default function LoggedOutNav() {\r\n \treturn (\r\n \t\t<Stack.Navigator>\r\n+\t\t\t<Stack.Screen name=\"Welcome\" component={Welcome} />\r\n \t\t\t<Stack.Screen name=\"Login\" component={Login} />\r\n-\t\t\t<Stack.Screen name=\"Welcome\" component={Welcome} />\r\n \t\t\t<Stack.Screen name=\"CreateAccount\" component={CreateAccount} />\r\n \t\t</Stack.Navigator>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1657788834299,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,8 @@\n \r\n export default function LoggedOutNav() {\r\n \treturn (\r\n \t\t<Stack.Navigator>\r\n-\t\t\t<Stack.Screen name=\"Welcome\" component={Welcome} />\r\n \t\t\t<Stack.Screen name=\"Login\" component={Login} />\r\n \t\t\t<Stack.Screen name=\"CreateAccount\" component={CreateAccount} />\r\n \t\t</Stack.Navigator>\r\n \t);\r\n"
+                },
+                {
+                    "date": 1657789011677,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,6 @@\n import { createNativeStackNavigator } from \"@react-navigation/native-stack\";\r\n import React from \"react\";\r\n-import { View, Text } from \"react-native\";\r\n import Welcome from \"../screens/welcome\";\r\n import Login from \"../screens/login\";\r\n import CreateAccount from \"../screens/create-account\";\r\n \r\n@@ -9,8 +8,9 @@\n \r\n export default function LoggedOutNav() {\r\n \treturn (\r\n \t\t<Stack.Navigator>\r\n+\t\t\t<Stack.Screen name=\"Welcome\" component={Welcome} />\r\n \t\t\t<Stack.Screen name=\"Login\" component={Login} />\r\n \t\t\t<Stack.Screen name=\"CreateAccount\" component={CreateAccount} />\r\n \t\t</Stack.Navigator>\r\n \t);\r\n"
+                },
+                {
+                    "date": 1657789089649,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,12 +6,6 @@\n \r\n const Stack = createNativeStackNavigator();\r\n \r\n export default function LoggedOutNav() {\r\n-\treturn (\r\n-\t\t<Stack.Navigator>\r\n-\t\t\t<Stack.Screen name=\"Welcome\" component={Welcome} />\r\n-\t\t\t<Stack.Screen name=\"Login\" component={Login} />\r\n-\t\t\t<Stack.Screen name=\"CreateAccount\" component={CreateAccount} />\r\n-\t\t</Stack.Navigator>\r\n-\t);\r\n+\treturn <Stack.Navigator></Stack.Navigator>;\r\n }\r\n"
+                },
+                {
+                    "date": 1657789096561,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,6 +6,10 @@\n \r\n const Stack = createNativeStackNavigator();\r\n \r\n export default function LoggedOutNav() {\r\n-\treturn <Stack.Navigator></Stack.Navigator>;\r\n+\treturn (\r\n+\t\t<Stack.Navigator>\r\n+\t\t\t<Stack.Screen name=\"CreateAccount\" component={CreateAccount} />\r\n+\t\t</Stack.Navigator>\r\n+\t);\r\n }\r\n"
+                },
+                {
+                    "date": 1657789790982,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +0,0 @@\n-import { createNativeStackNavigator } from \"@react-navigation/native-stack\";\r\n-import React from \"react\";\r\n-import Welcome from \"../screens/welcome\";\r\n-import Login from \"../screens/login\";\r\n-import CreateAccount from \"../screens/create-account\";\r\n-\r\n-const Stack = createNativeStackNavigator();\r\n-\r\n-export default function LoggedOutNav() {\r\n-\treturn (\r\n-\t\t<Stack.Navigator>\r\n-\t\t\t<Stack.Screen name=\"CreateAccount\" component={CreateAccount} />\r\n-\t\t</Stack.Navigator>\r\n-\t);\r\n-}\r\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1657789796544,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,17 @@\n-\n+import { createNativeStackNavigator } from \"@react-navigation/native-stack\";\r\n+import React from \"react\";\r\n+import Welcome from \"../screens/welcome\";\r\n+import Login from \"../screens/login\";\r\n+import CreateAccount from \"../screens/create-account\";\r\n+\r\n+const Stack = createNativeStackNavigator();\r\n+\r\n+export default function LoggedOutNav() {\r\n+\treturn (\r\n+\t\t<Stack.Navigator>\r\n+\t\t\t<Stack.Screen name=\"Welcome\" component={Welcome} />\r\n+\t\t\t<Stack.Screen name=\"Login\" component={Login} />\r\n+\t\t\t<Stack.Screen name=\"CreateAccount\" component={CreateAccount} />\r\n+\t\t</Stack.Navigator>\r\n+\t);\r\n+}\r\n"
+                },
+                {
+                    "date": 1657790089373,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,17 +1,13 @@\n import { createNativeStackNavigator } from \"@react-navigation/native-stack\";\r\n import React from \"react\";\r\n-import Welcome from \"../screens/welcome\";\r\n-import Login from \"../screens/login\";\r\n import CreateAccount from \"../screens/create-account\";\r\n \r\n const Stack = createNativeStackNavigator();\r\n \r\n export default function LoggedOutNav() {\r\n \treturn (\r\n \t\t<Stack.Navigator>\r\n-\t\t\t<Stack.Screen name=\"Welcome\" component={Welcome} />\r\n-\t\t\t<Stack.Screen name=\"Login\" component={Login} />\r\n \t\t\t<Stack.Screen name=\"CreateAccount\" component={CreateAccount} />\r\n \t\t</Stack.Navigator>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1657790326724,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,17 @@\n import { createNativeStackNavigator } from \"@react-navigation/native-stack\";\r\n import React from \"react\";\r\n+import Welcome from \"../screens/welcome\";\r\n+import Login from \"../screens/login\";\r\n import CreateAccount from \"../screens/create-account\";\r\n \r\n const Stack = createNativeStackNavigator();\r\n \r\n export default function LoggedOutNav() {\r\n \treturn (\r\n \t\t<Stack.Navigator>\r\n+\t\t\t<Stack.Screen name=\"Welcome\" component={Welcome} />\r\n+\t\t\t<Stack.Screen name=\"Login\" component={Login} />\r\n \t\t\t<Stack.Screen name=\"CreateAccount\" component={CreateAccount} />\r\n \t\t</Stack.Navigator>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1657790340830,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,10 +8,8 @@\n \r\n export default function LoggedOutNav() {\r\n \treturn (\r\n \t\t<Stack.Navigator>\r\n-\t\t\t<Stack.Screen name=\"Welcome\" component={Welcome} />\r\n-\t\t\t<Stack.Screen name=\"Login\" component={Login} />\r\n \t\t\t<Stack.Screen name=\"CreateAccount\" component={CreateAccount} />\r\n \t\t</Stack.Navigator>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1657790349022,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,10 @@\n \r\n export default function LoggedOutNav() {\r\n \treturn (\r\n \t\t<Stack.Navigator>\r\n+\t\t\t<Stack.Screen name=\"Welcome\" component={Welcome} />\r\n+\t\t\t<Stack.Screen name=\"Login\" component={Login} />\r\n \t\t\t<Stack.Screen name=\"CreateAccount\" component={CreateAccount} />\r\n \t\t</Stack.Navigator>\r\n \t);\r\n }\r\n"
+                }
+            ],
+            "date": 1657787116217,
+            "name": "Commit-0",
+            "content": "import { createNativeStackNavigator } from \"@react-navigation/native-stack\";\r\nimport React from \"react\";\r\nimport { View, Text } from \"react-native\";\r\nimport Welcom from \"../screens/welcome\";\r\nimport Login from \"../screens/login\";\r\nimport CreateAccount from \"../screens/create-account\";\r\n\r\nconst Stack = createNativeStackNavigator();\r\n\r\nexport default function LoggedOutNav() {\r\n\treturn (\r\n\t\t<Stack.Navigator>\r\n\t\t\t<Stack.Screen name=\"Welcome\" component={Welcome}></Stack.Screen>\r\n\t\t\t<Stack.Screen name=\"Login\" component={Login}></Stack.Screen>\r\n\t\t\t<Stack.Screen\r\n\t\t\t\tname=\"CreateAccount\"\r\n\t\t\t\tcomponent={CreateAccount}\r\n\t\t\t></Stack.Screen>\r\n\t\t</Stack.Navigator>\r\n\t);\r\n}\r\n"
+        }
+    ]
+}
