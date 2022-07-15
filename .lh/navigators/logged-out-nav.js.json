@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 18,
+            "activePatchIndex": 22,
             "patches": [
                 {
                     "date": 1657787116217,
@@ -80,6 +80,22 @@
                 {
                     "date": 1657810469328,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,15 @@\n \r\n export default function LoggedOutNav() {\r\n \treturn (\r\n \t\t<Stack.Navigator>\r\n-\t\t\t<Stack.Screen name=\"Welcome\" component={Welcome} />\r\n+\t\t\t<Stack.Screen\r\n+\t\t\t\tname=\"Welcome\"\r\n+\t\t\t\toptions={{\r\n+\t\t\t\t\theaderShown: false,\r\n+\t\t\t\t}}\r\n+\t\t\t\tcomponent={Welcome}\r\n+\t\t\t/>\r\n \t\t\t<Stack.Screen name=\"Login\" component={Login} />\r\n \t\t\t<Stack.Screen name=\"CreateAccount\" component={CreateAccount} />\r\n \t\t</Stack.Navigator>\r\n \t);\r\n"
+                },
+                {
+                    "date": 1657852062854,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,8 +16,14 @@\n \t\t\t\t}}\r\n \t\t\t\tcomponent={Welcome}\r\n \t\t\t/>\r\n \t\t\t<Stack.Screen name=\"Login\" component={Login} />\r\n-\t\t\t<Stack.Screen name=\"CreateAccount\" component={CreateAccount} />\r\n+\t\t\t<Stack.Screen\r\n+\t\t\t\tname=\"CreateAccount\"\r\n+\t\t\t\toptions={{\r\n+\t\t\t\t\theaderShown: false,\r\n+\t\t\t\t}}\r\n+\t\t\t\tcomponent={CreateAccount}\r\n+\t\t\t/>\r\n \t\t</Stack.Navigator>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1657852106271,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n \t\t\t<Stack.Screen name=\"Login\" component={Login} />\r\n \t\t\t<Stack.Screen\r\n \t\t\t\tname=\"CreateAccount\"\r\n \t\t\t\toptions={{\r\n-\t\t\t\t\theaderShown: false,\r\n+\t\t\t\t\theaderTitle: false,\r\n \t\t\t\t}}\r\n \t\t\t\tcomponent={CreateAccount}\r\n \t\t\t/>\r\n \t\t</Stack.Navigator>\r\n"
+                },
+                {
+                    "date": 1657852116378,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,8 +20,9 @@\n \t\t\t<Stack.Screen\r\n \t\t\t\tname=\"CreateAccount\"\r\n \t\t\t\toptions={{\r\n \t\t\t\t\theaderTitle: false,\r\n+\t\t\t\t\theaderTransparent: true,\r\n \t\t\t\t}}\r\n \t\t\t\tcomponent={CreateAccount}\r\n \t\t\t/>\r\n \t\t</Stack.Navigator>\r\n"
+                },
+                {
+                    "date": 1657852136937,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,8 +21,9 @@\n \t\t\t\tname=\"CreateAccount\"\r\n \t\t\t\toptions={{\r\n \t\t\t\t\theaderTitle: false,\r\n \t\t\t\t\theaderTransparent: true,\r\n+\t\t\t\t\theaderTintColor: \"white\",\r\n \t\t\t\t}}\r\n \t\t\t\tcomponent={CreateAccount}\r\n \t\t\t/>\r\n \t\t</Stack.Navigator>\r\n"
                 }
             ],
             "date": 1657787116217,

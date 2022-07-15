@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 62,
+            "activePatchIndex": 80,
             "patches": [
                 {
                     "date": 1657786920065,
@@ -256,6 +256,78 @@
                 {
                     "date": 1657812023053,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n \r\n const Logo = styled.Image`\r\n \tmax-width: 50%;\r\n \theight: 100px;\r\n-\topacity: 0;\r\n+\tbackground-color: rgba(0, 0, 0, 0);\r\n `;\r\n \r\n const CreateAccount = styled.View`\r\n \tbackground-color: ${colors.blue};\r\n"
+                },
+                {
+                    "date": 1657851254543,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,12 +13,11 @@\n \r\n const Logo = styled.Image`\r\n \tmax-width: 50%;\r\n \theight: 100px;\r\n-\tbackground-color: rgba(0, 0, 0, 0);\r\n `;\r\n \r\n-const CreateAccount = styled.View`\r\n+const CreateAccount = styled.TouchableOpacity`\r\n \tbackground-color: ${colors.blue};\r\n \tpadding: 5px 10px;\r\n \tborder-radius: 7px;\r\n `;\r\n@@ -39,13 +38,11 @@\n \r\n \treturn (\r\n \t\t<Container>\r\n \t\t\t<Logo resizeMode=\"contain\" source={require(\"../assets/logo.png\")}></Logo>\r\n-\t\t\t<TouchableOpacity onPress={goToCreateAccount}>\r\n-\t\t\t\t<CreateAccount>\r\n-\t\t\t\t\t<CreateAccountText>Create Account</CreateAccountText>\r\n-\t\t\t\t</CreateAccount>\r\n-\t\t\t</TouchableOpacity>\r\n+\t\t\t<CreateAccount onPress={goToCreateAccount}>\r\n+\t\t\t\t<CreateAccountText>Create Account</CreateAccountText>\r\n+\t\t\t</CreateAccount>\r\n \t\t\t<TouchableOpacity onPress={goToLogin}>\r\n \t\t\t\t<LoginLink>Log in</LoginLink>\r\n \t\t\t</TouchableOpacity>\r\n \t\t</Container>\r\n"
+                },
+                {
+                    "date": 1657851289672,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,11 @@\n \r\n const CreateAccount = styled.TouchableOpacity`\r\n \tbackground-color: ${colors.blue};\r\n \tpadding: 5px 10px;\r\n-\tborder-radius: 7px;\r\n+\tborder-radius: 3px;\r\n+\twidth: 100%;\r\n+\ttext-align: center;\r\n `;\r\n const CreateAccountText = styled.Text`\r\n \tcolor: white;\r\n \tfont-weight: 600;\r\n"
+                },
+                {
+                    "date": 1657851329890,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,8 @@\n \tbackground-color: ${colors.blue};\r\n \tpadding: 5px 10px;\r\n \tborder-radius: 3px;\r\n \twidth: 100%;\r\n-\ttext-align: center;\r\n `;\r\n const CreateAccountText = styled.Text`\r\n \tcolor: white;\r\n \tfont-weight: 600;\r\n@@ -30,9 +29,9 @@\n \r\n const LoginLink = styled.Text`\r\n \tcolor: ${colors.blue};\r\n \tfont-weight: 600;\r\n-\tmargin-top: 10px;\r\n+\tmargin-top: 20px;\r\n `;\r\n \r\n export default function Welcom({ navigation }) {\r\n \tconst goToCreateAccount = () => navigation.navigate(\"CreateAccount\");\r\n"
+                },
+                {
+                    "date": 1657851338701,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n \tflex: 1;\r\n \talign-items: center;\r\n \tjustify-content: center;\r\n \tbackground-color: black;\r\n+\tpadding: 0 20px;\r\n `;\r\n \r\n const Logo = styled.Image`\r\n \tmax-width: 50%;\r\n"
+                },
+                {
+                    "date": 1657851371508,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n \tflex: 1;\r\n \talign-items: center;\r\n \tjustify-content: center;\r\n \tbackground-color: black;\r\n-\tpadding: 0 20px;\r\n+\tpadding: 0 30px;\r\n `;\r\n \r\n const Logo = styled.Image`\r\n \tmax-width: 50%;\r\n"
+                },
+                {
+                    "date": 1657851381983,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,9 +8,9 @@\n \tflex: 1;\r\n \talign-items: center;\r\n \tjustify-content: center;\r\n \tbackground-color: black;\r\n-\tpadding: 0 30px;\r\n+\tpadding: 0 40px;\r\n `;\r\n \r\n const Logo = styled.Image`\r\n \tmax-width: 50%;\r\n@@ -31,8 +31,9 @@\n const LoginLink = styled.Text`\r\n \tcolor: ${colors.blue};\r\n \tfont-weight: 600;\r\n \tmargin-top: 20px;\r\n+\ttext-align: center;\r\n `;\r\n \r\n export default function Welcom({ navigation }) {\r\n \tconst goToCreateAccount = () => navigation.navigate(\"CreateAccount\");\r\n"
+                },
+                {
+                    "date": 1657851388964,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,15 +25,15 @@\n `;\r\n const CreateAccountText = styled.Text`\r\n \tcolor: white;\r\n \tfont-weight: 600;\r\n+\ttext-align: center;\r\n `;\r\n \r\n const LoginLink = styled.Text`\r\n \tcolor: ${colors.blue};\r\n \tfont-weight: 600;\r\n \tmargin-top: 20px;\r\n-\ttext-align: center;\r\n `;\r\n \r\n export default function Welcom({ navigation }) {\r\n \tconst goToCreateAccount = () => navigation.navigate(\"CreateAccount\");\r\n"
+                },
+                {
+                    "date": 1657851408419,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n `;\r\n \r\n const CreateAccount = styled.TouchableOpacity`\r\n \tbackground-color: ${colors.blue};\r\n-\tpadding: 5px 10px;\r\n+\tpadding: 15px 10px;\r\n \tborder-radius: 3px;\r\n \twidth: 100%;\r\n `;\r\n const CreateAccountText = styled.Text`\r\n"
+                },
+                {
+                    "date": 1657851529481,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,9 @@\n \treturn (\r\n \t\t<Container>\r\n \t\t\t<Logo resizeMode=\"contain\" source={require(\"../assets/logo.png\")}></Logo>\r\n \t\t\t<CreateAccount onPress={goToCreateAccount}>\r\n-\t\t\t\t<CreateAccountText>Create Account</CreateAccountText>\r\n+\t\t\t\t<CreateAccountText>Create New Account</CreateAccountText>\r\n \t\t\t</CreateAccount>\r\n \t\t\t<TouchableOpacity onPress={goToLogin}>\r\n \t\t\t\t<LoginLink>Log in</LoginLink>\r\n \t\t\t</TouchableOpacity>\r\n"
+                },
+                {
+                    "date": 1657851910690,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,10 @@\n `;\r\n \r\n const CreateAccount = styled.TouchableOpacity`\r\n \tbackground-color: ${colors.blue};\r\n-\tpadding: 15px 10px;\r\n+\tpadding: 13px 10px;\r\n+\tmargin-top: 20px;\r\n \tborder-radius: 3px;\r\n \twidth: 100%;\r\n `;\r\n const CreateAccountText = styled.Text`\r\n"
+                },
+                {
+                    "date": 1657851979952,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,8 +22,9 @@\n \tpadding: 13px 10px;\r\n \tmargin-top: 20px;\r\n \tborder-radius: 3px;\r\n \twidth: 100%;\r\n+\topacity: ${(props) => (props.disabled ? \"0.5\" : \"1\")};\r\n `;\r\n const CreateAccountText = styled.Text`\r\n \tcolor: white;\r\n \tfont-weight: 600;\r\n@@ -42,9 +43,9 @@\n \r\n \treturn (\r\n \t\t<Container>\r\n \t\t\t<Logo resizeMode=\"contain\" source={require(\"../assets/logo.png\")}></Logo>\r\n-\t\t\t<CreateAccount onPress={goToCreateAccount}>\r\n+\t\t\t<CreateAccount disabled={false} onPress={goToCreateAccount}>\r\n \t\t\t\t<CreateAccountText>Create New Account</CreateAccountText>\r\n \t\t\t</CreateAccount>\r\n \t\t\t<TouchableOpacity onPress={goToLogin}>\r\n \t\t\t\t<LoginLink>Log in</LoginLink>\r\n"
+                },
+                {
+                    "date": 1657852600240,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,21 +3,8 @@\n import { TouchableOpacity } from \"react-native\";\r\n import styled from \"styled-components/native\";\r\n import { colors } from \"../color\";\r\n \r\n-const Container = styled.View`\r\n-\tflex: 1;\r\n-\talign-items: center;\r\n-\tjustify-content: center;\r\n-\tbackground-color: black;\r\n-\tpadding: 0 40px;\r\n-`;\r\n-\r\n-const Logo = styled.Image`\r\n-\tmax-width: 50%;\r\n-\theight: 100px;\r\n-`;\r\n-\r\n const CreateAccount = styled.TouchableOpacity`\r\n \tbackground-color: ${colors.blue};\r\n \tpadding: 13px 10px;\r\n \tmargin-top: 20px;\r\n@@ -42,9 +29,8 @@\n \tconst goToLogin = () => navigation.navigate(\"Login\");\r\n \r\n \treturn (\r\n \t\t<Container>\r\n-\t\t\t<Logo resizeMode=\"contain\" source={require(\"../assets/logo.png\")}></Logo>\r\n \t\t\t<CreateAccount disabled={false} onPress={goToCreateAccount}>\r\n \t\t\t\t<CreateAccountText>Create New Account</CreateAccountText>\r\n \t\t\t</CreateAccount>\r\n \t\t\t<TouchableOpacity onPress={goToLogin}>\r\n"
+                },
+                {
+                    "date": 1657852626087,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n import { View } from \"react-native\";\r\n import { TouchableOpacity } from \"react-native\";\r\n import styled from \"styled-components/native\";\r\n import { colors } from \"../color\";\r\n+import AuthLayout from \"../components/auth-layout\";\r\n \r\n const CreateAccount = styled.TouchableOpacity`\r\n \tbackground-color: ${colors.blue};\r\n \tpadding: 13px 10px;\r\n@@ -28,14 +29,14 @@\n \tconst goToCreateAccount = () => navigation.navigate(\"CreateAccount\");\r\n \tconst goToLogin = () => navigation.navigate(\"Login\");\r\n \r\n \treturn (\r\n-\t\t<Container>\r\n+\t\t<AuthLayout>\r\n \t\t\t<CreateAccount disabled={false} onPress={goToCreateAccount}>\r\n \t\t\t\t<CreateAccountText>Create New Account</CreateAccountText>\r\n \t\t\t</CreateAccount>\r\n \t\t\t<TouchableOpacity onPress={goToLogin}>\r\n \t\t\t\t<LoginLink>Log in</LoginLink>\r\n \t\t\t</TouchableOpacity>\r\n-\t\t</Container>\r\n+\t\t</AuthLayout>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1657853215019,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,11 +30,8 @@\n \tconst goToLogin = () => navigation.navigate(\"Login\");\r\n \r\n \treturn (\r\n \t\t<AuthLayout>\r\n-\t\t\t<CreateAccount disabled={false} onPress={goToCreateAccount}>\r\n-\t\t\t\t<CreateAccountText>Create New Account</CreateAccountText>\r\n-\t\t\t</CreateAccount>\r\n \t\t\t<TouchableOpacity onPress={goToLogin}>\r\n \t\t\t\t<LoginLink>Log in</LoginLink>\r\n \t\t\t</TouchableOpacity>\r\n \t\t</AuthLayout>\r\n"
+                },
+                {
+                    "date": 1657853278134,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,22 +4,8 @@\n import styled from \"styled-components/native\";\r\n import { colors } from \"../color\";\r\n import AuthLayout from \"../components/auth-layout\";\r\n \r\n-const CreateAccount = styled.TouchableOpacity`\r\n-\tbackground-color: ${colors.blue};\r\n-\tpadding: 13px 10px;\r\n-\tmargin-top: 20px;\r\n-\tborder-radius: 3px;\r\n-\twidth: 100%;\r\n-\topacity: ${(props) => (props.disabled ? \"0.5\" : \"1\")};\r\n-`;\r\n-const CreateAccountText = styled.Text`\r\n-\tcolor: white;\r\n-\tfont-weight: 600;\r\n-\ttext-align: center;\r\n-`;\r\n-\r\n const LoginLink = styled.Text`\r\n \tcolor: ${colors.blue};\r\n \tfont-weight: 600;\r\n \tmargin-top: 20px;\r\n"
+                },
+                {
+                    "date": 1657853425605,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,9 @@\n import { View } from \"react-native\";\r\n import { TouchableOpacity } from \"react-native\";\r\n import styled from \"styled-components/native\";\r\n import { colors } from \"../color\";\r\n+import AuthButton from \"../components/auth-button\";\r\n import AuthLayout from \"../components/auth-layout\";\r\n \r\n const LoginLink = styled.Text`\r\n \tcolor: ${colors.blue};\r\n@@ -16,8 +17,9 @@\n \tconst goToLogin = () => navigation.navigate(\"Login\");\r\n \r\n \treturn (\r\n \t\t<AuthLayout>\r\n+\t\t\t<AuthButton disabled={false} onPress={goToCreateAccount} text={Create New Account}></AuthButton>\r\n \t\t\t<TouchableOpacity onPress={goToLogin}>\r\n \t\t\t\t<LoginLink>Log in</LoginLink>\r\n \t\t\t</TouchableOpacity>\r\n \t\t</AuthLayout>\r\n"
+                },
+                {
+                    "date": 1657853437061,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,13 @@\n \tconst goToLogin = () => navigation.navigate(\"Login\");\r\n \r\n \treturn (\r\n \t\t<AuthLayout>\r\n-\t\t\t<AuthButton disabled={false} onPress={goToCreateAccount} text={Create New Account}></AuthButton>\r\n+\t\t\t<AuthButton\r\n+\t\t\t\tdisabled={false}\r\n+\t\t\t\tonPress={goToCreateAccount}\r\n+\t\t\t\ttext={\"Create New Account\"}\r\n+\t\t\t></AuthButton>\r\n \t\t\t<TouchableOpacity onPress={goToLogin}>\r\n \t\t\t\t<LoginLink>Log in</LoginLink>\r\n \t\t\t</TouchableOpacity>\r\n \t\t</AuthLayout>\r\n"
+                },
+                {
+                    "date": 1657853542493,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n \t\t<AuthLayout>\r\n \t\t\t<AuthButton\r\n \t\t\t\tdisabled={false}\r\n \t\t\t\tonPress={goToCreateAccount}\r\n-\t\t\t\ttext={\"Create New Account\"}\r\n+\t\t\t\ttext=\"Create New Account\"\r\n \t\t\t></AuthButton>\r\n \t\t\t<TouchableOpacity onPress={goToLogin}>\r\n \t\t\t\t<LoginLink>Log in</LoginLink>\r\n \t\t\t</TouchableOpacity>\r\n"
                 }
             ],
             "date": 1657786920065,

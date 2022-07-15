@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 1,
+            "activePatchIndex": 32,
             "patches": [
                 {
                     "date": 1657786937618,
@@ -12,6 +12,130 @@
                 {
                     "date": 1657786946597,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,10 @@\n import React from \"react\";\r\n import { View, Text } from \"react-native\";\r\n \r\n-export default function Welcom() {\r\n+export default function CreateAccount() {\r\n \treturn (\r\n \t\t<View>\r\n-\t\t\t<Text>Welcome</Text>\r\n+\t\t\t<Text>CreateAccount</Text>\r\n \t\t</View>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1657852182879,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,10 +1,11 @@\n import React from \"react\";\r\n-import { View, Text } from \"react-native\";\r\n+import styled from \"styled-components/native\";\r\n \r\n+const Container = styled.View`\r\n+\tflex: 1;\r\n+\tbackground-color: black;\r\n+`;\r\n+\r\n export default function CreateAccount() {\r\n-\treturn (\r\n-\t\t<View>\r\n-\t\t\t<Text>CreateAccount</Text>\r\n-\t\t</View>\r\n-\t);\r\n+\treturn <Container></Container>;\r\n }\r\n"
+                },
+                {
+                    "date": 1657853626591,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,11 +1,21 @@\n import React from \"react\";\r\n import styled from \"styled-components/native\";\r\n+import AuthButton from \"../components/auth-button\";\r\n+import AuthLayout from \"../components/auth-layout\";\r\n \r\n const Container = styled.View`\r\n \tflex: 1;\r\n \tbackground-color: black;\r\n `;\r\n \r\n export default function CreateAccount() {\r\n-\treturn <Container></Container>;\r\n+\treturn (\r\n+\t\t<AuthLayout>\r\n+\t\t\t<AuthButton\r\n+\t\t\t\ttext=\"Create Account\"\r\n+\t\t\t\tdisabled={true}\r\n+\t\t\t\tonPress={() => null}\r\n+\t\t\t></AuthButton>\r\n+\t\t</AuthLayout>\r\n+\t);\r\n }\r\n"
+                },
+                {
+                    "date": 1657853693775,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,12 +10,9 @@\n \r\n export default function CreateAccount() {\r\n \treturn (\r\n \t\t<AuthLayout>\r\n-\t\t\t<AuthButton\r\n-\t\t\t\ttext=\"Create Account\"\r\n-\t\t\t\tdisabled={true}\r\n-\t\t\t\tonPress={() => null}\r\n-\t\t\t></AuthButton>\r\n+\t\t\t<AuthButton text=\"Create Account\" disabled={true} onPress={() => null} />\r\n+\t\t\t<TextInput />\r\n \t\t</AuthLayout>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1657853735710,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n import React from \"react\";\r\n+import { TextInput } from \"react-native\";\r\n import styled from \"styled-components/native\";\r\n import AuthButton from \"../components/auth-button\";\r\n import AuthLayout from \"../components/auth-layout\";\r\n \r\n"
+                },
+                {
+                    "date": 1657853785470,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,13 @@\n \r\n export default function CreateAccount() {\r\n \treturn (\r\n \t\t<AuthLayout>\r\n+\t\t\t<TextInput\r\n+\t\t\t\tplaceholder=\"First Name\"\r\n+\t\t\t\tplaceholderTextColor=\"gray\"\r\n+\t\t\t\tstyle={{ backgroundColor: \"white\", width: \"100%\" }}\r\n+\t\t\t/>\r\n \t\t\t<AuthButton text=\"Create Account\" disabled={true} onPress={() => null} />\r\n-\t\t\t<TextInput />\r\n \t\t</AuthLayout>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1657853853249,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,8 +16,28 @@\n \t\t\t\tplaceholder=\"First Name\"\r\n \t\t\t\tplaceholderTextColor=\"gray\"\r\n \t\t\t\tstyle={{ backgroundColor: \"white\", width: \"100%\" }}\r\n \t\t\t/>\r\n+\t\t\t<TextInput\r\n+\t\t\t\tplaceholder=\"Last Name\"\r\n+\t\t\t\tplaceholderTextColor=\"gray\"\r\n+\t\t\t\tstyle={{ backgroundColor: \"white\", width: \"100%\" }}\r\n+\t\t\t/>\r\n+\t\t\t<TextInput\r\n+\t\t\t\tplaceholder=\"User Name\"\r\n+\t\t\t\tplaceholderTextColor=\"gray\"\r\n+\t\t\t\tstyle={{ backgroundColor: \"white\", width: \"100%\" }}\r\n+\t\t\t/>\r\n+\t\t\t<TextInput\r\n+\t\t\t\tplaceholder=\"Email\"\r\n+\t\t\t\tplaceholderTextColor=\"gray\"\r\n+\t\t\t\tstyle={{ backgroundColor: \"white\", width: \"100%\" }}\r\n+\t\t\t/>\r\n+\t\t\t<TextInput\r\n+\t\t\t\tplaceholder=\"Password\"\r\n+\t\t\t\tplaceholderTextColor=\"gray\"\r\n+\t\t\t\tstyle={{ backgroundColor: \"white\", width: \"100%\" }}\r\n+\t\t\t/>\r\n \t\t\t<AuthButton text=\"Create Account\" disabled={true} onPress={() => null} />\r\n \t\t</AuthLayout>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1657853929555,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,13 +29,15 @@\n \t\t\t/>\r\n \t\t\t<TextInput\r\n \t\t\t\tplaceholder=\"Email\"\r\n \t\t\t\tplaceholderTextColor=\"gray\"\r\n+\t\t\t\tkeyboardType=\"email-address\"\r\n \t\t\t\tstyle={{ backgroundColor: \"white\", width: \"100%\" }}\r\n \t\t\t/>\r\n \t\t\t<TextInput\r\n \t\t\t\tplaceholder=\"Password\"\r\n \t\t\t\tplaceholderTextColor=\"gray\"\r\n+\t\t\t\tsecureTextEntry\r\n \t\t\t\tstyle={{ backgroundColor: \"white\", width: \"100%\" }}\r\n \t\t\t/>\r\n \t\t\t<AuthButton text=\"Create Account\" disabled={true} onPress={() => null} />\r\n \t\t</AuthLayout>\r\n"
+                },
+                {
+                    "date": 1657854055250,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,8 +30,9 @@\n \t\t\t<TextInput\r\n \t\t\t\tplaceholder=\"Email\"\r\n \t\t\t\tplaceholderTextColor=\"gray\"\r\n \t\t\t\tkeyboardType=\"email-address\"\r\n+\t\t\t\treturnKeyType=\"send\"\r\n \t\t\t\tstyle={{ backgroundColor: \"white\", width: \"100%\" }}\r\n \t\t\t/>\r\n \t\t\t<TextInput\r\n \t\t\t\tplaceholder=\"Password\"\r\n"
+                },
+                {
+                    "date": 1657854148284,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,18 +14,21 @@\n \t\t<AuthLayout>\r\n \t\t\t<TextInput\r\n \t\t\t\tplaceholder=\"First Name\"\r\n \t\t\t\tplaceholderTextColor=\"gray\"\r\n+\t\t\t\treturnKeyType=\"next\"\r\n \t\t\t\tstyle={{ backgroundColor: \"white\", width: \"100%\" }}\r\n \t\t\t/>\r\n \t\t\t<TextInput\r\n \t\t\t\tplaceholder=\"Last Name\"\r\n \t\t\t\tplaceholderTextColor=\"gray\"\r\n+\t\t\t\treturnKeyType=\"next\"\r\n \t\t\t\tstyle={{ backgroundColor: \"white\", width: \"100%\" }}\r\n \t\t\t/>\r\n \t\t\t<TextInput\r\n \t\t\t\tplaceholder=\"User Name\"\r\n \t\t\t\tplaceholderTextColor=\"gray\"\r\n+\t\t\t\treturnKeyType=\"next\"\r\n \t\t\t\tstyle={{ backgroundColor: \"white\", width: \"100%\" }}\r\n \t\t\t/>\r\n \t\t\t<TextInput\r\n \t\t\t\tplaceholder=\"Email\"\r\n"
+                },
+                {
+                    "date": 1657854183266,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,8 +40,9 @@\n \t\t\t<TextInput\r\n \t\t\t\tplaceholder=\"Password\"\r\n \t\t\t\tplaceholderTextColor=\"gray\"\r\n \t\t\t\tsecureTextEntry\r\n+\t\t\t\treturnKeyType=\"join\"\r\n \t\t\t\tstyle={{ backgroundColor: \"white\", width: \"100%\" }}\r\n \t\t\t/>\r\n \t\t\t<AuthButton text=\"Create Account\" disabled={true} onPress={() => null} />\r\n \t\t</AuthLayout>\r\n"
+                },
+                {
+                    "date": 1657854212589,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,9 @@\n \t\t\t<TextInput\r\n \t\t\t\tplaceholder=\"Password\"\r\n \t\t\t\tplaceholderTextColor=\"gray\"\r\n \t\t\t\tsecureTextEntry\r\n-\t\t\t\treturnKeyType=\"join\"\r\n+\t\t\t\treturnKeyLabel=\"Create Account\"\r\n \t\t\t\tstyle={{ backgroundColor: \"white\", width: \"100%\" }}\r\n \t\t\t/>\r\n \t\t\t<AuthButton text=\"Create Account\" disabled={true} onPress={() => null} />\r\n \t\t</AuthLayout>\r\n"
+                },
+                {
+                    "date": 1657854246370,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -40,9 +40,9 @@\n \t\t\t<TextInput\r\n \t\t\t\tplaceholder=\"Password\"\r\n \t\t\t\tplaceholderTextColor=\"gray\"\r\n \t\t\t\tsecureTextEntry\r\n-\t\t\t\treturnKeyLabel=\"Create Account\"\r\n+\t\t\t\treturnKeyType=\"done\"\r\n \t\t\t\tstyle={{ backgroundColor: \"white\", width: \"100%\" }}\r\n \t\t\t/>\r\n \t\t\t<AuthButton text=\"Create Account\" disabled={true} onPress={() => null} />\r\n \t\t</AuthLayout>\r\n"
+                },
+                {
+                    "date": 1657854516962,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,8 +12,9 @@\n export default function CreateAccount() {\r\n \treturn (\r\n \t\t<AuthLayout>\r\n \t\t\t<TextInput\r\n+\t\t\t\tauthFocus\r\n \t\t\t\tplaceholder=\"First Name\"\r\n \t\t\t\tplaceholderTextColor=\"gray\"\r\n \t\t\t\treturnKeyType=\"next\"\r\n \t\t\t\tstyle={{ backgroundColor: \"white\", width: \"100%\" }}\r\n"
+                },
+                {
+                    "date": 1657854529670,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,8 @@\n export default function CreateAccount() {\r\n \treturn (\r\n \t\t<AuthLayout>\r\n \t\t\t<TextInput\r\n-\t\t\t\tauthFocus\r\n \t\t\t\tplaceholder=\"First Name\"\r\n \t\t\t\tplaceholderTextColor=\"gray\"\r\n \t\t\t\treturnKeyType=\"next\"\r\n \t\t\t\tstyle={{ backgroundColor: \"white\", width: \"100%\" }}\r\n"
+                },
+                {
+                    "date": 1657854563152,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import React from \"react\";\r\n+import React, { useRef } from \"react\";\r\n import { TextInput } from \"react-native\";\r\n import styled from \"styled-components/native\";\r\n import AuthButton from \"../components/auth-button\";\r\n import AuthLayout from \"../components/auth-layout\";\r\n@@ -9,8 +9,9 @@\n \tbackground-color: black;\r\n `;\r\n \r\n export default function CreateAccount() {\r\n+\tconst lastNameRef = useRef();\r\n \treturn (\r\n \t\t<AuthLayout>\r\n \t\t\t<TextInput\r\n \t\t\t\tplaceholder=\"First Name\"\r\n@@ -18,8 +19,9 @@\n \t\t\t\treturnKeyType=\"next\"\r\n \t\t\t\tstyle={{ backgroundColor: \"white\", width: \"100%\" }}\r\n \t\t\t/>\r\n \t\t\t<TextInput\r\n+\t\t\t\tref={lastNameRef}\r\n \t\t\t\tplaceholder=\"Last Name\"\r\n \t\t\t\tplaceholderTextColor=\"gray\"\r\n \t\t\t\treturnKeyType=\"next\"\r\n \t\t\t\tstyle={{ backgroundColor: \"white\", width: \"100%\" }}\r\n"
+                },
+                {
+                    "date": 1657854597547,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,11 @@\n `;\r\n \r\n export default function CreateAccount() {\r\n \tconst lastNameRef = useRef();\r\n+\tconst onFirstNameNext = () => {\r\n+\t\talert(\"next!\");\r\n+\t};\r\n \treturn (\r\n \t\t<AuthLayout>\r\n \t\t\t<TextInput\r\n \t\t\t\tplaceholder=\"First Name\"\r\n"
+                },
+                {
+                    "date": 1657854610987,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,8 +20,9 @@\n \t\t\t\tplaceholder=\"First Name\"\r\n \t\t\t\tplaceholderTextColor=\"gray\"\r\n \t\t\t\treturnKeyType=\"next\"\r\n \t\t\t\tstyle={{ backgroundColor: \"white\", width: \"100%\" }}\r\n+\t\t\t\tonSubmitEditing={onFirstNameNext}\r\n \t\t\t/>\r\n \t\t\t<TextInput\r\n \t\t\t\tref={lastNameRef}\r\n \t\t\t\tplaceholder=\"Last Name\"\r\n"
+                },
+                {
+                    "date": 1657854657195,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -11,9 +11,9 @@\n \r\n export default function CreateAccount() {\r\n \tconst lastNameRef = useRef();\r\n \tconst onFirstNameNext = () => {\r\n-\t\talert(\"next!\");\r\n+\t\tlastNameRef?.current?.focus();\r\n \t};\r\n \treturn (\r\n \t\t<AuthLayout>\r\n \t\t\t<TextInput\r\n"
+                },
+                {
+                    "date": 1657854741759,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,12 @@\n `;\r\n \r\n export default function CreateAccount() {\r\n \tconst lastNameRef = useRef();\r\n+\tconst usernameRef = useRef();\r\n+\tconst emailRef = useRef();\r\n+\tconst passwordRef = useRef();\r\n+\r\n \tconst onFirstNameNext = () => {\r\n \t\tlastNameRef?.current?.focus();\r\n \t};\r\n \treturn (\r\n@@ -30,21 +34,24 @@\n \t\t\t\treturnKeyType=\"next\"\r\n \t\t\t\tstyle={{ backgroundColor: \"white\", width: \"100%\" }}\r\n \t\t\t/>\r\n \t\t\t<TextInput\r\n+\t\t\t\tref={usernameRef}\r\n \t\t\t\tplaceholder=\"User Name\"\r\n \t\t\t\tplaceholderTextColor=\"gray\"\r\n \t\t\t\treturnKeyType=\"next\"\r\n \t\t\t\tstyle={{ backgroundColor: \"white\", width: \"100%\" }}\r\n \t\t\t/>\r\n \t\t\t<TextInput\r\n+\t\t\t\tref={emailRef}\r\n \t\t\t\tplaceholder=\"Email\"\r\n \t\t\t\tplaceholderTextColor=\"gray\"\r\n \t\t\t\tkeyboardType=\"email-address\"\r\n \t\t\t\treturnKeyType=\"send\"\r\n \t\t\t\tstyle={{ backgroundColor: \"white\", width: \"100%\" }}\r\n \t\t\t/>\r\n \t\t\t<TextInput\r\n+\t\t\t\tref={passwordRef}\r\n \t\t\t\tplaceholder=\"Password\"\r\n \t\t\t\tplaceholderTextColor=\"gray\"\r\n \t\t\t\tsecureTextEntry\r\n \t\t\t\treturnKeyType=\"done\"\r\n"
+                },
+                {
+                    "date": 1657854817773,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,19 +14,19 @@\n \tconst usernameRef = useRef();\r\n \tconst emailRef = useRef();\r\n \tconst passwordRef = useRef();\r\n \r\n-\tconst onFirstNameNext = () => {\r\n-\t\tlastNameRef?.current?.focus();\r\n+\tconst onNext = (nextOne) => {\r\n+\t\tnextOne?.current?.focus();\r\n \t};\r\n \treturn (\r\n \t\t<AuthLayout>\r\n \t\t\t<TextInput\r\n \t\t\t\tplaceholder=\"First Name\"\r\n \t\t\t\tplaceholderTextColor=\"gray\"\r\n \t\t\t\treturnKeyType=\"next\"\r\n \t\t\t\tstyle={{ backgroundColor: \"white\", width: \"100%\" }}\r\n-\t\t\t\tonSubmitEditing={onFirstNameNext}\r\n+\t\t\t\tonSubmitEditing={() => onNext(lastNameRef)}\r\n \t\t\t/>\r\n \t\t\t<TextInput\r\n \t\t\t\tref={lastNameRef}\r\n \t\t\t\tplaceholder=\"Last Name\"\r\n"
+                },
+                {
+                    "date": 1657854876573,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,8 +17,12 @@\n \r\n \tconst onNext = (nextOne) => {\r\n \t\tnextOne?.current?.focus();\r\n \t};\r\n+\tconst onDone = () => {\r\n+\t\talert(\"done!\");\r\n+\t};\r\n+\r\n \treturn (\r\n \t\t<AuthLayout>\r\n \t\t\t<TextInput\r\n \t\t\t\tplaceholder=\"First Name\"\r\n@@ -32,23 +36,26 @@\n \t\t\t\tplaceholder=\"Last Name\"\r\n \t\t\t\tplaceholderTextColor=\"gray\"\r\n \t\t\t\treturnKeyType=\"next\"\r\n \t\t\t\tstyle={{ backgroundColor: \"white\", width: \"100%\" }}\r\n+\t\t\t\tonSubmitEditing={() => onNext(usernameRef)}\r\n \t\t\t/>\r\n \t\t\t<TextInput\r\n \t\t\t\tref={usernameRef}\r\n \t\t\t\tplaceholder=\"User Name\"\r\n \t\t\t\tplaceholderTextColor=\"gray\"\r\n \t\t\t\treturnKeyType=\"next\"\r\n \t\t\t\tstyle={{ backgroundColor: \"white\", width: \"100%\" }}\r\n+\t\t\t\tonSubmitEditing={() => onNext(emailRef)}\r\n \t\t\t/>\r\n \t\t\t<TextInput\r\n \t\t\t\tref={emailRef}\r\n \t\t\t\tplaceholder=\"Email\"\r\n \t\t\t\tplaceholderTextColor=\"gray\"\r\n \t\t\t\tkeyboardType=\"email-address\"\r\n \t\t\t\treturnKeyType=\"send\"\r\n \t\t\t\tstyle={{ backgroundColor: \"white\", width: \"100%\" }}\r\n+\t\t\t\tonSubmitEditing={() => onNext(passwordRef)}\r\n \t\t\t/>\r\n \t\t\t<TextInput\r\n \t\t\t\tref={passwordRef}\r\n \t\t\t\tplaceholder=\"Password\"\r\n"
+                },
+                {
+                    "date": 1657856622494,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -62,8 +62,9 @@\n \t\t\t\tplaceholderTextColor=\"gray\"\r\n \t\t\t\tsecureTextEntry\r\n \t\t\t\treturnKeyType=\"done\"\r\n \t\t\t\tstyle={{ backgroundColor: \"white\", width: \"100%\" }}\r\n+\t\t\t\tonSubmitEditing={onDone}\r\n \t\t\t/>\r\n \t\t\t<AuthButton text=\"Create Account\" disabled={true} onPress={() => null} />\r\n \t\t</AuthLayout>\r\n \t);\r\n"
+                },
+                {
+                    "date": 1657856743924,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import React, { useRef } from \"react\";\r\n-import { TextInput } from \"react-native\";\r\n+import { KeyboardAvoidingView, TextInput } from \"react-native\";\r\n import styled from \"styled-components/native\";\r\n import AuthButton from \"../components/auth-button\";\r\n import AuthLayout from \"../components/auth-layout\";\r\n \r\n@@ -23,49 +23,55 @@\n \t};\r\n \r\n \treturn (\r\n \t\t<AuthLayout>\r\n-\t\t\t<TextInput\r\n-\t\t\t\tplaceholder=\"First Name\"\r\n-\t\t\t\tplaceholderTextColor=\"gray\"\r\n-\t\t\t\treturnKeyType=\"next\"\r\n-\t\t\t\tstyle={{ backgroundColor: \"white\", width: \"100%\" }}\r\n-\t\t\t\tonSubmitEditing={() => onNext(lastNameRef)}\r\n-\t\t\t/>\r\n-\t\t\t<TextInput\r\n-\t\t\t\tref={lastNameRef}\r\n-\t\t\t\tplaceholder=\"Last Name\"\r\n-\t\t\t\tplaceholderTextColor=\"gray\"\r\n-\t\t\t\treturnKeyType=\"next\"\r\n-\t\t\t\tstyle={{ backgroundColor: \"white\", width: \"100%\" }}\r\n-\t\t\t\tonSubmitEditing={() => onNext(usernameRef)}\r\n-\t\t\t/>\r\n-\t\t\t<TextInput\r\n-\t\t\t\tref={usernameRef}\r\n-\t\t\t\tplaceholder=\"User Name\"\r\n-\t\t\t\tplaceholderTextColor=\"gray\"\r\n-\t\t\t\treturnKeyType=\"next\"\r\n-\t\t\t\tstyle={{ backgroundColor: \"white\", width: \"100%\" }}\r\n-\t\t\t\tonSubmitEditing={() => onNext(emailRef)}\r\n-\t\t\t/>\r\n-\t\t\t<TextInput\r\n-\t\t\t\tref={emailRef}\r\n-\t\t\t\tplaceholder=\"Email\"\r\n-\t\t\t\tplaceholderTextColor=\"gray\"\r\n-\t\t\t\tkeyboardType=\"email-address\"\r\n-\t\t\t\treturnKeyType=\"send\"\r\n-\t\t\t\tstyle={{ backgroundColor: \"white\", width: \"100%\" }}\r\n-\t\t\t\tonSubmitEditing={() => onNext(passwordRef)}\r\n-\t\t\t/>\r\n-\t\t\t<TextInput\r\n-\t\t\t\tref={passwordRef}\r\n-\t\t\t\tplaceholder=\"Password\"\r\n-\t\t\t\tplaceholderTextColor=\"gray\"\r\n-\t\t\t\tsecureTextEntry\r\n-\t\t\t\treturnKeyType=\"done\"\r\n-\t\t\t\tstyle={{ backgroundColor: \"white\", width: \"100%\" }}\r\n-\t\t\t\tonSubmitEditing={onDone}\r\n-\t\t\t/>\r\n-\t\t\t<AuthButton text=\"Create Account\" disabled={true} onPress={() => null} />\r\n+\t\t\t<KeyboardAvoidingView>\r\n+\t\t\t\t<TextInput\r\n+\t\t\t\t\tplaceholder=\"First Name\"\r\n+\t\t\t\t\tplaceholderTextColor=\"gray\"\r\n+\t\t\t\t\treturnKeyType=\"next\"\r\n+\t\t\t\t\tstyle={{ backgroundColor: \"white\", width: \"100%\" }}\r\n+\t\t\t\t\tonSubmitEditing={() => onNext(lastNameRef)}\r\n+\t\t\t\t/>\r\n+\t\t\t\t<TextInput\r\n+\t\t\t\t\tref={lastNameRef}\r\n+\t\t\t\t\tplaceholder=\"Last Name\"\r\n+\t\t\t\t\tplaceholderTextColor=\"gray\"\r\n+\t\t\t\t\treturnKeyType=\"next\"\r\n+\t\t\t\t\tstyle={{ backgroundColor: \"white\", width: \"100%\" }}\r\n+\t\t\t\t\tonSubmitEditing={() => onNext(usernameRef)}\r\n+\t\t\t\t/>\r\n+\t\t\t\t<TextInput\r\n+\t\t\t\t\tref={usernameRef}\r\n+\t\t\t\t\tplaceholder=\"User Name\"\r\n+\t\t\t\t\tplaceholderTextColor=\"gray\"\r\n+\t\t\t\t\treturnKeyType=\"next\"\r\n+\t\t\t\t\tstyle={{ backgroundColor: \"white\", width: \"100%\" }}\r\n+\t\t\t\t\tonSubmitEditing={() => onNext(emailRef)}\r\n+\t\t\t\t/>\r\n+\t\t\t\t<TextInput\r\n+\t\t\t\t\tref={emailRef}\r\n+\t\t\t\t\tplaceholder=\"Email\"\r\n+\t\t\t\t\tplaceholderTextColor=\"gray\"\r\n+\t\t\t\t\tkeyboardType=\"email-address\"\r\n+\t\t\t\t\treturnKeyType=\"send\"\r\n+\t\t\t\t\tstyle={{ backgroundColor: \"white\", width: \"100%\" }}\r\n+\t\t\t\t\tonSubmitEditing={() => onNext(passwordRef)}\r\n+\t\t\t\t/>\r\n+\t\t\t\t<TextInput\r\n+\t\t\t\t\tref={passwordRef}\r\n+\t\t\t\t\tplaceholder=\"Password\"\r\n+\t\t\t\t\tplaceholderTextColor=\"gray\"\r\n+\t\t\t\t\tsecureTextEntry\r\n+\t\t\t\t\treturnKeyType=\"done\"\r\n+\t\t\t\t\tstyle={{ backgroundColor: \"white\", width: \"100%\" }}\r\n+\t\t\t\t\tonSubmitEditing={onDone}\r\n+\t\t\t\t/>\r\n+\t\t\t\t<AuthButton\r\n+\t\t\t\t\ttext=\"Create Account\"\r\n+\t\t\t\t\tdisabled={true}\r\n+\t\t\t\t\tonPress={() => null}\r\n+\t\t\t\t/>\r\n+\t\t\t</KeyboardAvoidingView>\r\n \t\t</AuthLayout>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1657856874168,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n \t};\r\n \r\n \treturn (\r\n \t\t<AuthLayout>\r\n-\t\t\t<KeyboardAvoidingView>\r\n+\t\t\t<KeyboardAvoidingView behavior=\"height\" keyboardVerticalOffset={200}>\r\n \t\t\t\t<TextInput\r\n \t\t\t\t\tplaceholder=\"First Name\"\r\n \t\t\t\t\tplaceholderTextColor=\"gray\"\r\n \t\t\t\t\treturnKeyType=\"next\"\r\n"
+                },
+                {
+                    "date": 1657856894229,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n \t};\r\n \r\n \treturn (\r\n \t\t<AuthLayout>\r\n-\t\t\t<KeyboardAvoidingView behavior=\"height\" keyboardVerticalOffset={200}>\r\n+\t\t\t<KeyboardAvoidingView behavior=\"position\" keyboardVerticalOffset={200}>\r\n \t\t\t\t<TextInput\r\n \t\t\t\t\tplaceholder=\"First Name\"\r\n \t\t\t\t\tplaceholderTextColor=\"gray\"\r\n \t\t\t\t\treturnKeyType=\"next\"\r\n"
+                },
+                {
+                    "date": 1657856902001,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n \t};\r\n \r\n \treturn (\r\n \t\t<AuthLayout>\r\n-\t\t\t<KeyboardAvoidingView behavior=\"position\" keyboardVerticalOffset={200}>\r\n+\t\t\t<KeyboardAvoidingView behavior=\"position\" keyboardVerticalOffset={0}>\r\n \t\t\t\t<TextInput\r\n \t\t\t\t\tplaceholder=\"First Name\"\r\n \t\t\t\t\tplaceholderTextColor=\"gray\"\r\n \t\t\t\t\treturnKeyType=\"next\"\r\n"
+                },
+                {
+                    "date": 1657856920853,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n \t};\r\n \r\n \treturn (\r\n \t\t<AuthLayout>\r\n-\t\t\t<KeyboardAvoidingView behavior=\"position\" keyboardVerticalOffset={0}>\r\n+\t\t\t<KeyboardAvoidingView behavior=\"position\" keyboardVerticalOffset={20}>\r\n \t\t\t\t<TextInput\r\n \t\t\t\t\tplaceholder=\"First Name\"\r\n \t\t\t\t\tplaceholderTextColor=\"gray\"\r\n \t\t\t\t\treturnKeyType=\"next\"\r\n"
+                },
+                {
+                    "date": 1657856968358,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n \t};\r\n \r\n \treturn (\r\n \t\t<AuthLayout>\r\n-\t\t\t<KeyboardAvoidingView behavior=\"position\" keyboardVerticalOffset={20}>\r\n+\t\t\t<KeyboardAvoidingView behavior=\"padding\" keyboardVerticalOffset={20}>\r\n \t\t\t\t<TextInput\r\n \t\t\t\t\tplaceholder=\"First Name\"\r\n \t\t\t\t\tplaceholderTextColor=\"gray\"\r\n \t\t\t\t\treturnKeyType=\"next\"\r\n"
+                },
+                {
+                    "date": 1657856990475,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,9 @@\n \t};\r\n \r\n \treturn (\r\n \t\t<AuthLayout>\r\n-\t\t\t<KeyboardAvoidingView behavior=\"padding\" keyboardVerticalOffset={20}>\r\n+\t\t\t<KeyboardAvoidingView behavior=\"padding\" keyboardVerticalOffset={300}>\r\n \t\t\t\t<TextInput\r\n \t\t\t\t\tplaceholder=\"First Name\"\r\n \t\t\t\t\tplaceholderTextColor=\"gray\"\r\n \t\t\t\t\treturnKeyType=\"next\"\r\n"
+                },
+                {
+                    "date": 1657857028631,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import React, { useRef } from \"react\";\r\n-import { KeyboardAvoidingView, TextInput } from \"react-native\";\r\n+import { KeyboardAvoidingView, Platform, TextInput } from \"react-native\";\r\n import styled from \"styled-components/native\";\r\n import AuthButton from \"../components/auth-button\";\r\n import AuthLayout from \"../components/auth-layout\";\r\n \r\n@@ -23,9 +23,12 @@\n \t};\r\n \r\n \treturn (\r\n \t\t<AuthLayout>\r\n-\t\t\t<KeyboardAvoidingView behavior=\"padding\" keyboardVerticalOffset={300}>\r\n+\t\t\t<KeyboardAvoidingView\r\n+\t\t\t\tbehavior=\"padding\"\r\n+\t\t\t\tkeyboardVerticalOffset={Platform.OS === \"ios\" ? 30 : 0}\r\n+\t\t\t>\r\n \t\t\t\t<TextInput\r\n \t\t\t\t\tplaceholder=\"First Name\"\r\n \t\t\t\t\tplaceholderTextColor=\"gray\"\r\n \t\t\t\t\treturnKeyType=\"next\"\r\n"
+                },
+                {
+                    "date": 1657857086710,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,8 +24,11 @@\n \r\n \treturn (\r\n \t\t<AuthLayout>\r\n \t\t\t<KeyboardAvoidingView\r\n+\t\t\t\tstyle={{\r\n+\t\t\t\t\twidth: \"100%\",\r\n+\t\t\t\t}}\r\n \t\t\t\tbehavior=\"padding\"\r\n \t\t\t\tkeyboardVerticalOffset={Platform.OS === \"ios\" ? 30 : 0}\r\n \t\t\t>\r\n \t\t\t\t<TextInput\r\n"
                 }
             ],
             "date": 1657786937618,

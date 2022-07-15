@@ -3,33 +3,13 @@ import { View } from "react-native";
 import { TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import { colors } from "../color";
-
-const Container = styled.View`
-	flex: 1;
-	align-items: center;
-	justify-content: center;
-	background-color: black;
-`;
-
-const Logo = styled.Image`
-	max-width: 50%;
-	height: 100px;
-`;
-
-const CreateAccount = styled.View`
-	background-color: ${colors.blue};
-	padding: 5px 10px;
-	border-radius: 7px;
-`;
-const CreateAccountText = styled.Text`
-	color: white;
-	font-weight: 600;
-`;
+import AuthButton from "../components/auth-button";
+import AuthLayout from "../components/auth-layout";
 
 const LoginLink = styled.Text`
 	color: ${colors.blue};
 	font-weight: 600;
-	margin-top: 10px;
+	margin-top: 20px;
 `;
 
 export default function Welcom({ navigation }) {
@@ -37,16 +17,15 @@ export default function Welcom({ navigation }) {
 	const goToLogin = () => navigation.navigate("Login");
 
 	return (
-		<Container>
-			<Logo resizeMode="contain" source={require("../assets/logo.png")}></Logo>
-			<TouchableOpacity onPress={goToCreateAccount}>
-				<CreateAccount>
-					<CreateAccountText>Create Account</CreateAccountText>
-				</CreateAccount>
-			</TouchableOpacity>
+		<AuthLayout>
+			<AuthButton
+				disabled={false}
+				onPress={goToCreateAccount}
+				text="Create New Account"
+			></AuthButton>
 			<TouchableOpacity onPress={goToLogin}>
 				<LoginLink>Log in</LoginLink>
 			</TouchableOpacity>
-		</Container>
+		</AuthLayout>
 	);
 }

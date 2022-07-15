@@ -1,0 +1,42 @@
+{
+    "sourceFile": "components/auth-button.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 6,
+            "patches": [
+                {
+                    "date": 1657853214988,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1657853234251,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,9 @@\n-import React from \"react\"\r\n+import React from \"react\";\r\n \r\n-export default AuthButton({onPress}) {\r\n-    return (<CreateAccount disabled={false} onPress={goToCreateAccount}>\r\n-    <CreateAccountText>Create New Account</CreateAccountText>\r\n-</CreateAccount>)\r\n\\ No newline at end of file\n-}\n+export default function AuthButton({ onPress }) {\r\n+\treturn (\r\n+\t\t<CreateAccount disabled={false} onPress={goToCreateAccount}>\r\n+\t\t\t<CreateAccountText>Create New Account</CreateAccountText>\r\n+\t\t</CreateAccount>\r\n+\t);\r\n+}\r\n"
+                },
+                {
+                    "date": 1657853278134,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,23 @@\n import React from \"react\";\r\n \r\n+const Button = styled.TouchableOpacity`\r\n+\tbackground-color: ${colors.blue};\r\n+\tpadding: 13px 10px;\r\n+\tmargin-top: 20px;\r\n+\tborder-radius: 3px;\r\n+\twidth: 100%;\r\n+\topacity: ${(props) => (props.disabled ? \"0.5\" : \"1\")};\r\n+`;\r\n+const ButtonText = styled.Text`\r\n+\tcolor: white;\r\n+\tfont-weight: 600;\r\n+\ttext-align: center;\r\n+`;\r\n+\r\n export default function AuthButton({ onPress }) {\r\n \treturn (\r\n-\t\t<CreateAccount disabled={false} onPress={goToCreateAccount}>\r\n-\t\t\t<CreateAccountText>Create New Account</CreateAccountText>\r\n-\t\t</CreateAccount>\r\n+\t\t<Button disabled={false} onPress={goToCreateAccount}>\r\n+\t\t\t<ButtonText>Create New Account</ButtonText>\r\n+\t\t</Button>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1657853307043,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,11 +13,11 @@\n \tfont-weight: 600;\r\n \ttext-align: center;\r\n `;\r\n \r\n-export default function AuthButton({ onPress }) {\r\n+export default function AuthButton({ onPress, disabled }) {\r\n \treturn (\r\n-\t\t<Button disabled={false} onPress={goToCreateAccount}>\r\n+\t\t<Button disabled={disabled} onPress={onPress}>\r\n \t\t\t<ButtonText>Create New Account</ButtonText>\r\n \t\t</Button>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1657853371470,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,11 +13,11 @@\n \tfont-weight: 600;\r\n \ttext-align: center;\r\n `;\r\n \r\n-export default function AuthButton({ onPress, disabled }) {\r\n+export default function AuthButton({ onPress, disabled, text }) {\r\n \treturn (\r\n \t\t<Button disabled={disabled} onPress={onPress}>\r\n-\t\t\t<ButtonText>Create New Account</ButtonText>\r\n+\t\t\t<ButtonText>{text}</ButtonText>\r\n \t\t</Button>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1657853459197,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n import React from \"react\";\r\n+import styled from \"styled-components/native\";\r\n \r\n const Button = styled.TouchableOpacity`\r\n \tbackground-color: ${colors.blue};\r\n \tpadding: 13px 10px;\r\n"
+                },
+                {
+                    "date": 1657853489961,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n import React from \"react\";\r\n import styled from \"styled-components/native\";\r\n+import { colors } from \"../color\";\r\n \r\n const Button = styled.TouchableOpacity`\r\n \tbackground-color: ${colors.blue};\r\n \tpadding: 13px 10px;\r\n"
+                }
+            ],
+            "date": 1657853214988,
+            "name": "Commit-0",
+            "content": "import React from \"react\"\r\n\r\nexport default AuthButton({onPress}) {\r\n    return (<CreateAccount disabled={false} onPress={goToCreateAccount}>\r\n    <CreateAccountText>Create New Account</CreateAccountText>\r\n</CreateAccount>)\r\n}"
+        }
+    ]
+}

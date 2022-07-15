@@ -1,0 +1,42 @@
+{
+    "sourceFile": "components/auth-layout.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 6,
+            "patches": [
+                {
+                    "date": 1657852600259,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1657857145464,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n import React from \"react\";\r\n+import { TouchableOpacity } from \"react-native-web\";\r\n import styled from \"styled-components/native\";\r\n \r\n const Container = styled.View`\r\n \tflex: 1;\r\n@@ -15,10 +16,15 @@\n `;\r\n \r\n export default function AuthLayout({ children }) {\r\n \treturn (\r\n-\t\t<Container>\r\n-\t\t\t<Logo resizeMode=\"contain\" source={require(\"../assets/logo.png\")}></Logo>\r\n-\t\t\t{children}\r\n-\t\t</Container>\r\n+\t\t<TouchableOpacity>\r\n+\t\t\t<Container>\r\n+\t\t\t\t<Logo\r\n+\t\t\t\t\tresizeMode=\"contain\"\r\n+\t\t\t\t\tsource={require(\"../assets/logo.png\")}\r\n+\t\t\t\t></Logo>\r\n+\t\t\t\t{children}\r\n+\t\t\t</Container>\r\n+\t\t</TouchableOpacity>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1657857153752,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import React from \"react\";\r\n-import { TouchableOpacity } from \"react-native-web\";\r\n+import { TouchableOpacity } from \"react-native\";\r\n import styled from \"styled-components/native\";\r\n \r\n const Container = styled.View`\r\n \tflex: 1;\r\n"
+                },
+                {
+                    "date": 1657857161153,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n `;\r\n \r\n export default function AuthLayout({ children }) {\r\n \treturn (\r\n-\t\t<TouchableOpacity>\r\n+\t\t<TouchableOpacity style={{ flex: 1 }}>\r\n \t\t\t<Container>\r\n \t\t\t\t<Logo\r\n \t\t\t\t\tresizeMode=\"contain\"\r\n \t\t\t\t\tsource={require(\"../assets/logo.png\")}\r\n"
+                },
+                {
+                    "date": 1657857181119,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n `;\r\n \r\n export default function AuthLayout({ children }) {\r\n \treturn (\r\n-\t\t<TouchableOpacity style={{ flex: 1 }}>\r\n+\t\t<TouchableOpacity style={{ flex: 1 }} onPress={() => alert(\"hi\")}>\r\n \t\t\t<Container>\r\n \t\t\t\t<Logo\r\n \t\t\t\t\tresizeMode=\"contain\"\r\n \t\t\t\t\tsource={require(\"../assets/logo.png\")}\r\n"
+                },
+                {
+                    "date": 1657857216388,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,6 @@\n import React from \"react\";\r\n-import { TouchableOpacity } from \"react-native\";\r\n+import { TouchableOpacity, TouchableWithoutFeedback } from \"react-native\";\r\n import styled from \"styled-components/native\";\r\n \r\n const Container = styled.View`\r\n \tflex: 1;\r\n@@ -16,15 +16,15 @@\n `;\r\n \r\n export default function AuthLayout({ children }) {\r\n \treturn (\r\n-\t\t<TouchableOpacity style={{ flex: 1 }} onPress={() => alert(\"hi\")}>\r\n+\t\t<TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => alert(\"hi\")}>\r\n \t\t\t<Container>\r\n \t\t\t\t<Logo\r\n \t\t\t\t\tresizeMode=\"contain\"\r\n \t\t\t\t\tsource={require(\"../assets/logo.png\")}\r\n \t\t\t\t></Logo>\r\n \t\t\t\t{children}\r\n \t\t\t</Container>\r\n-\t\t</TouchableOpacity>\r\n+\t\t</TouchableWithoutFeedback>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1657857284787,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,10 @@\n import React from \"react\";\r\n-import { TouchableOpacity, TouchableWithoutFeedback } from \"react-native\";\r\n+import {\r\n+\tKeyboard,\r\n+\tTouchableOpacity,\r\n+\tTouchableWithoutFeedback,\r\n+} from \"react-native\";\r\n import styled from \"styled-components/native\";\r\n \r\n const Container = styled.View`\r\n \tflex: 1;\r\n@@ -15,10 +19,13 @@\n \theight: 100px;\r\n `;\r\n \r\n export default function AuthLayout({ children }) {\r\n+\tconst dismissKeyboard = () => {\r\n+\t\tKeyboard.dismiss();\r\n+\t};\r\n \treturn (\r\n-\t\t<TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => alert(\"hi\")}>\r\n+\t\t<TouchableWithoutFeedback style={{ flex: 1 }} onPress={dismissKeyboard}>\r\n \t\t\t<Container>\r\n \t\t\t\t<Logo\r\n \t\t\t\t\tresizeMode=\"contain\"\r\n \t\t\t\t\tsource={require(\"../assets/logo.png\")}\r\n"
+                }
+            ],
+            "date": 1657852600259,
+            "name": "Commit-0",
+            "content": "import React from \"react\";\r\nimport styled from \"styled-components/native\";\r\n\r\nconst Container = styled.View`\r\n\tflex: 1;\r\n\talign-items: center;\r\n\tjustify-content: center;\r\n\tbackground-color: black;\r\n\tpadding: 0 40px;\r\n`;\r\n\r\nconst Logo = styled.Image`\r\n\tmax-width: 50%;\r\n\theight: 100px;\r\n`;\r\n\r\nexport default function AuthLayout({ children }) {\r\n\treturn (\r\n\t\t<Container>\r\n\t\t\t<Logo resizeMode=\"contain\" source={require(\"../assets/logo.png\")}></Logo>\r\n\t\t\t{children}\r\n\t\t</Container>\r\n\t);\r\n}\r\n"
+        }
+    ]
+}
