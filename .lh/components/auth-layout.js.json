@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 6,
+            "activePatchIndex": 22,
             "patches": [
                 {
                     "date": 1657852600259,
@@ -32,6 +32,70 @@
                 {
                     "date": 1657857284787,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,10 @@\n import React from \"react\";\r\n-import { TouchableOpacity, TouchableWithoutFeedback } from \"react-native\";\r\n+import {\r\n+\tKeyboard,\r\n+\tTouchableOpacity,\r\n+\tTouchableWithoutFeedback,\r\n+} from \"react-native\";\r\n import styled from \"styled-components/native\";\r\n \r\n const Container = styled.View`\r\n \tflex: 1;\r\n@@ -15,10 +19,13 @@\n \theight: 100px;\r\n `;\r\n \r\n export default function AuthLayout({ children }) {\r\n+\tconst dismissKeyboard = () => {\r\n+\t\tKeyboard.dismiss();\r\n+\t};\r\n \treturn (\r\n-\t\t<TouchableWithoutFeedback style={{ flex: 1 }} onPress={() => alert(\"hi\")}>\r\n+\t\t<TouchableWithoutFeedback style={{ flex: 1 }} onPress={dismissKeyboard}>\r\n \t\t\t<Container>\r\n \t\t\t\t<Logo\r\n \t\t\t\t\tresizeMode=\"contain\"\r\n \t\t\t\t\tsource={require(\"../assets/logo.png\")}\r\n"
+                },
+                {
+                    "date": 1657878559241,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n import React from \"react\";\r\n import {\r\n \tKeyboard,\r\n+\tPlatform,\r\n \tTouchableOpacity,\r\n \tTouchableWithoutFeedback,\r\n } from \"react-native\";\r\n import styled from \"styled-components/native\";\r\n@@ -25,13 +26,22 @@\n \t};\r\n \treturn (\r\n \t\t<TouchableWithoutFeedback style={{ flex: 1 }} onPress={dismissKeyboard}>\r\n \t\t\t<Container>\r\n-\t\t\t\t<Logo\r\n-\t\t\t\t\tresizeMode=\"contain\"\r\n-\t\t\t\t\tsource={require(\"../assets/logo.png\")}\r\n-\t\t\t\t></Logo>\r\n-\t\t\t\t{children}\r\n+\t\t\t\t<KeyboardAvoidingView\r\n+\t\t\t\t\tstyle={{\r\n+\t\t\t\t\t\twidth: \"100%\",\r\n+\t\t\t\t\t\tflex: 1,\r\n+\t\t\t\t\t}}\r\n+\t\t\t\t\tbehavior=\"padding\"\r\n+\t\t\t\t\tkeyboardVerticalOffset={Platform.OS === \"ios\" ? 30 : 0}\r\n+\t\t\t\t>\r\n+\t\t\t\t\t<Logo\r\n+\t\t\t\t\t\tresizeMode=\"contain\"\r\n+\t\t\t\t\t\tsource={require(\"../assets/logo.png\")}\r\n+\t\t\t\t\t></Logo>\r\n+\t\t\t\t\t{children}\r\n+\t\t\t\t</KeyboardAvoidingView>\r\n \t\t\t</Container>\r\n \t\t</TouchableWithoutFeedback>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1657878570785,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n import React from \"react\";\r\n import {\r\n \tKeyboard,\r\n+\tKeyboardAvoidingView,\r\n \tPlatform,\r\n \tTouchableOpacity,\r\n \tTouchableWithoutFeedback,\r\n } from \"react-native\";\r\n"
+                },
+                {
+                    "date": 1657878585403,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,8 @@\n \t\t\t<Container>\r\n \t\t\t\t<KeyboardAvoidingView\r\n \t\t\t\t\tstyle={{\r\n \t\t\t\t\t\twidth: \"100%\",\r\n-\t\t\t\t\t\tflex: 1,\r\n \t\t\t\t\t}}\r\n \t\t\t\t\tbehavior=\"padding\"\r\n \t\t\t\t\tkeyboardVerticalOffset={Platform.OS === \"ios\" ? 30 : 0}\r\n \t\t\t\t>\r\n"
+                },
+                {
+                    "date": 1657878608882,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,8 +30,9 @@\n \t\t\t<Container>\r\n \t\t\t\t<KeyboardAvoidingView\r\n \t\t\t\t\tstyle={{\r\n \t\t\t\t\t\twidth: \"100%\",\r\n+\t\t\t\t\t\tjustifyContent: \"center\",\r\n \t\t\t\t\t}}\r\n \t\t\t\t\tbehavior=\"padding\"\r\n \t\t\t\t\tkeyboardVerticalOffset={Platform.OS === \"ios\" ? 30 : 0}\r\n \t\t\t\t>\r\n"
+                },
+                {
+                    "date": 1657878616222,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,8 @@\n \t\t\t<Container>\r\n \t\t\t\t<KeyboardAvoidingView\r\n \t\t\t\t\tstyle={{\r\n \t\t\t\t\t\twidth: \"100%\",\r\n-\t\t\t\t\t\tjustifyContent: \"center\",\r\n \t\t\t\t\t}}\r\n \t\t\t\t\tbehavior=\"padding\"\r\n \t\t\t\t\tkeyboardVerticalOffset={Platform.OS === \"ios\" ? 30 : 0}\r\n \t\t\t\t>\r\n"
+                },
+                {
+                    "date": 1657878752143,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,13 @@\n \tconst dismissKeyboard = () => {\r\n \t\tKeyboard.dismiss();\r\n \t};\r\n \treturn (\r\n-\t\t<TouchableWithoutFeedback style={{ flex: 1 }} onPress={dismissKeyboard}>\r\n+\t\t<TouchableWithoutFeedback\r\n+\t\t\tstyle={{ flex: 1 }}\r\n+\t\t\tonPress={dismissKeyboard}\r\n+\t\t\tdisalbed={Platform.OS === \"web\"}\r\n+\t\t>\r\n \t\t\t<Container>\r\n \t\t\t\t<KeyboardAvoidingView\r\n \t\t\t\t\tstyle={{\r\n \t\t\t\t\t\twidth: \"100%\",\r\n"
+                },
+                {
+                    "date": 1657878928098,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,8 +13,9 @@\n \talign-items: center;\r\n \tjustify-content: center;\r\n \tbackground-color: black;\r\n \tpadding: 0 40px;\r\n+\tdisplay: flex;\r\n `;\r\n \r\n const Logo = styled.Image`\r\n \tmax-width: 50%;\r\n@@ -34,8 +35,9 @@\n \t\t\t<Container>\r\n \t\t\t\t<KeyboardAvoidingView\r\n \t\t\t\t\tstyle={{\r\n \t\t\t\t\t\twidth: \"100%\",\r\n+\t\t\t\t\t\tjustifyContent: \"center\",\r\n \t\t\t\t\t}}\r\n \t\t\t\t\tbehavior=\"padding\"\r\n \t\t\t\t\tkeyboardVerticalOffset={Platform.OS === \"ios\" ? 30 : 0}\r\n \t\t\t\t>\r\n"
+                },
+                {
+                    "date": 1657878933571,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,8 +36,9 @@\n \t\t\t\t<KeyboardAvoidingView\r\n \t\t\t\t\tstyle={{\r\n \t\t\t\t\t\twidth: \"100%\",\r\n \t\t\t\t\t\tjustifyContent: \"center\",\r\n+\t\t\t\t\t\tdisplay: \"flex\",\r\n \t\t\t\t\t}}\r\n \t\t\t\t\tbehavior=\"padding\"\r\n \t\t\t\t\tkeyboardVerticalOffset={Platform.OS === \"ios\" ? 30 : 0}\r\n \t\t\t\t>\r\n"
+                },
+                {
+                    "date": 1657878950899,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,10 +35,10 @@\n \t\t\t<Container>\r\n \t\t\t\t<KeyboardAvoidingView\r\n \t\t\t\t\tstyle={{\r\n \t\t\t\t\t\twidth: \"100%\",\r\n+\t\t\t\t\t\tdisplay: \"flex\",\r\n \t\t\t\t\t\tjustifyContent: \"center\",\r\n-\t\t\t\t\t\tdisplay: \"flex\",\r\n \t\t\t\t\t}}\r\n \t\t\t\t\tbehavior=\"padding\"\r\n \t\t\t\t\tkeyboardVerticalOffset={Platform.OS === \"ios\" ? 30 : 0}\r\n \t\t\t\t>\r\n"
+                },
+                {
+                    "date": 1657878968451,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,8 @@\n \talign-items: center;\r\n \tjustify-content: center;\r\n \tbackground-color: black;\r\n \tpadding: 0 40px;\r\n-\tdisplay: flex;\r\n `;\r\n \r\n const Logo = styled.Image`\r\n \tmax-width: 50%;\r\n@@ -37,8 +36,9 @@\n \t\t\t\t\tstyle={{\r\n \t\t\t\t\t\twidth: \"100%\",\r\n \t\t\t\t\t\tdisplay: \"flex\",\r\n \t\t\t\t\t\tjustifyContent: \"center\",\r\n+\t\t\t\t\t\talignItems: \"center\",\r\n \t\t\t\t\t}}\r\n \t\t\t\t\tbehavior=\"padding\"\r\n \t\t\t\t\tkeyboardVerticalOffset={Platform.OS === \"ios\" ? 30 : 0}\r\n \t\t\t\t>\r\n"
+                },
+                {
+                    "date": 1657878974016,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,9 +35,8 @@\n \t\t\t\t<KeyboardAvoidingView\r\n \t\t\t\t\tstyle={{\r\n \t\t\t\t\t\twidth: \"100%\",\r\n \t\t\t\t\t\tdisplay: \"flex\",\r\n-\t\t\t\t\t\tjustifyContent: \"center\",\r\n \t\t\t\t\t\talignItems: \"center\",\r\n \t\t\t\t\t}}\r\n \t\t\t\t\tbehavior=\"padding\"\r\n \t\t\t\t\tkeyboardVerticalOffset={Platform.OS === \"ios\" ? 30 : 0}\r\n"
+                },
+                {
+                    "date": 1657878992095,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,9 +35,11 @@\n \t\t\t\t<KeyboardAvoidingView\r\n \t\t\t\t\tstyle={{\r\n \t\t\t\t\t\twidth: \"100%\",\r\n \t\t\t\t\t\tdisplay: \"flex\",\r\n+\t\t\t\t\t\tjustifyContent: \"center\",\r\n \t\t\t\t\t\talignItems: \"center\",\r\n+\t\t\t\t\t\tflex: 1;\r\n \t\t\t\t\t}}\r\n \t\t\t\t\tbehavior=\"padding\"\r\n \t\t\t\t\tkeyboardVerticalOffset={Platform.OS === \"ios\" ? 30 : 0}\r\n \t\t\t\t>\r\n"
+                },
+                {
+                    "date": 1657878998170,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,9 +37,9 @@\n \t\t\t\t\t\twidth: \"100%\",\r\n \t\t\t\t\t\tdisplay: \"flex\",\r\n \t\t\t\t\t\tjustifyContent: \"center\",\r\n \t\t\t\t\t\talignItems: \"center\",\r\n-\t\t\t\t\t\tflex: 1;\r\n+\t\t\t\t\t\tflex: \"1\";\r\n \t\t\t\t\t}}\r\n \t\t\t\t\tbehavior=\"padding\"\r\n \t\t\t\t\tkeyboardVerticalOffset={Platform.OS === \"ios\" ? 30 : 0}\r\n \t\t\t\t>\r\n"
+                },
+                {
+                    "date": 1657879005240,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,9 +37,9 @@\n \t\t\t\t\t\twidth: \"100%\",\r\n \t\t\t\t\t\tdisplay: \"flex\",\r\n \t\t\t\t\t\tjustifyContent: \"center\",\r\n \t\t\t\t\t\talignItems: \"center\",\r\n-\t\t\t\t\t\tflex: \"1\";\r\n+\t\t\t\t\t\tflex: 1,\r\n \t\t\t\t\t}}\r\n \t\t\t\t\tbehavior=\"padding\"\r\n \t\t\t\t\tkeyboardVerticalOffset={Platform.OS === \"ios\" ? 30 : 0}\r\n \t\t\t\t>\r\n"
+                },
+                {
+                    "date": 1657879014373,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,9 +37,8 @@\n \t\t\t\t\t\twidth: \"100%\",\r\n \t\t\t\t\t\tdisplay: \"flex\",\r\n \t\t\t\t\t\tjustifyContent: \"center\",\r\n \t\t\t\t\t\talignItems: \"center\",\r\n-\t\t\t\t\t\tflex: 1,\r\n \t\t\t\t\t}}\r\n \t\t\t\t\tbehavior=\"padding\"\r\n \t\t\t\t\tkeyboardVerticalOffset={Platform.OS === \"ios\" ? 30 : 0}\r\n \t\t\t\t>\r\n"
+                },
+                {
+                    "date": 1657879020405,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,9 +35,8 @@\n \t\t\t\t<KeyboardAvoidingView\r\n \t\t\t\t\tstyle={{\r\n \t\t\t\t\t\twidth: \"100%\",\r\n \t\t\t\t\t\tdisplay: \"flex\",\r\n-\t\t\t\t\t\tjustifyContent: \"center\",\r\n \t\t\t\t\t\talignItems: \"center\",\r\n \t\t\t\t\t}}\r\n \t\t\t\t\tbehavior=\"padding\"\r\n \t\t\t\t\tkeyboardVerticalOffset={Platform.OS === \"ios\" ? 30 : 0}\r\n"
                 }
             ],
             "date": 1657852600259,

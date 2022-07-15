@@ -1,0 +1,26 @@
+{
+    "sourceFile": "components/auth-shared.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1657878074930,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1657879039502,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,5 +6,6 @@\n \tmargin-bottom: 8px;\r\n \tborder-radius: 4px;\r\n \tcolor: white;\r\n \tmargin-bottom: ${(props) => (props.lastOne ? \"15\" : 8)}px;\r\n+\tflex: 1;\r\n `;\r\n"
+                },
+                {
+                    "date": 1657879047944,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,6 +6,6 @@\n \tmargin-bottom: 8px;\r\n \tborder-radius: 4px;\r\n \tcolor: white;\r\n \tmargin-bottom: ${(props) => (props.lastOne ? \"15\" : 8)}px;\r\n-\tflex: 1;\r\n+\twidth: 100%;\r\n `;\r\n"
+                }
+            ],
+            "date": 1657878074930,
+            "name": "Commit-0",
+            "content": "import styled from \"styled-components/native\";\r\n\r\nexport const TextInput = styled.TextInput`\r\n\tbackground-color: rgba(255, 255, 255, 0.15);\r\n\tpadding: 15px 7px;\r\n\tmargin-bottom: 8px;\r\n\tborder-radius: 4px;\r\n\tcolor: white;\r\n\tmargin-bottom: ${(props) => (props.lastOne ? \"15\" : 8)}px;\r\n`;\r\n"
+        }
+    ]
+}

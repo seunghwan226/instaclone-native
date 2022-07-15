@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 6,
+            "activePatchIndex": 7,
             "patches": [
                 {
                     "date": 1657853214988,
@@ -32,6 +32,10 @@
                 {
                     "date": 1657853489961,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n import React from \"react\";\r\n import styled from \"styled-components/native\";\r\n+import { colors } from \"../color\";\r\n \r\n const Button = styled.TouchableOpacity`\r\n \tbackground-color: ${colors.blue};\r\n \tpadding: 13px 10px;\r\n"
+                },
+                {
+                    "date": 1657877692131,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,10 +3,9 @@\n import { colors } from \"../color\";\r\n \r\n const Button = styled.TouchableOpacity`\r\n \tbackground-color: ${colors.blue};\r\n-\tpadding: 13px 10px;\r\n-\tmargin-top: 20px;\r\n+\tpadding: 15px 10px;\r\n \tborder-radius: 3px;\r\n \twidth: 100%;\r\n \topacity: ${(props) => (props.disabled ? \"0.5\" : \"1\")};\r\n `;\r\n"
                 }
             ],
             "date": 1657853214988,
