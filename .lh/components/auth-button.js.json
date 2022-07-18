@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 7,
+            "activePatchIndex": 10,
             "patches": [
                 {
                     "date": 1657853214988,
@@ -36,6 +36,18 @@
                 {
                     "date": 1657877692131,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,10 +3,9 @@\n import { colors } from \"../color\";\r\n \r\n const Button = styled.TouchableOpacity`\r\n \tbackground-color: ${colors.blue};\r\n-\tpadding: 13px 10px;\r\n-\tmargin-top: 20px;\r\n+\tpadding: 15px 10px;\r\n \tborder-radius: 3px;\r\n \twidth: 100%;\r\n \topacity: ${(props) => (props.disabled ? \"0.5\" : \"1\")};\r\n `;\r\n"
+                },
+                {
+                    "date": 1658141738858,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,9 +14,9 @@\n \tfont-weight: 600;\r\n \ttext-align: center;\r\n `;\r\n \r\n-export default function AuthButton({ onPress, disabled, text }) {\r\n+export default function AuthButton({ onPress, disabled, text, loading }) {\r\n \treturn (\r\n \t\t<Button disabled={disabled} onPress={onPress}>\r\n \t\t\t<ButtonText>{text}</ButtonText>\r\n \t\t</Button>\r\n"
+                },
+                {
+                    "date": 1658141799460,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n import React from \"react\";\r\n+import { ActivityIndicator } from \"react-native\";\r\n import styled from \"styled-components/native\";\r\n import { colors } from \"../color\";\r\n \r\n const Button = styled.TouchableOpacity`\r\n@@ -17,8 +18,8 @@\n \r\n export default function AuthButton({ onPress, disabled, text, loading }) {\r\n \treturn (\r\n \t\t<Button disabled={disabled} onPress={onPress}>\r\n-\t\t\t<ButtonText>{text}</ButtonText>\r\n+\t\t\t{loading ? <ActivityIndicator /> : <ButtonText>{text}</ButtonText>}\r\n \t\t</Button>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1658141845186,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,8 +18,12 @@\n \r\n export default function AuthButton({ onPress, disabled, text, loading }) {\r\n \treturn (\r\n \t\t<Button disabled={disabled} onPress={onPress}>\r\n-\t\t\t{loading ? <ActivityIndicator /> : <ButtonText>{text}</ButtonText>}\r\n+\t\t\t{loading ? (\r\n+\t\t\t\t<ActivityIndicator color=\"white\" />\r\n+\t\t\t) : (\r\n+\t\t\t\t<ButtonText>{text}</ButtonText>\r\n+\t\t\t)}\r\n \t\t</Button>\r\n \t);\r\n }\r\n"
                 }
             ],
             "date": 1657853214988,

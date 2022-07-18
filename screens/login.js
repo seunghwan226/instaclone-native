@@ -1,22 +1,54 @@
+import { gql, useMutation } from "@apollo/client";
 import React, { useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { View, Text, TouchableOpacity } from "react-native";
+import { isLoggedInVar } from "../apollo";
 import AuthButton from "../components/auth-button";
 import AuthLayout from "../components/auth-layout";
 import { TextInput } from "../components/auth-shared";
 
+const LOGIN_MUTATION = gql`
+	mutation login($userName: String!, $password: String!) {
+		login(userName: $userName, password: $password) {
+			ok
+			Authorization
+			error
+		}
+	}
+`;
+
 export default function Login() {
-	const { register, handleSubmit, setValue } = useForm();
+	const { register, handleSubmit, setValue, watch } = useForm();
 	const passwordRef = useRef();
+	const onCompleted = (data) => {
+		console.log(data);
+		const {
+			login: { ok, token },
+		} = data;
+
+		if (ok) {
+			isLoggedInVar(true);
+		}
+	};
+	const [loginMutation, { loading }] = useMutation(LOGIN_MUTATION, {
+		onCompleted,
+	});
 	const onNext = (nextOne) => {
 		nextOne?.current?.focus();
 	};
 	const onValid = (data) => {
 		console.log(data);
+		if (!loading) {
+			loginMutation({
+				variables: {
+					...data,
+				},
+			});
+		}
 	};
 
 	useEffect(() => {
-		register("username");
+		register("userName");
 		register("password");
 	}, [register]);
 
@@ -28,7 +60,7 @@ export default function Login() {
 				authCapitalize="none"
 				onSubmitEditing={() => onNext(passwordRef)}
 				placeholderTextColor={"rgba(255, 255, 255, 0.6)"}
-				onChangeText={(text) => setValue("username", text)}
+				onChangeText={(text) => setValue("userName", text)}
 			/>
 			<TextInput
 				ref={passwordRef}
@@ -41,7 +73,8 @@ export default function Login() {
 				onChangeText={(text) => setValue("password", text)}
 			/>
 			<AuthButton
-				disabled={true}
+				loading={loading}
+				disabled={!watch("userName") || !watch("password")}
 				text="Log In"
 				onPress={handleSubmit(onValid)}
 			></AuthButton>

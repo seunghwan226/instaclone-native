@@ -1,0 +1,26 @@
+{
+    "sourceFile": "navigators/logged-in-nav.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1658146222999,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1658146401453,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,1 +1,12 @@\n-export default function LoggedInNav() {}\r\n+import { createBottomTabNavigator } from \"@react-navigation/bottom-tabs\";\r\n+import Feed from \"../screens/feed\";\r\n+\r\n+const Tabs = createBottomTabNavigator();\r\n+\r\n+export default function LoggedInNav() {\r\n+\treturn (\r\n+\t\t<Tabs.Navigator>\r\n+\t\t\t<Tabs.Screen name=\"Feed\" component={Feed}></Tabs.Screen>\r\n+\t\t</Tabs.Navigator>\r\n+\t);\r\n+}\r\n"
+                },
+                {
+                    "date": 1658148503306,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n import { createBottomTabNavigator } from \"@react-navigation/bottom-tabs\";\r\n import Feed from \"../screens/feed\";\r\n+import React from \"react\";\r\n \r\n const Tabs = createBottomTabNavigator();\r\n \r\n export default function LoggedInNav() {\r\n"
+                }
+            ],
+            "date": 1658146222999,
+            "name": "Commit-0",
+            "content": "export default function LoggedInNav() {}\r\n"
+        }
+    ]
+}

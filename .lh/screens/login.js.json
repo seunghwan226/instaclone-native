@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 28,
+            "activePatchIndex": 44,
             "patches": [
                 {
                     "date": 1657786937618,
@@ -120,6 +120,70 @@
                 {
                     "date": 1657879740943,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,11 @@\n \tconst passwordRef = useRef();\r\n \tconst onNext = (nextOne) => {\r\n \t\tnextOne?.current?.focus();\r\n \t};\r\n-\tconst onValid = (data) => {};\r\n+\tconst onValid = (data) => {\r\n+\t\tconsole.log(data);\r\n+\t};\r\n \r\n \tuseEffect(() => {\r\n \t\tregister(\"username\");\r\n \t\tregister(\"password\");\r\n"
+                },
+                {
+                    "date": 1658146770289,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,18 @@\n import AuthButton from \"../components/auth-button\";\r\n import AuthLayout from \"../components/auth-layout\";\r\n import { TextInput } from \"../components/auth-shared\";\r\n \r\n+const LOG_IN_MUTATION = gql`\r\n+\tmutation login($userName: String!, $password: String!) {\r\n+\t\tlogin(userName: $userName, password: $password) {\r\n+\t\t\tok\r\n+\t\t\tAuthorization\r\n+\t\t\terror\r\n+\t\t}\r\n+\t}\r\n+`;\r\n+\r\n export default function Login() {\r\n \tconst { register, handleSubmit, setValue } = useForm();\r\n \tconst passwordRef = useRef();\r\n \tconst onNext = (nextOne) => {\r\n"
+                },
+                {
+                    "date": 1658146776708,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,5 @@\n+import { gql } from \"@apollo/client\";\r\n import React, { useEffect, useRef } from \"react\";\r\n import { useForm } from \"react-hook-form\";\r\n import { View, Text, TouchableOpacity } from \"react-native\";\r\n import AuthButton from \"../components/auth-button\";\r\n"
+                },
+                {
+                    "date": 1658146821763,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,13 +1,13 @@\n-import { gql } from \"@apollo/client\";\r\n+import { gql, useMutation } from \"@apollo/client\";\r\n import React, { useEffect, useRef } from \"react\";\r\n import { useForm } from \"react-hook-form\";\r\n import { View, Text, TouchableOpacity } from \"react-native\";\r\n import AuthButton from \"../components/auth-button\";\r\n import AuthLayout from \"../components/auth-layout\";\r\n import { TextInput } from \"../components/auth-shared\";\r\n \r\n-const LOG_IN_MUTATION = gql`\r\n+const LOGIN_MUTATION = gql`\r\n \tmutation login($userName: String!, $password: String!) {\r\n \t\tlogin(userName: $userName, password: $password) {\r\n \t\t\tok\r\n \t\t\tAuthorization\r\n@@ -18,8 +18,9 @@\n \r\n export default function Login() {\r\n \tconst { register, handleSubmit, setValue } = useForm();\r\n \tconst passwordRef = useRef();\r\n+\tconst [loginMutation, { loading }] = useMutation(LOGIN_MUTATION);\r\n \tconst onNext = (nextOne) => {\r\n \t\tnextOne?.current?.focus();\r\n \t};\r\n \tconst onValid = (data) => {\r\n"
+                },
+                {
+                    "date": 1658146861254,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -23,9 +23,15 @@\n \tconst onNext = (nextOne) => {\r\n \t\tnextOne?.current?.focus();\r\n \t};\r\n \tconst onValid = (data) => {\r\n-\t\tconsole.log(data);\r\n+\t\tif (!loading) {\r\n+\t\t\tloginMutation({\r\n+\t\t\t\tvariable: {\r\n+\t\t\t\t\t...data,\r\n+\t\t\t\t},\r\n+\t\t\t});\r\n+\t\t}\r\n \t};\r\n \r\n \tuseEffect(() => {\r\n \t\tregister(\"username\");\r\n"
+                },
+                {
+                    "date": 1658146888456,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -33,9 +33,9 @@\n \t\t}\r\n \t};\r\n \r\n \tuseEffect(() => {\r\n-\t\tregister(\"username\");\r\n+\t\tregister(\"userName\");\r\n \t\tregister(\"password\");\r\n \t}, [register]);\r\n \r\n \treturn (\r\n@@ -45,9 +45,9 @@\n \t\t\t\treturnKeyType=\"next\"\r\n \t\t\t\tauthCapitalize=\"none\"\r\n \t\t\t\tonSubmitEditing={() => onNext(passwordRef)}\r\n \t\t\t\tplaceholderTextColor={\"rgba(255, 255, 255, 0.6)\"}\r\n-\t\t\t\tonChangeText={(text) => setValue(\"username\", text)}\r\n+\t\t\t\tonChangeText={(text) => setValue(\"userName\", text)}\r\n \t\t\t/>\r\n \t\t\t<TextInput\r\n \t\t\t\tref={passwordRef}\r\n \t\t\t\tplaceholder=\"Password\"\r\n"
+                },
+                {
+                    "date": 1658146975206,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n \t}\r\n `;\r\n \r\n export default function Login() {\r\n-\tconst { register, handleSubmit, setValue } = useForm();\r\n+\tconst { register, handleSubmit, setValue, watch } = useForm();\r\n \tconst passwordRef = useRef();\r\n \tconst [loginMutation, { loading }] = useMutation(LOGIN_MUTATION);\r\n \tconst onNext = (nextOne) => {\r\n \t\tnextOne?.current?.focus();\r\n@@ -58,9 +58,9 @@\n \t\t\t\tonSubmitEditing={handleSubmit(onValid)}\r\n \t\t\t\tonChangeText={(text) => setValue(\"password\", text)}\r\n \t\t\t/>\r\n \t\t\t<AuthButton\r\n-\t\t\t\tdisabled={true}\r\n+\t\t\t\tdisabled={watch(\"userName\") || watch(\"password\")}\r\n \t\t\t\ttext=\"Log In\"\r\n \t\t\t\tonPress={handleSubmit(onValid)}\r\n \t\t\t></AuthButton>\r\n \t\t</AuthLayout>\r\n"
+                },
+                {
+                    "date": 1658147002071,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -58,9 +58,9 @@\n \t\t\t\tonSubmitEditing={handleSubmit(onValid)}\r\n \t\t\t\tonChangeText={(text) => setValue(\"password\", text)}\r\n \t\t\t/>\r\n \t\t\t<AuthButton\r\n-\t\t\t\tdisabled={watch(\"userName\") || watch(\"password\")}\r\n+\t\t\t\tdisabled={!watch(\"userName\") || !watch(\"password\")}\r\n \t\t\t\ttext=\"Log In\"\r\n \t\t\t\tonPress={handleSubmit(onValid)}\r\n \t\t\t></AuthButton>\r\n \t\t</AuthLayout>\r\n"
+                },
+                {
+                    "date": 1658147013034,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -58,8 +58,9 @@\n \t\t\t\tonSubmitEditing={handleSubmit(onValid)}\r\n \t\t\t\tonChangeText={(text) => setValue(\"password\", text)}\r\n \t\t\t/>\r\n \t\t\t<AuthButton\r\n+\t\t\t\tloading={loading}\r\n \t\t\t\tdisabled={!watch(\"userName\") || !watch(\"password\")}\r\n \t\t\t\ttext=\"Log In\"\r\n \t\t\t\tonPress={handleSubmit(onValid)}\r\n \t\t\t></AuthButton>\r\n"
+                },
+                {
+                    "date": 1658147040972,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,8 +18,11 @@\n \r\n export default function Login() {\r\n \tconst { register, handleSubmit, setValue, watch } = useForm();\r\n \tconst passwordRef = useRef();\r\n+\tconst onComplete = (data) => {\r\n+\t\tconsole.log(data);\r\n+\t};\r\n \tconst [loginMutation, { loading }] = useMutation(LOGIN_MUTATION);\r\n \tconst onNext = (nextOne) => {\r\n \t\tnextOne?.current?.focus();\r\n \t};\r\n"
+                },
+                {
+                    "date": 1658147050400,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -21,9 +21,11 @@\n \tconst passwordRef = useRef();\r\n \tconst onComplete = (data) => {\r\n \t\tconsole.log(data);\r\n \t};\r\n-\tconst [loginMutation, { loading }] = useMutation(LOGIN_MUTATION);\r\n+\tconst [loginMutation, { loading }] = useMutation(LOGIN_MUTATION, {\r\n+\t\tonCompleted,\r\n+\t});\r\n \tconst onNext = (nextOne) => {\r\n \t\tnextOne?.current?.focus();\r\n \t};\r\n \tconst onValid = (data) => {\r\n"
+                },
+                {
+                    "date": 1658147057028,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n \r\n export default function Login() {\r\n \tconst { register, handleSubmit, setValue, watch } = useForm();\r\n \tconst passwordRef = useRef();\r\n-\tconst onComplete = (data) => {\r\n+\tconst onCompleted = (data) => {\r\n \t\tconsole.log(data);\r\n \t};\r\n \tconst [loginMutation, { loading }] = useMutation(LOGIN_MUTATION, {\r\n \t\tonCompleted,\r\n"
+                },
+                {
+                    "date": 1658147132944,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -28,8 +28,9 @@\n \tconst onNext = (nextOne) => {\r\n \t\tnextOne?.current?.focus();\r\n \t};\r\n \tconst onValid = (data) => {\r\n+\t\tconsole.log(data);\r\n \t\tif (!loading) {\r\n \t\t\tloginMutation({\r\n \t\t\t\tvariable: {\r\n \t\t\t\t\t...data,\r\n"
+                },
+                {
+                    "date": 1658147775310,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n import { gql, useMutation } from \"@apollo/client\";\r\n import React, { useEffect, useRef } from \"react\";\r\n import { useForm } from \"react-hook-form\";\r\n import { View, Text, TouchableOpacity } from \"react-native\";\r\n+import { isLoggedInVar } from \"../apollo\";\r\n import AuthButton from \"../components/auth-button\";\r\n import AuthLayout from \"../components/auth-layout\";\r\n import { TextInput } from \"../components/auth-shared\";\r\n \r\n@@ -19,9 +20,15 @@\n export default function Login() {\r\n \tconst { register, handleSubmit, setValue, watch } = useForm();\r\n \tconst passwordRef = useRef();\r\n \tconst onCompleted = (data) => {\r\n-\t\tconsole.log(data);\r\n+\t\tconst {\r\n+\t\t\tlogin: { ok, token },\r\n+\t\t} = data;\r\n+\r\n+\t\tif (ok) {\r\n+\t\t\tisLoggedInVar(true);\r\n+\t\t}\r\n \t};\r\n \tconst [loginMutation, { loading }] = useMutation(LOGIN_MUTATION, {\r\n \t\tonCompleted,\r\n \t});\r\n"
+                },
+                {
+                    "date": 1658148030816,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,8 +20,9 @@\n export default function Login() {\r\n \tconst { register, handleSubmit, setValue, watch } = useForm();\r\n \tconst passwordRef = useRef();\r\n \tconst onCompleted = (data) => {\r\n+\t\tconsole.log(data);\r\n \t\tconst {\r\n \t\t\tlogin: { ok, token },\r\n \t\t} = data;\r\n \r\n"
+                },
+                {
+                    "date": 1658149207348,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,15 +37,13 @@\n \t\tnextOne?.current?.focus();\r\n \t};\r\n \tconst onValid = (data) => {\r\n \t\tconsole.log(data);\r\n-\t\tif (!loading) {\r\n-\t\t\tloginMutation({\r\n-\t\t\t\tvariable: {\r\n-\t\t\t\t\t...data,\r\n-\t\t\t\t},\r\n-\t\t\t});\r\n-\t\t}\r\n+\t\tloginMutation({\r\n+\t\t\tvariable: {\r\n+\t\t\t\t...data,\r\n+\t\t\t},\r\n+\t\t});\r\n \t};\r\n \r\n \tuseEffect(() => {\r\n \t\tregister(\"userName\");\r\n"
+                },
+                {
+                    "date": 1658149243715,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,13 +37,15 @@\n \t\tnextOne?.current?.focus();\r\n \t};\r\n \tconst onValid = (data) => {\r\n \t\tconsole.log(data);\r\n-\t\tloginMutation({\r\n-\t\t\tvariable: {\r\n-\t\t\t\t...data,\r\n-\t\t\t},\r\n-\t\t});\r\n+\t\tif (!loading) {\r\n+\t\t\tloginMutation({\r\n+\t\t\t\tvariables: {\r\n+\t\t\t\t\t...data,\r\n+\t\t\t\t},\r\n+\t\t\t});\r\n+\t\t}\r\n \t};\r\n \r\n \tuseEffect(() => {\r\n \t\tregister(\"userName\");\r\n"
                 }
             ],
             "date": 1657786937618,

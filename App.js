@@ -6,12 +6,15 @@ import * as SplashScreen from "expo-splash-screen";
 import { Asset } from "expo-asset";
 import LoggedOutNav from "./navigators/logged-out-nav";
 import { NavigationContainer } from "@react-navigation/native";
-import { Appearance } from "react-native";
+import client, { isLoggedInVar } from "./apollo";
+import { ApolloProvider, useReactiveVar } from "@apollo/client";
+import LoggedInNav from "./navigators/logged-in-nav";
 
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
 	const [loading, setLoading] = useState(true);
+	const isLoggedIn = useReactiveVar(isLoggedInVar);
 
 	useEffect(() => {
 		async function prepare() {
@@ -47,9 +50,11 @@ export default function App() {
 	}
 
 	return (
-		<NavigationContainer>
-			<LoggedOutNav />
-		</NavigationContainer>
+		<ApolloProvider client={client}>
+			<NavigationContainer>
+				{isLoggedIn ? <LoggedInNav /> : <LoggedOutNav />}
+			</NavigationContainer>
+		</ApolloProvider>
 	);
 }
 

@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 104,
+            "activePatchIndex": 114,
             "patches": [
                 {
                     "date": 1657720865138,
@@ -424,6 +424,46 @@
                 {
                     "date": 1657810469311,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -45,12 +45,8 @@\n \tif (loading) {\n \t\treturn <View onLayout={onLayoutRootView}></View>;\n \t}\n \n-\tconst subscription = Appearance.addChangeListener(({ colorScheme }) => {\n-\t\tconsole.log(colorScheme);\n-\t});\n-\n \treturn (\n \t\t<NavigationContainer>\n \t\t\t<LoggedOutNav />\n \t\t</NavigationContainer>\n"
+                },
+                {
+                    "date": 1658142208906,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,11 +46,13 @@\n \t\treturn <View onLayout={onLayoutRootView}></View>;\n \t}\n \n \treturn (\n-\t\t<NavigationContainer>\n-\t\t\t<LoggedOutNav />\n-\t\t</NavigationContainer>\n+\t\t<ApolloProvider>\n+\t\t\t<NavigationContainer>\n+\t\t\t\t<LoggedOutNav />\n+\t\t\t</NavigationContainer>\n+\t\t</ApolloProvider>\n \t);\n }\n \n const styles = StyleSheet.create({\n"
+                },
+                {
+                    "date": 1658142231640,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,9 @@\n import { Asset } from \"expo-asset\";\n import LoggedOutNav from \"./navigators/logged-out-nav\";\n import { NavigationContainer } from \"@react-navigation/native\";\n import { Appearance } from \"react-native\";\n+import client from \"./apollo\";\n \n SplashScreen.preventAutoHideAsync();\n \n export default function App() {\n@@ -46,9 +47,9 @@\n \t\treturn <View onLayout={onLayoutRootView}></View>;\n \t}\n \n \treturn (\n-\t\t<ApolloProvider>\n+\t\t<ApolloProvider client={client}>\n \t\t\t<NavigationContainer>\n \t\t\t\t<LoggedOutNav />\n \t\t\t</NavigationContainer>\n \t\t</ApolloProvider>\n"
+                },
+                {
+                    "date": 1658142362510,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,9 @@\n import LoggedOutNav from \"./navigators/logged-out-nav\";\n import { NavigationContainer } from \"@react-navigation/native\";\n import { Appearance } from \"react-native\";\n import client from \"./apollo\";\n+import ApolloProvider from \"@apollo/client/react\";\n \n SplashScreen.preventAutoHideAsync();\n \n export default function App() {\n"
+                },
+                {
+                    "date": 1658142411670,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n import LoggedOutNav from \"./navigators/logged-out-nav\";\n import { NavigationContainer } from \"@react-navigation/native\";\n import { Appearance } from \"react-native\";\n import client from \"./apollo\";\n-import ApolloProvider from \"@apollo/client/react\";\n+import ApolloProvider from \"@apollo/client\";\n \n SplashScreen.preventAutoHideAsync();\n \n export default function App() {\n"
+                },
+                {
+                    "date": 1658142475438,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,11 +5,10 @@\n import * as SplashScreen from \"expo-splash-screen\";\n import { Asset } from \"expo-asset\";\n import LoggedOutNav from \"./navigators/logged-out-nav\";\n import { NavigationContainer } from \"@react-navigation/native\";\n-import { Appearance } from \"react-native\";\n import client from \"./apollo\";\n-import ApolloProvider from \"@apollo/client\";\n+import { ApolloProvider, useReactiveVar } from \"@apollo/client\";\n \n SplashScreen.preventAutoHideAsync();\n \n export default function App() {\n"
+                },
+                {
+                    "date": 1658146401457,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n import * as SplashScreen from \"expo-splash-screen\";\n import { Asset } from \"expo-asset\";\n import LoggedOutNav from \"./navigators/logged-out-nav\";\n import { NavigationContainer } from \"@react-navigation/native\";\n-import client from \"./apollo\";\n+import client, { isLoggedIn } from \"./apollo\";\n import { ApolloProvider, useReactiveVar } from \"@apollo/client\";\n \n SplashScreen.preventAutoHideAsync();\n \n@@ -46,8 +46,9 @@\n \tif (loading) {\n \t\treturn <View onLayout={onLayoutRootView}></View>;\n \t}\n \n+\tconst isLoggedIn = useReactiveVar(isLoggedIn);\n \treturn (\n \t\t<ApolloProvider client={client}>\n \t\t\t<NavigationContainer>\n \t\t\t\t<LoggedOutNav />\n"
+                },
+                {
+                    "date": 1658146456814,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,9 +46,9 @@\n \tif (loading) {\n \t\treturn <View onLayout={onLayoutRootView}></View>;\n \t}\n \n-\tconst isLoggedIn = useReactiveVar(isLoggedIn);\n+\tconst isLogged = useReactiveVar(isLoggedIn);\n \treturn (\n \t\t<ApolloProvider client={client}>\n \t\t\t<NavigationContainer>\n \t\t\t\t<LoggedOutNav />\n"
+                },
+                {
+                    "date": 1658146501014,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,9 +46,9 @@\n \tif (loading) {\n \t\treturn <View onLayout={onLayoutRootView}></View>;\n \t}\n \n-\tconst isLogged = useReactiveVar(isLoggedIn);\n+\tconst isLoggedIn = useReactiveVar(isLoggedInVar);\n \treturn (\n \t\t<ApolloProvider client={client}>\n \t\t\t<NavigationContainer>\n \t\t\t\t<LoggedOutNav />\n"
+                },
+                {
+                    "date": 1658146597524,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,15 +5,16 @@\n import * as SplashScreen from \"expo-splash-screen\";\n import { Asset } from \"expo-asset\";\n import LoggedOutNav from \"./navigators/logged-out-nav\";\n import { NavigationContainer } from \"@react-navigation/native\";\n-import client, { isLoggedIn } from \"./apollo\";\n+import client, { isLoggedInVar } from \"./apollo\";\n import { ApolloProvider, useReactiveVar } from \"@apollo/client\";\n \n SplashScreen.preventAutoHideAsync();\n \n export default function App() {\n \tconst [loading, setLoading] = useState(true);\n+\tconst isLoggedIn = useReactiveVar(isLoggedInVar);\n \n \tuseEffect(() => {\n \t\tasync function prepare() {\n \t\t\ttry {\n@@ -46,9 +47,8 @@\n \tif (loading) {\n \t\treturn <View onLayout={onLayoutRootView}></View>;\n \t}\n \n-\tconst isLoggedIn = useReactiveVar(isLoggedInVar);\n \treturn (\n \t\t<ApolloProvider client={client}>\n \t\t\t<NavigationContainer>\n \t\t\t\t<LoggedOutNav />\n"
+                },
+                {
+                    "date": 1658146632997,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,9 @@\n import LoggedOutNav from \"./navigators/logged-out-nav\";\n import { NavigationContainer } from \"@react-navigation/native\";\n import client, { isLoggedInVar } from \"./apollo\";\n import { ApolloProvider, useReactiveVar } from \"@apollo/client\";\n+import LoggedInNav from \"./navigators/logged-in-nav\";\n \n SplashScreen.preventAutoHideAsync();\n \n export default function App() {\n@@ -50,9 +51,9 @@\n \n \treturn (\n \t\t<ApolloProvider client={client}>\n \t\t\t<NavigationContainer>\n-\t\t\t\t<LoggedOutNav />\n+\t\t\t\t{isLoggedIn ? <LoggedInNav /> : <LoggedOutNav />}\n \t\t\t</NavigationContainer>\n \t\t</ApolloProvider>\n \t);\n }\n"
                 }
             ],
             "date": 1657720865138,
