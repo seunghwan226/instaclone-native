@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 50,
+            "activePatchIndex": 54,
             "patches": [
                 {
                     "date": 1657786937618,
@@ -208,6 +208,22 @@
                 {
                     "date": 1658218916590,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n export default function Login({ route: { params } }) {\r\n \tconst { register, handleSubmit, setValue, watch } = useForm({\r\n \t\tdefaultValues: {\r\n \t\t\tpassword: params?.password,\r\n-\t\t\tuserNameP: params?.userName,\r\n+\t\t\tuserName: params?.userName,\r\n \t\t},\r\n \t});\r\n \tconst passwordRef = useRef();\r\n \tconst onCompleted = (data) => {\r\n"
+                },
+                {
+                    "date": 1658219436130,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,9 @@\n import { gql, useMutation } from \"@apollo/client\";\r\n import React, { useEffect, useRef } from \"react\";\r\n import { useForm } from \"react-hook-form\";\r\n import { View, Text, TouchableOpacity } from \"react-native\";\r\n-import { isLoggedInVar } from \"../apollo\";\r\n+import { isLoggedInVar, logUserIn } from \"../apollo\";\r\n import AuthButton from \"../components/auth-button\";\r\n import AuthLayout from \"../components/auth-layout\";\r\n import { TextInput } from \"../components/auth-shared\";\r\n \r\n@@ -31,9 +31,9 @@\n \t\t\tlogin: { ok, token },\r\n \t\t} = data;\r\n \r\n \t\tif (ok) {\r\n-\t\t\tisLoggedInVar(true);\r\n+\t\t\tlogUserIn(token);\r\n \t\t}\r\n \t};\r\n \tconst [loginMutation, { loading }] = useMutation(LOGIN_MUTATION, {\r\n \t\tonCompleted,\r\n"
+                },
+                {
+                    "date": 1658219446387,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -24,16 +24,16 @@\n \t\t\tuserName: params?.userName,\r\n \t\t},\r\n \t});\r\n \tconst passwordRef = useRef();\r\n-\tconst onCompleted = (data) => {\r\n+\tconst onCompleted = async (data) => {\r\n \t\tconsole.log(data);\r\n \t\tconst {\r\n \t\t\tlogin: { ok, token },\r\n \t\t} = data;\r\n \r\n \t\tif (ok) {\r\n-\t\t\tlogUserIn(token);\r\n+\t\t\tawait logUserIn(token);\r\n \t\t}\r\n \t};\r\n \tconst [loginMutation, { loading }] = useMutation(LOGIN_MUTATION, {\r\n \t\tonCompleted,\r\n"
+                },
+                {
+                    "date": 1658220349855,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,13 +27,13 @@\n \tconst passwordRef = useRef();\r\n \tconst onCompleted = async (data) => {\r\n \t\tconsole.log(data);\r\n \t\tconst {\r\n-\t\t\tlogin: { ok, token },\r\n+\t\t\tlogin: { ok, Authorization },\r\n \t\t} = data;\r\n \r\n \t\tif (ok) {\r\n-\t\t\tawait logUserIn(token);\r\n+\t\t\tawait logUserIn(Authorization);\r\n \t\t}\r\n \t};\r\n \tconst [loginMutation, { loading }] = useMutation(LOGIN_MUTATION, {\r\n \t\tonCompleted,\r\n"
+                },
+                {
+                    "date": 1658220366445,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,8 @@\n \t\t},\r\n \t});\r\n \tconst passwordRef = useRef();\r\n \tconst onCompleted = async (data) => {\r\n-\t\tconsole.log(data);\r\n \t\tconst {\r\n \t\t\tlogin: { ok, Authorization },\r\n \t\t} = data;\r\n \r\n"
                 }
             ],
             "date": 1657786937618,

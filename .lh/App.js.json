@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 114,
+            "activePatchIndex": 122,
             "patches": [
                 {
                     "date": 1657720865138,
@@ -464,6 +464,38 @@
                 {
                     "date": 1658146632997,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,9 @@\n import LoggedOutNav from \"./navigators/logged-out-nav\";\n import { NavigationContainer } from \"@react-navigation/native\";\n import client, { isLoggedInVar } from \"./apollo\";\n import { ApolloProvider, useReactiveVar } from \"@apollo/client\";\n+import LoggedInNav from \"./navigators/logged-in-nav\";\n \n SplashScreen.preventAutoHideAsync();\n \n export default function App() {\n@@ -50,9 +51,9 @@\n \n \treturn (\n \t\t<ApolloProvider client={client}>\n \t\t\t<NavigationContainer>\n-\t\t\t\t<LoggedOutNav />\n+\t\t\t\t{isLoggedIn ? <LoggedInNav /> : <LoggedOutNav />}\n \t\t\t</NavigationContainer>\n \t\t</ApolloProvider>\n \t);\n }\n"
+                },
+                {
+                    "date": 1658219617388,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,19 @@\n export default function App() {\n \tconst [loading, setLoading] = useState(true);\n \tconst isLoggedIn = useReactiveVar(isLoggedInVar);\n \n+\tconst preloadAssets = () => {\n+\t\tconst fontToLoad = [Ionicons.font];\n+\t\tconst fontPromises = fontToLoad.map((font) => Font.loadAsync(font));\n+\t\tconst imagesToLoad = [\n+\t\t\trequire(\"./assets/icon.png\"),\n+\t\t\t\"http://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/840px-Instagram_logo.svg.png\",\n+\t\t];\n+\t\tconst imagePromises = imagesToLoad.map((image) => Asset.loadAsync(image));\n+\t\treturn Promise.all([...fontPromises, ...imagePromises]);\n+\t};\n+\n \tuseEffect(() => {\n \t\tasync function prepare() {\n \t\t\ttry {\n \t\t\t\tconst fontToLoad = [Ionicons.font];\n"
+                },
+                {
+                    "date": 1658219645862,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,18 +29,9 @@\n \n \tuseEffect(() => {\n \t\tasync function prepare() {\n \t\t\ttry {\n-\t\t\t\tconst fontToLoad = [Ionicons.font];\n-\t\t\t\tconst fontPromises = fontToLoad.map((font) => Font.loadAsync(font));\n-\t\t\t\tconst imagesToLoad = [\n-\t\t\t\t\trequire(\"./assets/icon.png\"),\n-\t\t\t\t\t\"http://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/840px-Instagram_logo.svg.png\",\n-\t\t\t\t];\n-\t\t\t\tconst imagePromises = imagesToLoad.map((image) =>\n-\t\t\t\t\tAsset.loadAsync(image)\n-\t\t\t\t);\n-\t\t\t\tawait Promise.all([...fontPromises, ...imagePromises]);\n+\t\t\t\tawait preloadAssets;\n \t\t\t} catch (e) {\n \t\t\t\tconsole.warn(e);\n \t\t\t} finally {\n \t\t\t\tsetLoading(false);\n"
+                },
+                {
+                    "date": 1658220197181,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n \n \tuseEffect(() => {\n \t\tasync function prepare() {\n \t\t\ttry {\n-\t\t\t\tawait preloadAssets;\n+\t\t\t\tawait preloadAssets();\n \t\t\t} catch (e) {\n \t\t\t\tconsole.warn(e);\n \t\t\t} finally {\n \t\t\t\tsetLoading(false);\n@@ -41,8 +41,9 @@\n \t\tprepare();\n \t}, []);\n \n \tconst onLayoutRootView = useCallback(async () => {\n+\t\tconst storage = await AsyncStorage.getAllKeys();\n \t\tif (loading) {\n \t\t\tawait SplashScreen.hideAsync();\n \t\t}\n \t}, [loading]);\n"
+                },
+                {
+                    "date": 1658220254970,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,8 +8,9 @@\n import { NavigationContainer } from \"@react-navigation/native\";\n import client, { isLoggedInVar } from \"./apollo\";\n import { ApolloProvider, useReactiveVar } from \"@apollo/client\";\n import LoggedInNav from \"./navigators/logged-in-nav\";\n+import AsyncStorage from \"@react-native-async-storage/async-storage\";\n \n SplashScreen.preventAutoHideAsync();\n \n export default function App() {\n"
+                },
+                {
+                    "date": 1658220273233,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -43,8 +43,9 @@\n \t}, []);\n \n \tconst onLayoutRootView = useCallback(async () => {\n \t\tconst storage = await AsyncStorage.getAllKeys();\n+\t\tconsole.log(storage);\n \t\tif (loading) {\n \t\t\tawait SplashScreen.hideAsync();\n \t\t}\n \t}, [loading]);\n"
+                },
+                {
+                    "date": 1658220412382,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,9 +42,9 @@\n \t\tprepare();\n \t}, []);\n \n \tconst onLayoutRootView = useCallback(async () => {\n-\t\tconst storage = await AsyncStorage.getAllKeys();\n+\t\tconst storage = await AsyncStorage.getItem(\"Authorization\");\n \t\tconsole.log(storage);\n \t\tif (loading) {\n \t\t\tawait SplashScreen.hideAsync();\n \t\t}\n"
+                },
+                {
+                    "date": 1658220495682,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,10 +42,12 @@\n \t\tprepare();\n \t}, []);\n \n \tconst onLayoutRootView = useCallback(async () => {\n-\t\tconst storage = await AsyncStorage.getItem(\"Authorization\");\n-\t\tconsole.log(storage);\n+\t\tconst auth = await AsyncStorage.getItem(\"Authorization\");\n+\t\tif (auth) {\n+\t\t\tisLoggedInVar(true);\n+\t\t}\n \t\tif (loading) {\n \t\t\tawait SplashScreen.hideAsync();\n \t\t}\n \t}, [loading]);\n"
+                },
+                {
+                    "date": 1658220606438,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n import * as SplashScreen from \"expo-splash-screen\";\n import { Asset } from \"expo-asset\";\n import LoggedOutNav from \"./navigators/logged-out-nav\";\n import { NavigationContainer } from \"@react-navigation/native\";\n-import client, { isLoggedInVar } from \"./apollo\";\n+import client, { authVar, isLoggedInVar } from \"./apollo\";\n import { ApolloProvider, useReactiveVar } from \"@apollo/client\";\n import LoggedInNav from \"./navigators/logged-in-nav\";\n import AsyncStorage from \"@react-native-async-storage/async-storage\";\n \n@@ -45,8 +45,9 @@\n \tconst onLayoutRootView = useCallback(async () => {\n \t\tconst auth = await AsyncStorage.getItem(\"Authorization\");\n \t\tif (auth) {\n \t\t\tisLoggedInVar(true);\n+\t\t\tauthVar(auth);\n \t\t}\n \t\tif (loading) {\n \t\t\tawait SplashScreen.hideAsync();\n \t\t}\n"
                 }
             ],
             "date": 1657720865138,

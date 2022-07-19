@@ -6,9 +6,10 @@ import * as SplashScreen from "expo-splash-screen";
 import { Asset } from "expo-asset";
 import LoggedOutNav from "./navigators/logged-out-nav";
 import { NavigationContainer } from "@react-navigation/native";
-import client, { isLoggedInVar } from "./apollo";
+import client, { authVar, isLoggedInVar } from "./apollo";
 import { ApolloProvider, useReactiveVar } from "@apollo/client";
 import LoggedInNav from "./navigators/logged-in-nav";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -16,19 +17,21 @@ export default function App() {
 	const [loading, setLoading] = useState(true);
 	const isLoggedIn = useReactiveVar(isLoggedInVar);
 
+	const preloadAssets = () => {
+		const fontToLoad = [Ionicons.font];
+		const fontPromises = fontToLoad.map((font) => Font.loadAsync(font));
+		const imagesToLoad = [
+			require("./assets/icon.png"),
+			"http://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/840px-Instagram_logo.svg.png",
+		];
+		const imagePromises = imagesToLoad.map((image) => Asset.loadAsync(image));
+		return Promise.all([...fontPromises, ...imagePromises]);
+	};
+
 	useEffect(() => {
 		async function prepare() {
 			try {
-				const fontToLoad = [Ionicons.font];
-				const fontPromises = fontToLoad.map((font) => Font.loadAsync(font));
-				const imagesToLoad = [
-					require("./assets/icon.png"),
-					"http://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/840px-Instagram_logo.svg.png",
-				];
-				const imagePromises = imagesToLoad.map((image) =>
-					Asset.loadAsync(image)
-				);
-				await Promise.all([...fontPromises, ...imagePromises]);
+				await preloadAssets();
 			} catch (e) {
 				console.warn(e);
 			} finally {
@@ -40,6 +43,11 @@ export default function App() {
 	}, []);
 
 	const onLayoutRootView = useCallback(async () => {
+		const auth = await AsyncStorage.getItem("Authorization");
+		if (auth) {
+			isLoggedInVar(true);
+			authVar(auth);
+		}
 		if (loading) {
 			await SplashScreen.hideAsync();
 		}
