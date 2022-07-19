@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 44,
+            "activePatchIndex": 50,
             "patches": [
                 {
                     "date": 1657786937618,
@@ -184,6 +184,30 @@
                 {
                     "date": 1658149243715,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,13 +37,15 @@\n \t\tnextOne?.current?.focus();\r\n \t};\r\n \tconst onValid = (data) => {\r\n \t\tconsole.log(data);\r\n-\t\tloginMutation({\r\n-\t\t\tvariable: {\r\n-\t\t\t\t...data,\r\n-\t\t\t},\r\n-\t\t});\r\n+\t\tif (!loading) {\r\n+\t\t\tloginMutation({\r\n+\t\t\t\tvariables: {\r\n+\t\t\t\t\t...data,\r\n+\t\t\t\t},\r\n+\t\t\t});\r\n+\t\t}\r\n \t};\r\n \r\n \tuseEffect(() => {\r\n \t\tregister(\"userName\");\r\n"
+                },
+                {
+                    "date": 1658218354217,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n \t\t}\r\n \t}\r\n `;\r\n \r\n-export default function Login() {\r\n+export default function Login({ navigation }) {\r\n \tconst { register, handleSubmit, setValue, watch } = useForm();\r\n \tconst passwordRef = useRef();\r\n \tconst onCompleted = (data) => {\r\n \t\tconsole.log(data);\r\n"
+                },
+                {
+                    "date": 1658218375259,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n \t\t}\r\n \t}\r\n `;\r\n \r\n-export default function Login({ navigation }) {\r\n+export default function Login({ route }) {\r\n \tconst { register, handleSubmit, setValue, watch } = useForm();\r\n \tconst passwordRef = useRef();\r\n \tconst onCompleted = (data) => {\r\n \t\tconsole.log(data);\r\n"
+                },
+                {
+                    "date": 1658218515042,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,10 +16,15 @@\n \t\t}\r\n \t}\r\n `;\r\n \r\n-export default function Login({ route }) {\r\n-\tconst { register, handleSubmit, setValue, watch } = useForm();\r\n+export default function Login({ route: { params } }) {\r\n+\tconst { register, handleSubmit, setValue, watch } = useForm({\r\n+\t\tdefaultValues: {\r\n+\t\t\tpassword: params.password,\r\n+\t\t\tuserNameP: params.userName,\r\n+\t\t},\r\n+\t});\r\n \tconst passwordRef = useRef();\r\n \tconst onCompleted = (data) => {\r\n \t\tconsole.log(data);\r\n \t\tconst {\r\n"
+                },
+                {
+                    "date": 1658218609301,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,16 +59,18 @@\n \r\n \treturn (\r\n \t\t<AuthLayout>\r\n \t\t\t<TextInput\r\n+\t\t\t\tvalue={watch(\"userName\")}\r\n \t\t\t\tplaceholder=\"User Name\"\r\n \t\t\t\treturnKeyType=\"next\"\r\n \t\t\t\tauthCapitalize=\"none\"\r\n \t\t\t\tonSubmitEditing={() => onNext(passwordRef)}\r\n \t\t\t\tplaceholderTextColor={\"rgba(255, 255, 255, 0.6)\"}\r\n \t\t\t\tonChangeText={(text) => setValue(\"userName\", text)}\r\n \t\t\t/>\r\n \t\t\t<TextInput\r\n+\t\t\t\tvalue={watch(\"password\")}\r\n \t\t\t\tref={passwordRef}\r\n \t\t\t\tplaceholder=\"Password\"\r\n \t\t\t\tsecureTextEntry\r\n \t\t\t\treturnKeyType=\"done\"\r\n"
+                },
+                {
+                    "date": 1658218644806,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,10 +19,10 @@\n \r\n export default function Login({ route: { params } }) {\r\n \tconst { register, handleSubmit, setValue, watch } = useForm({\r\n \t\tdefaultValues: {\r\n-\t\t\tpassword: params.password,\r\n-\t\t\tuserNameP: params.userName,\r\n+\t\t\tpassword: params?.password,\r\n+\t\t\tuserNameP: params?.userName,\r\n \t\t},\r\n \t});\r\n \tconst passwordRef = useRef();\r\n \tconst onCompleted = (data) => {\r\n"
+                },
+                {
+                    "date": 1658218916590,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n export default function Login({ route: { params } }) {\r\n \tconst { register, handleSubmit, setValue, watch } = useForm({\r\n \t\tdefaultValues: {\r\n \t\t\tpassword: params?.password,\r\n-\t\t\tuserNameP: params?.userName,\r\n+\t\t\tuserName: params?.userName,\r\n \t\t},\r\n \t});\r\n \tconst passwordRef = useRef();\r\n \tconst onCompleted = (data) => {\r\n"
                 }
             ],
             "date": 1657786937618,
