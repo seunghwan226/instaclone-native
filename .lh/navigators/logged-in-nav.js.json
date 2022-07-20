@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 32,
+            "activePatchIndex": 68,
             "patches": [
                 {
                     "date": 1658146222999,
@@ -136,6 +136,150 @@
                 {
                     "date": 1658242062695,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,9 +9,8 @@\n const Tabs = createBottomTabNavigator();\r\n \r\n export default function LoggedInNav() {\r\n \tconst setIcons = ({ focused, color, size }, name) => {\r\n-\t\tconsole.log(focused, color, name);\r\n \t\treturn <Ionicons name={name} color={color} size={focused ? 22 : 20} />;\r\n \t};\r\n \treturn (\r\n \t\t<Tabs.Navigator\r\n"
+                },
+                {
+                    "date": 1658288507954,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,8 +42,17 @@\n \t\t\t\t\t},\r\n \t\t\t\t}}\r\n \t\t\t></Tabs.Screen>\r\n \t\t\t<Tabs.Screen\r\n+\t\t\t\tname=\"Camera\"\r\n+\t\t\t\tcomponent={View}\r\n+\t\t\t\toptions={{\r\n+\t\t\t\t\ttabBarIcon: (data) => {\r\n+\t\t\t\t\t\treturn setIcons(data, \"search\");\r\n+\t\t\t\t\t},\r\n+\t\t\t\t}}\r\n+\t\t\t></Tabs.Screen>\r\n+\t\t\t<Tabs.Screen\r\n \t\t\t\tname=\"Notification\"\r\n \t\t\t\tcomponent={Notifications}\r\n \t\t\t\toptions={{\r\n \t\t\t\t\ttabBarIcon: (data) => {\r\n"
+                },
+                {
+                    "date": 1658288558633,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,8 +4,9 @@\n import Search from \"../screens/search\";\r\n import Notifications from \"../screens/notification\";\r\n import Profile from \"../screens/profile\";\r\n import { Ionicons } from \"@expo/vector-icons\";\r\n+import { View } from \"react-native\";\r\n \r\n const Tabs = createBottomTabNavigator();\r\n \r\n export default function LoggedInNav() {\r\n"
+                },
+                {
+                    "date": 1658288585139,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,9 @@\n \t\t\t\tname=\"Camera\"\r\n \t\t\t\tcomponent={View}\r\n \t\t\t\toptions={{\r\n \t\t\t\t\ttabBarIcon: (data) => {\r\n-\t\t\t\t\t\treturn setIcons(data, \"search\");\r\n+\t\t\t\t\t\treturn setIcons(data, \"camera-outline\");\r\n \t\t\t\t\t},\r\n \t\t\t\t}}\r\n \t\t\t></Tabs.Screen>\r\n \t\t\t<Tabs.Screen\r\n"
+                },
+                {
+                    "date": 1658288651730,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,9 +56,9 @@\n \t\t\t\tname=\"Notification\"\r\n \t\t\t\tcomponent={Notifications}\r\n \t\t\t\toptions={{\r\n \t\t\t\t\ttabBarIcon: (data) => {\r\n-\t\t\t\t\t\treturn setIcons(data, \"heart-outline\");\r\n+\t\t\t\t\t\treturn setIcons(data, data.focused ? \"heart\" : \"heart-outline\");\r\n \t\t\t\t\t},\r\n \t\t\t\t}}\r\n \t\t\t></Tabs.Screen>\r\n \t\t\t<Tabs.Screen\r\n"
+                },
+                {
+                    "date": 1658288687565,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,9 @@\n \t\t\t\tname=\"Camera\"\r\n \t\t\t\tcomponent={View}\r\n \t\t\t\toptions={{\r\n \t\t\t\t\ttabBarIcon: (data) => {\r\n-\t\t\t\t\t\treturn setIcons(data, \"camera-outline\");\r\n+\t\t\t\t\t\treturn setIcons({ focused, color, size: 26 }, \"camera-outline\");\r\n \t\t\t\t\t},\r\n \t\t\t\t}}\r\n \t\t\t></Tabs.Screen>\r\n \t\t\t<Tabs.Screen\r\n"
+                },
+                {
+                    "date": 1658288707907,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,13 @@\n \t\t\t\tname=\"Camera\"\r\n \t\t\t\tcomponent={View}\r\n \t\t\t\toptions={{\r\n \t\t\t\t\ttabBarIcon: (data) => {\r\n-\t\t\t\t\t\treturn setIcons({ focused, color, size: 26 }, \"camera-outline\");\r\n+\t\t\t\t\t\tconst _data = {\r\n+\t\t\t\t\t\t\t...data,\r\n+\t\t\t\t\t\t\tsize: 26,\r\n+\t\t\t\t\t\t};\r\n+\t\t\t\t\t\treturn setIcons(_data, \"camera-outline\");\r\n \t\t\t\t\t},\r\n \t\t\t\t}}\r\n \t\t\t></Tabs.Screen>\r\n \t\t\t<Tabs.Screen\r\n"
+                },
+                {
+                    "date": 1658288729502,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,9 @@\n const Tabs = createBottomTabNavigator();\r\n \r\n export default function LoggedInNav() {\r\n \tconst setIcons = ({ focused, color, size }, name) => {\r\n+\t\tconsole.log(size);\r\n \t\treturn <Ionicons name={name} color={color} size={focused ? 22 : 20} />;\r\n \t};\r\n \treturn (\r\n \t\t<Tabs.Navigator\r\n"
+                },
+                {
+                    "date": 1658288800658,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,10 +10,9 @@\n const Tabs = createBottomTabNavigator();\r\n \r\n export default function LoggedInNav() {\r\n \tconst setIcons = ({ focused, color, size }, name) => {\r\n-\t\tconsole.log(size);\r\n-\t\treturn <Ionicons name={name} color={color} size={focused ? 22 : 20} />;\r\n+\t\treturn <Ionicons name={name} color={color} size={size} />;\r\n \t};\r\n \treturn (\r\n \t\t<Tabs.Navigator\r\n \t\t\tscreenOptions={{\r\n"
+                },
+                {
+                    "date": 1658288811382,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -49,9 +49,9 @@\n \t\t\t\toptions={{\r\n \t\t\t\t\ttabBarIcon: (data) => {\r\n \t\t\t\t\t\tconst _data = {\r\n \t\t\t\t\t\t\t...data,\r\n-\t\t\t\t\t\t\tsize: 26,\r\n+\t\t\t\t\t\t\tsize: 28,\r\n \t\t\t\t\t\t};\r\n \t\t\t\t\t\treturn setIcons(_data, \"camera-outline\");\r\n \t\t\t\t\t},\r\n \t\t\t\t}}\r\n"
+                },
+                {
+                    "date": 1658288857501,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,8 +51,9 @@\n \t\t\t\t\t\tconst _data = {\r\n \t\t\t\t\t\t\t...data,\r\n \t\t\t\t\t\t\tsize: 28,\r\n \t\t\t\t\t\t};\r\n+\t\t\t\t\t\tconsole.log(_data);\r\n \t\t\t\t\t\treturn setIcons(_data, \"camera-outline\");\r\n \t\t\t\t\t},\r\n \t\t\t\t}}\r\n \t\t\t></Tabs.Screen>\r\n"
+                },
+                {
+                    "date": 1658288872939,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -51,9 +51,8 @@\n \t\t\t\t\t\tconst _data = {\r\n \t\t\t\t\t\t\t...data,\r\n \t\t\t\t\t\t\tsize: 28,\r\n \t\t\t\t\t\t};\r\n-\t\t\t\t\t\tconsole.log(_data);\r\n \t\t\t\t\t\treturn setIcons(_data, \"camera-outline\");\r\n \t\t\t\t\t},\r\n \t\t\t\t}}\r\n \t\t\t></Tabs.Screen>\r\n"
+                },
+                {
+                    "date": 1658288884439,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,12 +47,8 @@\n \t\t\t\tname=\"Camera\"\r\n \t\t\t\tcomponent={View}\r\n \t\t\t\toptions={{\r\n \t\t\t\t\ttabBarIcon: (data) => {\r\n-\t\t\t\t\t\tconst _data = {\r\n-\t\t\t\t\t\t\t...data,\r\n-\t\t\t\t\t\t\tsize: 28,\r\n-\t\t\t\t\t\t};\r\n \t\t\t\t\t\treturn setIcons(_data, \"camera-outline\");\r\n \t\t\t\t\t},\r\n \t\t\t\t}}\r\n \t\t\t></Tabs.Screen>\r\n"
+                },
+                {
+                    "date": 1658288899114,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n const Tabs = createBottomTabNavigator();\r\n \r\n export default function LoggedInNav() {\r\n \tconst setIcons = ({ focused, color, size }, name) => {\r\n-\t\treturn <Ionicons name={name} color={color} size={size} />;\r\n+\t\treturn <Ionicons name={name} color={color} size={focused ? 24 : 22} />;\r\n \t};\r\n \treturn (\r\n \t\t<Tabs.Navigator\r\n \t\t\tscreenOptions={{\r\n@@ -47,9 +47,9 @@\n \t\t\t\tname=\"Camera\"\r\n \t\t\t\tcomponent={View}\r\n \t\t\t\toptions={{\r\n \t\t\t\t\ttabBarIcon: (data) => {\r\n-\t\t\t\t\t\treturn setIcons(_data, \"camera-outline\");\r\n+\t\t\t\t\t\treturn setIcons(data, \"camera-outline\");\r\n \t\t\t\t\t},\r\n \t\t\t\t}}\r\n \t\t\t></Tabs.Screen>\r\n \t\t\t<Tabs.Screen\r\n"
+                },
+                {
+                    "date": 1658288937236,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -47,9 +47,9 @@\n \t\t\t\tname=\"Camera\"\r\n \t\t\t\tcomponent={View}\r\n \t\t\t\toptions={{\r\n \t\t\t\t\ttabBarIcon: (data) => {\r\n-\t\t\t\t\t\treturn setIcons(data, \"camera-outline\");\r\n+\t\t\t\t\t\treturn setIcons(data, data.focused ? \"camera\" : \"camera-outline\");\r\n \t\t\t\t\t},\r\n \t\t\t\t}}\r\n \t\t\t></Tabs.Screen>\r\n \t\t\t<Tabs.Screen\r\n"
+                },
+                {
+                    "date": 1658288971588,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n \t\t\t\tname=\"Feed\"\r\n \t\t\t\tcomponent={Feed}\r\n \t\t\t\toptions={{\r\n \t\t\t\t\ttabBarIcon: (data) => {\r\n-\t\t\t\t\t\treturn setIcons(data, \"home\");\r\n+\t\t\t\t\t\treturn setIcons(data, focused ? \"home\" : \"home-outline\");\r\n \t\t\t\t\t},\r\n \t\t\t\t}}\r\n \t\t\t></Tabs.Screen>\r\n \t\t\t<Tabs.Screen\r\n"
+                },
+                {
+                    "date": 1658288978534,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n \t\t\t\tname=\"Feed\"\r\n \t\t\t\tcomponent={Feed}\r\n \t\t\t\toptions={{\r\n \t\t\t\t\ttabBarIcon: (data) => {\r\n-\t\t\t\t\t\treturn setIcons(data, focused ? \"home\" : \"home-outline\");\r\n+\t\t\t\t\t\treturn setIcons(data, data.focused ? \"home\" : \"home-outline\");\r\n \t\t\t\t\t},\r\n \t\t\t\t}}\r\n \t\t\t></Tabs.Screen>\r\n \t\t\t<Tabs.Screen\r\n"
+                },
+                {
+                    "date": 1658288997703,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,9 +65,9 @@\n \t\t\t\tname=\"Profile\"\r\n \t\t\t\tcomponent={Profile}\r\n \t\t\t\toptions={{\r\n \t\t\t\t\ttabBarIcon: (data) => {\r\n-\t\t\t\t\t\treturn setIcons(data, \"person\");\r\n+\t\t\t\t\t\treturn setIcons(data, data.focused ? \"person\" : \"person-outline\");\r\n \t\t\t\t\t},\r\n \t\t\t\t}}\r\n \t\t\t></Tabs.Screen>\r\n \t\t</Tabs.Navigator>\r\n"
+                },
+                {
+                    "date": 1658289367363,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n import Notifications from \"../screens/notification\";\r\n import Profile from \"../screens/profile\";\r\n import { Ionicons } from \"@expo/vector-icons\";\r\n import { View } from \"react-native\";\r\n+import TabIcon from \"../components/nav/tab-icon\";\r\n \r\n const Tabs = createBottomTabNavigator();\r\n \r\n export default function LoggedInNav() {\r\n@@ -28,47 +29,48 @@\n \t\t\t<Tabs.Screen\r\n \t\t\t\tname=\"Feed\"\r\n \t\t\t\tcomponent={Feed}\r\n \t\t\t\toptions={{\r\n-\t\t\t\t\ttabBarIcon: (data) => {\r\n-\t\t\t\t\t\treturn setIcons(data, data.focused ? \"home\" : \"home-outline\");\r\n-\t\t\t\t\t},\r\n-\t\t\t\t}}\r\n+\t\t\t\t\ttabBarIcon: ({ focused, color, size}) => (\r\n+\t\t\t\t\t\t<TabIcon iconName={} color={color} focused={focused}/>\r\n+\t\t\t\t\t)\t\r\n+\t\t\t\t}\r\n+\t\t\t\t}\r\n \t\t\t></Tabs.Screen>\r\n \t\t\t<Tabs.Screen\r\n \t\t\t\tname=\"Search\"\r\n \t\t\t\tcomponent={Search}\r\n \t\t\t\toptions={{\r\n-\t\t\t\t\ttabBarIcon: (data) => {\r\n-\t\t\t\t\t\treturn setIcons(data, \"search\");\r\n-\t\t\t\t\t},\r\n+\t\t\t\t\ttabBarIcon: ({ focused, color, size}) => (\r\n+\t\t\t\t\t\t<TabIcon iconName={} color={color} focused={focused}/>\r\n+\t\t\t\t\t)\t\r\n \t\t\t\t}}\r\n \t\t\t></Tabs.Screen>\r\n \t\t\t<Tabs.Screen\r\n \t\t\t\tname=\"Camera\"\r\n \t\t\t\tcomponent={View}\r\n \t\t\t\toptions={{\r\n-\t\t\t\t\ttabBarIcon: (data) => {\r\n-\t\t\t\t\t\treturn setIcons(data, data.focused ? \"camera\" : \"camera-outline\");\r\n-\t\t\t\t\t},\r\n+\t\t\t\t\ttabBarIcon: ({ focused, color, size}) => (\r\n+\t\t\t\t\t\t<TabIcon iconName={} color={color} focused={focused}/>\r\n+\t\t\t\t\t)\t\r\n \t\t\t\t}}\r\n \t\t\t></Tabs.Screen>\r\n \t\t\t<Tabs.Screen\r\n \t\t\t\tname=\"Notification\"\r\n \t\t\t\tcomponent={Notifications}\r\n \t\t\t\toptions={{\r\n-\t\t\t\t\ttabBarIcon: (data) => {\r\n-\t\t\t\t\t\treturn setIcons(data, data.focused ? \"heart\" : \"heart-outline\");\r\n-\t\t\t\t\t},\r\n+\t\t\t\t\ttabBarIcon: ({ focused, color, size}) => (\r\n+\t\t\t\t\t\t<TabIcon iconName={} color={color} focused={focused}/>\r\n+\t\t\t\t\t)\t\r\n \t\t\t\t}}\r\n \t\t\t></Tabs.Screen>\r\n \t\t\t<Tabs.Screen\r\n \t\t\t\tname=\"Profile\"\r\n \t\t\t\tcomponent={Profile}\r\n \t\t\t\toptions={{\r\n-\t\t\t\t\ttabBarIcon: (data) => {\r\n-\t\t\t\t\t\treturn setIcons(data, data.focused ? \"person\" : \"person-outline\");\r\n-\t\t\t\t\t},\r\n+\t\t\t\t\ttabBarIcon: ({ focused, color, size}) => (\r\n+\t\t\t\t\t\t<TabIcon iconName={} color={color} focused={focused}/>\r\n+\t\t\t\t\t)\t\r\n \t\t\t\t}}\r\n \t\t\t></Tabs.Screen>\r\n \t\t</Tabs.Navigator>\r\n \t);\r\n"
+                },
+                {
+                    "date": 1658289386466,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n \t\t\t\tname=\"Feed\"\r\n \t\t\t\tcomponent={Feed}\r\n \t\t\t\toptions={{\r\n \t\t\t\t\ttabBarIcon: ({ focused, color, size}) => (\r\n-\t\t\t\t\t\t<TabIcon iconName={} color={color} focused={focused}/>\r\n+\t\t\t\t\t\t<TabIcon iconName={home} color={color} focused={focused}/>\r\n \t\t\t\t\t)\t\r\n \t\t\t\t}\r\n \t\t\t\t}\r\n \t\t\t></Tabs.Screen>\r\n"
+                },
+                {
+                    "date": 1658289407960,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,48 +29,47 @@\n \t\t\t<Tabs.Screen\r\n \t\t\t\tname=\"Feed\"\r\n \t\t\t\tcomponent={Feed}\r\n \t\t\t\toptions={{\r\n-\t\t\t\t\ttabBarIcon: ({ focused, color, size}) => (\r\n-\t\t\t\t\t\t<TabIcon iconName={home} color={color} focused={focused}/>\r\n-\t\t\t\t\t)\t\r\n-\t\t\t\t}\r\n-\t\t\t\t}\r\n+\t\t\t\t\ttabBarIcon: ({ focused, color, size }) => (\r\n+\t\t\t\t\t\t<TabIcon iconName={home} color={color} focused={focused} />\r\n+\t\t\t\t\t),\r\n+\t\t\t\t}}\r\n \t\t\t></Tabs.Screen>\r\n \t\t\t<Tabs.Screen\r\n \t\t\t\tname=\"Search\"\r\n \t\t\t\tcomponent={Search}\r\n \t\t\t\toptions={{\r\n-\t\t\t\t\ttabBarIcon: ({ focused, color, size}) => (\r\n-\t\t\t\t\t\t<TabIcon iconName={} color={color} focused={focused}/>\r\n-\t\t\t\t\t)\t\r\n+\t\t\t\t\ttabBarIcon: ({ focused, color, size }) => (\r\n+\t\t\t\t\t\t<TabIcon iconName={search} color={color} focused={focused} />\r\n+\t\t\t\t\t),\r\n \t\t\t\t}}\r\n \t\t\t></Tabs.Screen>\r\n \t\t\t<Tabs.Screen\r\n \t\t\t\tname=\"Camera\"\r\n \t\t\t\tcomponent={View}\r\n \t\t\t\toptions={{\r\n-\t\t\t\t\ttabBarIcon: ({ focused, color, size}) => (\r\n-\t\t\t\t\t\t<TabIcon iconName={} color={color} focused={focused}/>\r\n-\t\t\t\t\t)\t\r\n+\t\t\t\t\ttabBarIcon: ({ focused, color, size }) => (\r\n+\t\t\t\t\t\t<TabIcon iconName={camera} color={color} focused={focused} />\r\n+\t\t\t\t\t),\r\n \t\t\t\t}}\r\n \t\t\t></Tabs.Screen>\r\n \t\t\t<Tabs.Screen\r\n \t\t\t\tname=\"Notification\"\r\n \t\t\t\tcomponent={Notifications}\r\n \t\t\t\toptions={{\r\n-\t\t\t\t\ttabBarIcon: ({ focused, color, size}) => (\r\n-\t\t\t\t\t\t<TabIcon iconName={} color={color} focused={focused}/>\r\n-\t\t\t\t\t)\t\r\n+\t\t\t\t\ttabBarIcon: ({ focused, color, size }) => (\r\n+\t\t\t\t\t\t<TabIcon iconName={heart} color={color} focused={focused} />\r\n+\t\t\t\t\t),\r\n \t\t\t\t}}\r\n \t\t\t></Tabs.Screen>\r\n \t\t\t<Tabs.Screen\r\n \t\t\t\tname=\"Profile\"\r\n \t\t\t\tcomponent={Profile}\r\n \t\t\t\toptions={{\r\n-\t\t\t\t\ttabBarIcon: ({ focused, color, size}) => (\r\n-\t\t\t\t\t\t<TabIcon iconName={} color={color} focused={focused}/>\r\n-\t\t\t\t\t)\t\r\n+\t\t\t\t\ttabBarIcon: ({ focused, color, size }) => (\r\n+\t\t\t\t\t\t<TabIcon iconName={person} color={color} focused={focused} />\r\n+\t\t\t\t\t),\r\n \t\t\t\t}}\r\n \t\t\t></Tabs.Screen>\r\n \t\t</Tabs.Navigator>\r\n \t);\r\n"
+                },
+                {
+                    "date": 1658289427299,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,45 +30,45 @@\n \t\t\t\tname=\"Feed\"\r\n \t\t\t\tcomponent={Feed}\r\n \t\t\t\toptions={{\r\n \t\t\t\t\ttabBarIcon: ({ focused, color, size }) => (\r\n-\t\t\t\t\t\t<TabIcon iconName={home} color={color} focused={focused} />\r\n+\t\t\t\t\t\t<TabIcon iconName={\"home\"} color={color} focused={focused} />\r\n \t\t\t\t\t),\r\n \t\t\t\t}}\r\n \t\t\t></Tabs.Screen>\r\n \t\t\t<Tabs.Screen\r\n \t\t\t\tname=\"Search\"\r\n \t\t\t\tcomponent={Search}\r\n \t\t\t\toptions={{\r\n \t\t\t\t\ttabBarIcon: ({ focused, color, size }) => (\r\n-\t\t\t\t\t\t<TabIcon iconName={search} color={color} focused={focused} />\r\n+\t\t\t\t\t\t<TabIcon iconName={\"search\"} color={color} focused={focused} />\r\n \t\t\t\t\t),\r\n \t\t\t\t}}\r\n \t\t\t></Tabs.Screen>\r\n \t\t\t<Tabs.Screen\r\n \t\t\t\tname=\"Camera\"\r\n \t\t\t\tcomponent={View}\r\n \t\t\t\toptions={{\r\n \t\t\t\t\ttabBarIcon: ({ focused, color, size }) => (\r\n-\t\t\t\t\t\t<TabIcon iconName={camera} color={color} focused={focused} />\r\n+\t\t\t\t\t\t<TabIcon iconName={\"camera\"} color={color} focused={focused} />\r\n \t\t\t\t\t),\r\n \t\t\t\t}}\r\n \t\t\t></Tabs.Screen>\r\n \t\t\t<Tabs.Screen\r\n \t\t\t\tname=\"Notification\"\r\n \t\t\t\tcomponent={Notifications}\r\n \t\t\t\toptions={{\r\n \t\t\t\t\ttabBarIcon: ({ focused, color, size }) => (\r\n-\t\t\t\t\t\t<TabIcon iconName={heart} color={color} focused={focused} />\r\n+\t\t\t\t\t\t<TabIcon iconName={\"heart\"} color={color} focused={focused} />\r\n \t\t\t\t\t),\r\n \t\t\t\t}}\r\n \t\t\t></Tabs.Screen>\r\n \t\t\t<Tabs.Screen\r\n \t\t\t\tname=\"Profile\"\r\n \t\t\t\tcomponent={Profile}\r\n \t\t\t\toptions={{\r\n \t\t\t\t\ttabBarIcon: ({ focused, color, size }) => (\r\n-\t\t\t\t\t\t<TabIcon iconName={person} color={color} focused={focused} />\r\n+\t\t\t\t\t\t<TabIcon iconName={\"person\"} color={color} focused={focused} />\r\n \t\t\t\t\t),\r\n \t\t\t\t}}\r\n \t\t\t></Tabs.Screen>\r\n \t\t</Tabs.Navigator>\r\n"
+                },
+                {
+                    "date": 1658289491291,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,11 +10,8 @@\n \r\n const Tabs = createBottomTabNavigator();\r\n \r\n export default function LoggedInNav() {\r\n-\tconst setIcons = ({ focused, color, size }, name) => {\r\n-\t\treturn <Ionicons name={name} color={color} size={focused ? 24 : 22} />;\r\n-\t};\r\n \treturn (\r\n \t\t<Tabs.Navigator\r\n \t\t\tscreenOptions={{\r\n \t\t\t\theaderShown: false,\r\n"
+                },
+                {
+                    "date": 1658289791792,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -59,10 +59,10 @@\n \t\t\t\t\t),\r\n \t\t\t\t}}\r\n \t\t\t></Tabs.Screen>\r\n \t\t\t<Tabs.Screen\r\n-\t\t\t\tname=\"Profile\"\r\n-\t\t\t\tcomponent={Profile}\r\n+\t\t\t\tname=\"Me\"\r\n+\t\t\t\tcomponent={Me}\r\n \t\t\t\toptions={{\r\n \t\t\t\t\ttabBarIcon: ({ focused, color, size }) => (\r\n \t\t\t\t\t\t<TabIcon iconName={\"person\"} color={color} focused={focused} />\r\n \t\t\t\t\t),\r\n"
+                },
+                {
+                    "date": 1658289796952,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,8 +6,9 @@\n import Profile from \"../screens/profile\";\r\n import { Ionicons } from \"@expo/vector-icons\";\r\n import { View } from \"react-native\";\r\n import TabIcon from \"../components/nav/tab-icon\";\r\n+import Me from \"../screens/me\";\r\n \r\n const Tabs = createBottomTabNavigator();\r\n \r\n export default function LoggedInNav() {\r\n"
+                },
+                {
+                    "date": 1658290246912,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,9 @@\n import { Ionicons } from \"@expo/vector-icons\";\r\n import { View } from \"react-native\";\r\n import TabIcon from \"../components/nav/tab-icon\";\r\n import Me from \"../screens/me\";\r\n+import StackNavFactory from \"../components/nav/stack-nav-factory\";\r\n \r\n const Tabs = createBottomTabNavigator();\r\n \r\n export default function LoggedInNav() {\r\n@@ -31,9 +32,11 @@\n \t\t\t\t\ttabBarIcon: ({ focused, color, size }) => (\r\n \t\t\t\t\t\t<TabIcon iconName={\"home\"} color={color} focused={focused} />\r\n \t\t\t\t\t),\r\n \t\t\t\t}}\r\n-\t\t\t></Tabs.Screen>\r\n+\t\t\t>\r\n+\t\t\t\t{() => <StackNavFactory screenName=\"Feed\" />}\r\n+\t\t\t</Tabs.Screen>\r\n \t\t\t<Tabs.Screen\r\n \t\t\t\tname=\"Search\"\r\n \t\t\t\tcomponent={Search}\r\n \t\t\t\toptions={{\r\n"
+                },
+                {
+                    "date": 1658290280046,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,9 +26,8 @@\n \t\t\t}}\r\n \t\t>\r\n \t\t\t<Tabs.Screen\r\n \t\t\t\tname=\"Feed\"\r\n-\t\t\t\tcomponent={Feed}\r\n \t\t\t\toptions={{\r\n \t\t\t\t\ttabBarIcon: ({ focused, color, size }) => (\r\n \t\t\t\t\t\t<TabIcon iconName={\"home\"} color={color} focused={focused} />\r\n \t\t\t\t\t),\r\n"
+                },
+                {
+                    "date": 1658290405219,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,15 +36,16 @@\n \t\t\t\t{() => <StackNavFactory screenName=\"Feed\" />}\r\n \t\t\t</Tabs.Screen>\r\n \t\t\t<Tabs.Screen\r\n \t\t\t\tname=\"Search\"\r\n-\t\t\t\tcomponent={Search}\r\n \t\t\t\toptions={{\r\n \t\t\t\t\ttabBarIcon: ({ focused, color, size }) => (\r\n \t\t\t\t\t\t<TabIcon iconName={\"search\"} color={color} focused={focused} />\r\n \t\t\t\t\t),\r\n \t\t\t\t}}\r\n-\t\t\t></Tabs.Screen>\r\n+\t\t\t>\r\n+\t\t\t\t{() => <StackNavFactory screenName=\"Search\" />}\r\n+\t\t\t</Tabs.Screen>\r\n \t\t\t<Tabs.Screen\r\n \t\t\t\tname=\"Camera\"\r\n \t\t\t\tcomponent={View}\r\n \t\t\t\toptions={{\r\n"
+                },
+                {
+                    "date": 1658290463817,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -25,9 +25,9 @@\n \t\t\t\ttabBarActiveTintColor: \"white\",\r\n \t\t\t}}\r\n \t\t>\r\n \t\t\t<Tabs.Screen\r\n-\t\t\t\tname=\"Feed\"\r\n+\t\t\t\tname=\"TabFeed\"\r\n \t\t\t\toptions={{\r\n \t\t\t\t\ttabBarIcon: ({ focused, color, size }) => (\r\n \t\t\t\t\t\t<TabIcon iconName={\"home\"} color={color} focused={focused} />\r\n \t\t\t\t\t),\r\n@@ -35,9 +35,9 @@\n \t\t\t>\r\n \t\t\t\t{() => <StackNavFactory screenName=\"Feed\" />}\r\n \t\t\t</Tabs.Screen>\r\n \t\t\t<Tabs.Screen\r\n-\t\t\t\tname=\"Search\"\r\n+\t\t\t\tname=\"TabSearch\"\r\n \t\t\t\toptions={{\r\n \t\t\t\t\ttabBarIcon: ({ focused, color, size }) => (\r\n \t\t\t\t\t\t<TabIcon iconName={\"search\"} color={color} focused={focused} />\r\n \t\t\t\t\t),\r\n"
+                },
+                {
+                    "date": 1658290493567,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -61,17 +61,21 @@\n \t\t\t\t\ttabBarIcon: ({ focused, color, size }) => (\r\n \t\t\t\t\t\t<TabIcon iconName={\"heart\"} color={color} focused={focused} />\r\n \t\t\t\t\t),\r\n \t\t\t\t}}\r\n-\t\t\t></Tabs.Screen>\r\n+\t\t\t>\r\n+\t\t\t\t{() => <StackNavFactory screenName=\"Search\" />}\r\n+\t\t\t</Tabs.Screen>\r\n \t\t\t<Tabs.Screen\r\n \t\t\t\tname=\"Me\"\r\n \t\t\t\tcomponent={Me}\r\n \t\t\t\toptions={{\r\n \t\t\t\t\ttabBarIcon: ({ focused, color, size }) => (\r\n \t\t\t\t\t\t<TabIcon iconName={\"person\"} color={color} focused={focused} />\r\n \t\t\t\t\t),\r\n \t\t\t\t}}\r\n-\t\t\t></Tabs.Screen>\r\n+\t\t\t>\r\n+\t\t\t\t{() => <StackNavFactory screenName=\"Search\" />}\r\n+\t\t\t</Tabs.Screen>\r\n \t\t</Tabs.Navigator>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1658290502764,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,11 @@\n \t\t\t\t\ttabBarIcon: ({ focused, color, size }) => (\r\n \t\t\t\t\t\t<TabIcon iconName={\"camera\"} color={color} focused={focused} />\r\n \t\t\t\t\t),\r\n \t\t\t\t}}\r\n-\t\t\t></Tabs.Screen>\r\n+\t\t\t>\r\n+\t\t\t\t{() => <StackNavFactory screenName=\"Search\" />}\r\n+\t\t\t</Tabs.Screen>\r\n \t\t\t<Tabs.Screen\r\n \t\t\t\tname=\"Notification\"\r\n \t\t\t\tcomponent={Notifications}\r\n \t\t\t\toptions={{\r\n"
+                },
+                {
+                    "date": 1658290508927,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,9 +46,8 @@\n \t\t\t\t{() => <StackNavFactory screenName=\"Search\" />}\r\n \t\t\t</Tabs.Screen>\r\n \t\t\t<Tabs.Screen\r\n \t\t\t\tname=\"Camera\"\r\n-\t\t\t\tcomponent={View}\r\n \t\t\t\toptions={{\r\n \t\t\t\t\ttabBarIcon: ({ focused, color, size }) => (\r\n \t\t\t\t\t\t<TabIcon iconName={\"camera\"} color={color} focused={focused} />\r\n \t\t\t\t\t),\r\n@@ -57,9 +56,8 @@\n \t\t\t\t{() => <StackNavFactory screenName=\"Search\" />}\r\n \t\t\t</Tabs.Screen>\r\n \t\t\t<Tabs.Screen\r\n \t\t\t\tname=\"Notification\"\r\n-\t\t\t\tcomponent={Notifications}\r\n \t\t\t\toptions={{\r\n \t\t\t\t\ttabBarIcon: ({ focused, color, size }) => (\r\n \t\t\t\t\t\t<TabIcon iconName={\"heart\"} color={color} focused={focused} />\r\n \t\t\t\t\t),\r\n@@ -68,9 +66,8 @@\n \t\t\t\t{() => <StackNavFactory screenName=\"Search\" />}\r\n \t\t\t</Tabs.Screen>\r\n \t\t\t<Tabs.Screen\r\n \t\t\t\tname=\"Me\"\r\n-\t\t\t\tcomponent={Me}\r\n \t\t\t\toptions={{\r\n \t\t\t\t\ttabBarIcon: ({ focused, color, size }) => (\r\n \t\t\t\t\t\t<TabIcon iconName={\"person\"} color={color} focused={focused} />\r\n \t\t\t\t\t),\r\n"
+                },
+                {
+                    "date": 1658290548539,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -52,9 +52,9 @@\n \t\t\t\t\t\t<TabIcon iconName={\"camera\"} color={color} focused={focused} />\r\n \t\t\t\t\t),\r\n \t\t\t\t}}\r\n \t\t\t>\r\n-\t\t\t\t{() => <StackNavFactory screenName=\"Search\" />}\r\n+\t\t\t\t{() => <StackNavFactory screenName=\"Camera\" />}\r\n \t\t\t</Tabs.Screen>\r\n \t\t\t<Tabs.Screen\r\n \t\t\t\tname=\"Notification\"\r\n \t\t\t\toptions={{\r\n@@ -62,9 +62,9 @@\n \t\t\t\t\t\t<TabIcon iconName={\"heart\"} color={color} focused={focused} />\r\n \t\t\t\t\t),\r\n \t\t\t\t}}\r\n \t\t\t>\r\n-\t\t\t\t{() => <StackNavFactory screenName=\"Search\" />}\r\n+\t\t\t\t{() => <StackNavFactory screenName=\"Notification\" />}\r\n \t\t\t</Tabs.Screen>\r\n \t\t\t<Tabs.Screen\r\n \t\t\t\tname=\"Me\"\r\n \t\t\t\toptions={{\r\n@@ -72,9 +72,9 @@\n \t\t\t\t\t\t<TabIcon iconName={\"person\"} color={color} focused={focused} />\r\n \t\t\t\t\t),\r\n \t\t\t\t}}\r\n \t\t\t>\r\n-\t\t\t\t{() => <StackNavFactory screenName=\"Search\" />}\r\n+\t\t\t\t{() => <StackNavFactory screenName=\"Profile\" />}\r\n \t\t\t</Tabs.Screen>\r\n \t\t</Tabs.Navigator>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1658290588009,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -72,9 +72,9 @@\n \t\t\t\t\t\t<TabIcon iconName={\"person\"} color={color} focused={focused} />\r\n \t\t\t\t\t),\r\n \t\t\t\t}}\r\n \t\t\t>\r\n-\t\t\t\t{() => <StackNavFactory screenName=\"Profile\" />}\r\n+\t\t\t\t{() => <StackNavFactory screenName=\"Me\" />}\r\n \t\t\t</Tabs.Screen>\r\n \t\t</Tabs.Navigator>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1658290651556,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,16 +55,16 @@\n \t\t\t>\r\n \t\t\t\t{() => <StackNavFactory screenName=\"Camera\" />}\r\n \t\t\t</Tabs.Screen>\r\n \t\t\t<Tabs.Screen\r\n-\t\t\t\tname=\"Notification\"\r\n+\t\t\t\tname=\"Notifications\"\r\n \t\t\t\toptions={{\r\n \t\t\t\t\ttabBarIcon: ({ focused, color, size }) => (\r\n \t\t\t\t\t\t<TabIcon iconName={\"heart\"} color={color} focused={focused} />\r\n \t\t\t\t\t),\r\n \t\t\t\t}}\r\n \t\t\t>\r\n-\t\t\t\t{() => <StackNavFactory screenName=\"Notification\" />}\r\n+\t\t\t\t{() => <StackNavFactory screenName=\"Notifications\" />}\r\n \t\t\t</Tabs.Screen>\r\n \t\t\t<Tabs.Screen\r\n \t\t\t\tname=\"Me\"\r\n \t\t\t\toptions={{\r\n"
+                },
+                {
+                    "date": 1658290689151,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,9 +55,9 @@\n \t\t\t>\r\n \t\t\t\t{() => <StackNavFactory screenName=\"Camera\" />}\r\n \t\t\t</Tabs.Screen>\r\n \t\t\t<Tabs.Screen\r\n-\t\t\t\tname=\"Notifications\"\r\n+\t\t\t\tname=\"TabNotifications\"\r\n \t\t\t\toptions={{\r\n \t\t\t\t\ttabBarIcon: ({ focused, color, size }) => (\r\n \t\t\t\t\t\t<TabIcon iconName={\"heart\"} color={color} focused={focused} />\r\n \t\t\t\t\t),\r\n"
+                },
+                {
+                    "date": 1658290761913,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,9 +65,9 @@\n \t\t\t>\r\n \t\t\t\t{() => <StackNavFactory screenName=\"Notifications\" />}\r\n \t\t\t</Tabs.Screen>\r\n \t\t\t<Tabs.Screen\r\n-\t\t\t\tname=\"Me\"\r\n+\t\t\t\tname=\"TabMe\"\r\n \t\t\t\toptions={{\r\n \t\t\t\t\ttabBarIcon: ({ focused, color, size }) => (\r\n \t\t\t\t\t\t<TabIcon iconName={\"person\"} color={color} focused={focused} />\r\n \t\t\t\t\t),\r\n"
                 }
             ],
             "date": 1658146222999,

@@ -1,0 +1,30 @@
+{
+    "sourceFile": "screens/photo.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1658289883718,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1658289890656,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import { Text, View } from \"react-native\";\r\n \r\n-export default function Profile() {\r\n+export default function Photo() {\r\n \treturn (\r\n \t\t<View\r\n \t\t\tstyle={{\r\n \t\t\t\tbackgroundColor: \"black\",\r\n@@ -9,8 +9,8 @@\n \t\t\t\talignItems: \"center\",\r\n \t\t\t\tjustifyContent: \"center\",\r\n \t\t\t}}\r\n \t\t>\r\n-\t\t\t<Text style={{ color: \"white\" }}>Profile</Text>\r\n+\t\t\t<Text style={{ color: \"white\" }}>Photo</Text>\r\n \t\t</View>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1658290947961,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import { Text, View } from \"react-native\";\r\n+import { Text, TouchableOpacity, View } from \"react-native\";\r\n \r\n export default function Photo() {\r\n \treturn (\r\n \t\t<View\r\n@@ -9,8 +9,10 @@\n \t\t\t\talignItems: \"center\",\r\n \t\t\t\tjustifyContent: \"center\",\r\n \t\t\t}}\r\n \t\t>\r\n-\t\t\t<Text style={{ color: \"white\" }}>Photo</Text>\r\n+\t\t\t<TouchableOpacity onPress={() => navigation.navigate(\"Profile\")}>\r\n+\t\t\t\t<Text style={{ color: \"white\" }}>Profile</Text>\r\n+\t\t\t</TouchableOpacity>\r\n \t\t</View>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1658290966639,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import { Text, TouchableOpacity, View } from \"react-native\";\r\n \r\n-export default function Photo() {\r\n+export default function Photo({ navigation }) {\r\n \treturn (\r\n \t\t<View\r\n \t\t\tstyle={{\r\n \t\t\t\tbackgroundColor: \"black\",\r\n"
+                }
+            ],
+            "date": 1658289883718,
+            "name": "Commit-0",
+            "content": "import { Text, View } from \"react-native\";\r\n\r\nexport default function Profile() {\r\n\treturn (\r\n\t\t<View\r\n\t\t\tstyle={{\r\n\t\t\t\tbackgroundColor: \"black\",\r\n\t\t\t\tflex: 1,\r\n\t\t\t\talignItems: \"center\",\r\n\t\t\t\tjustifyContent: \"center\",\r\n\t\t\t}}\r\n\t\t>\r\n\t\t\t<Text style={{ color: \"white\" }}>Profile</Text>\r\n\t\t</View>\r\n\t);\r\n}\r\n"
+        }
+    ]
+}

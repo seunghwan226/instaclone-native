@@ -1,0 +1,30 @@
+{
+    "sourceFile": "components/nav/stack-nav-factory.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1658290246910,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1658290301644,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n import { createNativeStackNavigator } from \"@react-navigation/native-stack\";\r\n import React from \"react\";\r\n+import Feed from \"../../screens/feed\";\r\n import Photo from \"../../screens/photo\";\r\n import Profile from \"../../screens/profile\";\r\n import Search from \"../../screens/search\";\r\n \r\n"
+                },
+                {
+                    "date": 1658290646088,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n import { createNativeStackNavigator } from \"@react-navigation/native-stack\";\r\n import React from \"react\";\r\n import Feed from \"../../screens/feed\";\r\n+import Notifications from \"../../screens/notification\";\r\n import Photo from \"../../screens/photo\";\r\n import Profile from \"../../screens/profile\";\r\n import Search from \"../../screens/search\";\r\n \r\n@@ -15,10 +16,10 @@\n \t\t\t) : null}\r\n \t\t\t{screenName === \"Search\" ? (\r\n \t\t\t\t<Stack.Screen name={\"Search\"} component={Search} />\r\n \t\t\t) : null}\r\n-\t\t\t{screenName === \"Notification\" ? (\r\n-\t\t\t\t<Stack.Screen name={\"Notification\"} component={Notification} />\r\n+\t\t\t{screenName === \"Notifications\" ? (\r\n+\t\t\t\t<Stack.Screen name={\"Notifications\"} component={Notifications} />\r\n \t\t\t) : null}\r\n \t\t\t<Stack.Screen name=\"Profile\" component={Profile}></Stack.Screen>\r\n \t\t\t<Stack.Screen name=\"Photo\" component={Photo}></Stack.Screen>\r\n \t\t</Stack.Navigator>\r\n"
+                },
+                {
+                    "date": 1658290738451,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n import { createNativeStackNavigator } from \"@react-navigation/native-stack\";\r\n import React from \"react\";\r\n import Feed from \"../../screens/feed\";\r\n+import Me from \"../../screens/me\";\r\n import Notifications from \"../../screens/notification\";\r\n import Photo from \"../../screens/photo\";\r\n import Profile from \"../../screens/profile\";\r\n import Search from \"../../screens/search\";\r\n@@ -19,8 +20,9 @@\n \t\t\t) : null}\r\n \t\t\t{screenName === \"Notifications\" ? (\r\n \t\t\t\t<Stack.Screen name={\"Notifications\"} component={Notifications} />\r\n \t\t\t) : null}\r\n+\t\t\t{screenName === \"Me\" ? <Stack.Screen name={\"Me\"} component={Me} /> : null}\r\n \t\t\t<Stack.Screen name=\"Profile\" component={Profile}></Stack.Screen>\r\n \t\t\t<Stack.Screen name=\"Photo\" component={Photo}></Stack.Screen>\r\n \t\t</Stack.Navigator>\r\n \t);\r\n"
+                }
+            ],
+            "date": 1658290246910,
+            "name": "Commit-0",
+            "content": "import { createNativeStackNavigator } from \"@react-navigation/native-stack\";\r\nimport React from \"react\";\r\nimport Photo from \"../../screens/photo\";\r\nimport Profile from \"../../screens/profile\";\r\nimport Search from \"../../screens/search\";\r\n\r\nconst Stack = createNativeStackNavigator();\r\n\r\nexport default function StackNavFactory({ screenName }) {\r\n\treturn (\r\n\t\t<Stack.Navigator>\r\n\t\t\t{screenName === \"Feed\" ? (\r\n\t\t\t\t<Stack.Screen name={\"Feed\"} component={Feed} />\r\n\t\t\t) : null}\r\n\t\t\t{screenName === \"Search\" ? (\r\n\t\t\t\t<Stack.Screen name={\"Search\"} component={Search} />\r\n\t\t\t) : null}\r\n\t\t\t{screenName === \"Notification\" ? (\r\n\t\t\t\t<Stack.Screen name={\"Notification\"} component={Notification} />\r\n\t\t\t) : null}\r\n\t\t\t<Stack.Screen name=\"Profile\" component={Profile}></Stack.Screen>\r\n\t\t\t<Stack.Screen name=\"Photo\" component={Photo}></Stack.Screen>\r\n\t\t</Stack.Navigator>\r\n\t);\r\n}\r\n"
+        }
+    ]
+}

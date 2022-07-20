@@ -1,0 +1,22 @@
+{
+    "sourceFile": "components/nav/tab-icon.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1658289187434,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1658289198520,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,8 @@\n import React from \"react\";\r\n import { Ionicons } from \"@expo/vector-icons\";\r\n \r\n-export default function TabIcon({ iconName, color }) {\r\n+export default function TabIcon({ focused, iconName, color }) {\r\n \treturn (\r\n \t\t<Ionicons\r\n \t\t\tname={focused ? iconName : `${iconName}-outline`}\r\n \t\t\tcolor={color}\r\n"
+                }
+            ],
+            "date": 1658289187434,
+            "name": "Commit-0",
+            "content": "import React from \"react\";\r\nimport { Ionicons } from \"@expo/vector-icons\";\r\n\r\nexport default function TabIcon({ iconName, color }) {\r\n\treturn (\r\n\t\t<Ionicons\r\n\t\t\tname={focused ? iconName : `${iconName}-outline`}\r\n\t\t\tcolor={color}\r\n\t\t\tsize={22}\r\n\t\t/>\r\n\t);\r\n}\r\n"
+        }
+    ]
+}
