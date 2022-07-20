@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 68,
+            "activePatchIndex": 69,
             "patches": [
                 {
                     "date": 1658146222999,
@@ -280,6 +280,10 @@
                 {
                     "date": 1658290761913,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,9 +65,9 @@\n \t\t\t>\r\n \t\t\t\t{() => <StackNavFactory screenName=\"Notifications\" />}\r\n \t\t\t</Tabs.Screen>\r\n \t\t\t<Tabs.Screen\r\n-\t\t\t\tname=\"Me\"\r\n+\t\t\t\tname=\"TabMe\"\r\n \t\t\t\toptions={{\r\n \t\t\t\t\ttabBarIcon: ({ focused, color, size }) => (\r\n \t\t\t\t\t\t<TabIcon iconName={\"person\"} color={color} focused={focused} />\r\n \t\t\t\t\t),\r\n"
+                },
+                {
+                    "date": 1658317125165,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,9 +7,9 @@\n import { Ionicons } from \"@expo/vector-icons\";\r\n import { View } from \"react-native\";\r\n import TabIcon from \"../components/nav/tab-icon\";\r\n import Me from \"../screens/me\";\r\n-import StackNavFactory from \"../components/nav/stack-nav-factory\";\r\n+import StackNavFactory from \"./stack-nav-factory\";\r\n \r\n const Tabs = createBottomTabNavigator();\r\n \r\n export default function LoggedInNav() {\r\n"
                 }
             ],
             "date": 1658146222999,

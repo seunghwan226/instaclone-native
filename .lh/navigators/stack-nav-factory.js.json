@@ -1,0 +1,218 @@
+{
+    "sourceFile": "navigators/stack-nav-factory.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 50,
+            "patches": [
+                {
+                    "date": 1658317125155,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1658317523213,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,16 @@\n const Stack = createNativeStackNavigator();\r\n \r\n export default function StackNavFactory({ screenName }) {\r\n \treturn (\r\n-\t\t<Stack.Navigator>\r\n+\t\t<Stack.Navigator\r\n+\t\t\tscreenOptions={{\r\n+\t\t\t\theaderTintColor: \"white\",\r\n+\t\t\t\theaderStyle: {\r\n+\t\t\t\t\tbackgroundColor: \"black\",\r\n+\t\t\t\t},\r\n+\t\t\t}}\r\n+\t\t>\r\n \t\t\t{screenName === \"Feed\" ? (\r\n \t\t\t\t<Stack.Screen name={\"Feed\"} component={Feed} />\r\n \t\t\t) : null}\r\n \t\t\t{screenName === \"Search\" ? (\r\n"
+                },
+                {
+                    "date": 1658317571748,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,9 @@\n \t\t\tscreenOptions={{\r\n \t\t\t\theaderTintColor: \"white\",\r\n \t\t\t\theaderStyle: {\r\n \t\t\t\t\tbackgroundColor: \"black\",\r\n+\t\t\t\t\tborderBottomColor: \"rgba(255, 255, 255, 0.3)\",\r\n \t\t\t\t},\r\n \t\t\t}}\r\n \t\t>\r\n \t\t\t{screenName === \"Feed\" ? (\r\n"
+                },
+                {
+                    "date": 1658317607524,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,8 +12,10 @@\n export default function StackNavFactory({ screenName }) {\r\n \treturn (\r\n \t\t<Stack.Navigator\r\n \t\t\tscreenOptions={{\r\n+\t\t\t\theaderShadowVisible: true,\r\n+\t\t\t\theaderBackTitleVisible: false,\r\n \t\t\t\theaderTintColor: \"white\",\r\n \t\t\t\theaderStyle: {\r\n \t\t\t\t\tbackgroundColor: \"black\",\r\n \t\t\t\t\tborderBottomColor: \"rgba(255, 255, 255, 0.3)\",\r\n"
+                },
+                {
+                    "date": 1658317627901,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n \t\t\t\theaderBackTitleVisible: false,\r\n \t\t\t\theaderTintColor: \"white\",\r\n \t\t\t\theaderStyle: {\r\n \t\t\t\t\tbackgroundColor: \"black\",\r\n-\t\t\t\t\tborderBottomColor: \"rgba(255, 255, 255, 0.3)\",\r\n+\t\t\t\t\tborderTopColor: \"rgba(255, 255, 255, 0.3)\",\r\n \t\t\t\t},\r\n \t\t\t}}\r\n \t\t>\r\n \t\t\t{screenName === \"Feed\" ? (\r\n"
+                },
+                {
+                    "date": 1658317643254,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n \t\t\t\theaderBackTitleVisible: false,\r\n \t\t\t\theaderTintColor: \"white\",\r\n \t\t\t\theaderStyle: {\r\n \t\t\t\t\tbackgroundColor: \"black\",\r\n-\t\t\t\t\tborderTopColor: \"rgba(255, 255, 255, 0.3)\",\r\n+\t\t\t\t\tborderBottomColor: \"rgba(255, 255, 255, 0.3)\",\r\n \t\t\t\t},\r\n \t\t\t}}\r\n \t\t>\r\n \t\t\t{screenName === \"Feed\" ? (\r\n"
+                },
+                {
+                    "date": 1658317691159,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n export default function StackNavFactory({ screenName }) {\r\n \treturn (\r\n \t\t<Stack.Navigator\r\n \t\t\tscreenOptions={{\r\n-\t\t\t\theaderShadowVisible: true,\r\n+\t\t\t\theaderShadowVisible: \"rgba(255, 255, 255, 0.3)\",\r\n \t\t\t\theaderBackTitleVisible: false,\r\n \t\t\t\theaderTintColor: \"white\",\r\n \t\t\t\theaderStyle: {\r\n \t\t\t\t\tbackgroundColor: \"black\",\r\n"
+                },
+                {
+                    "date": 1658317697266,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n export default function StackNavFactory({ screenName }) {\r\n \treturn (\r\n \t\t<Stack.Navigator\r\n \t\t\tscreenOptions={{\r\n-\t\t\t\theaderShadowVisible: \"rgba(255, 255, 255, 0.3)\",\r\n+\t\t\t\theaderShadowVisible: true,\r\n \t\t\t\theaderBackTitleVisible: false,\r\n \t\t\t\theaderTintColor: \"white\",\r\n \t\t\t\theaderStyle: {\r\n \t\t\t\t\tbackgroundColor: \"black\",\r\n"
+                },
+                {
+                    "date": 1658317754459,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,8 @@\n \t\t\t\theaderBackTitleVisible: false,\r\n \t\t\t\theaderTintColor: \"white\",\r\n \t\t\t\theaderStyle: {\r\n \t\t\t\t\tbackgroundColor: \"black\",\r\n-\t\t\t\t\tborderBottomColor: \"rgba(255, 255, 255, 0.3)\",\r\n \t\t\t\t},\r\n \t\t\t}}\r\n \t\t>\r\n \t\t\t{screenName === \"Feed\" ? (\r\n"
+                },
+                {
+                    "date": 1658317810159,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n export default function StackNavFactory({ screenName }) {\r\n \treturn (\r\n \t\t<Stack.Navigator\r\n \t\t\tscreenOptions={{\r\n-\t\t\t\theaderShadowVisible: true,\r\n+\t\t\t\theaderShadowVisible: false,\r\n \t\t\t\theaderBackTitleVisible: false,\r\n \t\t\t\theaderTintColor: \"white\",\r\n \t\t\t\theaderStyle: {\r\n \t\t\t\t\tbackgroundColor: \"black\",\r\n"
+                },
+                {
+                    "date": 1658317815848,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,13 +12,13 @@\n export default function StackNavFactory({ screenName }) {\r\n \treturn (\r\n \t\t<Stack.Navigator\r\n \t\t\tscreenOptions={{\r\n-\t\t\t\theaderShadowVisible: false,\r\n \t\t\t\theaderBackTitleVisible: false,\r\n \t\t\t\theaderTintColor: \"white\",\r\n \t\t\t\theaderStyle: {\r\n \t\t\t\t\tbackgroundColor: \"black\",\r\n+\t\t\t\t\theaderShadowVisible: true,\r\n \t\t\t\t},\r\n \t\t\t}}\r\n \t\t>\r\n \t\t\t{screenName === \"Feed\" ? (\r\n"
+                },
+                {
+                    "date": 1658317841789,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,13 +12,13 @@\n export default function StackNavFactory({ screenName }) {\r\n \treturn (\r\n \t\t<Stack.Navigator\r\n \t\t\tscreenOptions={{\r\n+\t\t\t\theaderShadowVisible: true,\r\n \t\t\t\theaderBackTitleVisible: false,\r\n \t\t\t\theaderTintColor: \"white\",\r\n \t\t\t\theaderStyle: {\r\n \t\t\t\t\tbackgroundColor: \"black\",\r\n-\t\t\t\t\theaderShadowVisible: true,\r\n \t\t\t\t},\r\n \t\t\t}}\r\n \t\t>\r\n \t\t\t{screenName === \"Feed\" ? (\r\n"
+                },
+                {
+                    "date": 1658317923680,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -14,12 +14,8 @@\n \t\t<Stack.Navigator\r\n \t\t\tscreenOptions={{\r\n \t\t\t\theaderShadowVisible: true,\r\n \t\t\t\theaderBackTitleVisible: false,\r\n-\t\t\t\theaderTintColor: \"white\",\r\n-\t\t\t\theaderStyle: {\r\n-\t\t\t\t\tbackgroundColor: \"black\",\r\n-\t\t\t\t},\r\n \t\t\t}}\r\n \t\t>\r\n \t\t\t{screenName === \"Feed\" ? (\r\n \t\t\t\t<Stack.Screen name={\"Feed\"} component={Feed} />\r\n"
+                },
+                {
+                    "date": 1658318000897,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,10 +12,14 @@\n export default function StackNavFactory({ screenName }) {\r\n \treturn (\r\n \t\t<Stack.Navigator\r\n \t\t\tscreenOptions={{\r\n-\t\t\t\theaderShadowVisible: true,\r\n+\t\t\t\theaderShadowVisible: false,\r\n \t\t\t\theaderBackTitleVisible: false,\r\n+\t\t\t\theaderTintColor: \"white\",\r\n+\t\t\t\theaderStyle: {\r\n+\t\t\t\t\tbackgroundColor: \"black\",\r\n+\t\t\t\t},\r\n \t\t\t}}\r\n \t\t>\r\n \t\t\t{screenName === \"Feed\" ? (\r\n \t\t\t\t<Stack.Screen name={\"Feed\"} component={Feed} />\r\n"
+                },
+                {
+                    "date": 1658318034145,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,9 +12,9 @@\n export default function StackNavFactory({ screenName }) {\r\n \treturn (\r\n \t\t<Stack.Navigator\r\n \t\t\tscreenOptions={{\r\n-\t\t\t\theaderShadowVisible: false,\r\n+\t\t\t\theaderShadowVisible: true,\r\n \t\t\t\theaderBackTitleVisible: false,\r\n \t\t\t\theaderTintColor: \"white\",\r\n \t\t\t\theaderStyle: {\r\n \t\t\t\t\tbackgroundColor: \"black\",\r\n"
+                },
+                {
+                    "date": 1658318040408,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -16,9 +16,9 @@\n \t\t\t\theaderShadowVisible: true,\r\n \t\t\t\theaderBackTitleVisible: false,\r\n \t\t\t\theaderTintColor: \"white\",\r\n \t\t\t\theaderStyle: {\r\n-\t\t\t\t\tbackgroundColor: \"black\",\r\n+\t\t\t\t\tbackgroundColor: \"gray\",\r\n \t\t\t\t},\r\n \t\t\t}}\r\n \t\t>\r\n \t\t\t{screenName === \"Feed\" ? (\r\n"
+                },
+                {
+                    "date": 1658318175656,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,13 +12,15 @@\n export default function StackNavFactory({ screenName }) {\r\n \treturn (\r\n \t\t<Stack.Navigator\r\n \t\t\tscreenOptions={{\r\n+\t\t\t\tpresentation: \"transparentModal\",\r\n \t\t\t\theaderShadowVisible: true,\r\n \t\t\t\theaderBackTitleVisible: false,\r\n \t\t\t\theaderTintColor: \"white\",\r\n \t\t\t\theaderStyle: {\r\n-\t\t\t\t\tbackgroundColor: \"gray\",\r\n+\t\t\t\t\tbackgroundColor: \"black\",\r\n+\t\t\t\t\tshadowColor: \"gray\",\r\n \t\t\t\t},\r\n \t\t\t}}\r\n \t\t>\r\n \t\t\t{screenName === \"Feed\" ? (\r\n"
+                },
+                {
+                    "date": 1658318207427,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,13 +13,13 @@\n \treturn (\r\n \t\t<Stack.Navigator\r\n \t\t\tscreenOptions={{\r\n \t\t\t\tpresentation: \"transparentModal\",\r\n-\t\t\t\theaderShadowVisible: true,\r\n \t\t\t\theaderBackTitleVisible: false,\r\n-\t\t\t\theaderTintColor: \"white\",\r\n+\t\t\t\theaderTintColor: isDarkMode === \"dark\" ? \"white\" : \"black\",\r\n \t\t\t\theaderStyle: {\r\n-\t\t\t\t\tbackgroundColor: \"black\",\r\n+\t\t\t\t\tbackgroundColor:\r\n+\t\t\t\t\t\tisDarkMode === \"dark\" ? \"rgb(6,6,6)\" : \"rgb(250,250,250)\",\r\n \t\t\t\t\tshadowColor: \"gray\",\r\n \t\t\t\t},\r\n \t\t\t}}\r\n \t\t>\r\n"
+                },
+                {
+                    "date": 1658318227696,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,10 +7,11 @@\n import Profile from \"../screens/profile\";\r\n import Search from \"../screens/search\";\r\n \r\n const Stack = createNativeStackNavigator();\r\n+export default function StackNavFactory({ screenName }) {\r\n+\tconst isDarkMode = \"dark\";\r\n \r\n-export default function StackNavFactory({ screenName }) {\r\n \treturn (\r\n \t\t<Stack.Navigator\r\n \t\t\tscreenOptions={{\r\n \t\t\t\tpresentation: \"transparentModal\",\r\n"
+                },
+                {
+                    "date": 1658318238998,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,8 @@\n \r\n \treturn (\r\n \t\t<Stack.Navigator\r\n \t\t\tscreenOptions={{\r\n-\t\t\t\tpresentation: \"transparentModal\",\r\n \t\t\t\theaderBackTitleVisible: false,\r\n \t\t\t\theaderTintColor: isDarkMode === \"dark\" ? \"white\" : \"black\",\r\n \t\t\t\theaderStyle: {\r\n \t\t\t\t\tbackgroundColor:\r\n"
+                },
+                {
+                    "date": 1658318264233,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n \t\t\t\theaderTintColor: isDarkMode === \"dark\" ? \"white\" : \"black\",\r\n \t\t\t\theaderStyle: {\r\n \t\t\t\t\tbackgroundColor:\r\n \t\t\t\t\t\tisDarkMode === \"dark\" ? \"rgb(6,6,6)\" : \"rgb(250,250,250)\",\r\n-\t\t\t\t\tshadowColor: \"gray\",\r\n+\t\t\t\t\tshadowColor: \"white\",\r\n \t\t\t\t},\r\n \t\t\t}}\r\n \t\t>\r\n \t\t\t{screenName === \"Feed\" ? (\r\n"
+                },
+                {
+                    "date": 1658318271116,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n \t\t\t\theaderTintColor: isDarkMode === \"dark\" ? \"white\" : \"black\",\r\n \t\t\t\theaderStyle: {\r\n \t\t\t\t\tbackgroundColor:\r\n \t\t\t\t\t\tisDarkMode === \"dark\" ? \"rgb(6,6,6)\" : \"rgb(250,250,250)\",\r\n-\t\t\t\t\tshadowColor: \"white\",\r\n+\t\t\t\t\tshadowColor: \"gray\",\r\n \t\t\t\t},\r\n \t\t\t}}\r\n \t\t>\r\n \t\t\t{screenName === \"Feed\" ? (\r\n"
+                },
+                {
+                    "date": 1658318334153,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,8 +13,9 @@\n \r\n \treturn (\r\n \t\t<Stack.Navigator\r\n \t\t\tscreenOptions={{\r\n+\t\t\t\theaderShadowVisible: true,\r\n \t\t\t\theaderBackTitleVisible: false,\r\n \t\t\t\theaderTintColor: isDarkMode === \"dark\" ? \"white\" : \"black\",\r\n \t\t\t\theaderStyle: {\r\n \t\t\t\t\tbackgroundColor:\r\n"
+                },
+                {
+                    "date": 1658318385170,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,10 +13,8 @@\n \r\n \treturn (\r\n \t\t<Stack.Navigator\r\n \t\t\tscreenOptions={{\r\n-\t\t\t\theaderShadowVisible: true,\r\n-\t\t\t\theaderBackTitleVisible: false,\r\n \t\t\t\theaderTintColor: isDarkMode === \"dark\" ? \"white\" : \"black\",\r\n \t\t\t\theaderStyle: {\r\n \t\t\t\t\tbackgroundColor:\r\n \t\t\t\t\t\tisDarkMode === \"dark\" ? \"rgb(6,6,6)\" : \"rgb(250,250,250)\",\r\n"
+                },
+                {
+                    "date": 1658318398484,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,8 +13,10 @@\n \r\n \treturn (\r\n \t\t<Stack.Navigator\r\n \t\t\tscreenOptions={{\r\n+\t\t\t\theaderShadowVisible: false,\r\n+\t\t\t\theaderBackTitleVisible: false,\r\n \t\t\t\theaderTintColor: isDarkMode === \"dark\" ? \"white\" : \"black\",\r\n \t\t\t\theaderStyle: {\r\n \t\t\t\t\tbackgroundColor:\r\n \t\t\t\t\t\tisDarkMode === \"dark\" ? \"rgb(6,6,6)\" : \"rgb(250,250,250)\",\r\n"
+                },
+                {
+                    "date": 1658318416523,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,10 +13,11 @@\n \r\n \treturn (\r\n \t\t<Stack.Navigator\r\n \t\t\tscreenOptions={{\r\n-\t\t\t\theaderShadowVisible: false,\r\n+\t\t\t\theaderShadowVisible: true,\r\n \t\t\t\theaderBackTitleVisible: false,\r\n+\t\t\t\tnavigationBarColor: \"white\"\r\n \t\t\t\theaderTintColor: isDarkMode === \"dark\" ? \"white\" : \"black\",\r\n \t\t\t\theaderStyle: {\r\n \t\t\t\t\tbackgroundColor:\r\n \t\t\t\t\t\tisDarkMode === \"dark\" ? \"rgb(6,6,6)\" : \"rgb(250,250,250)\",\r\n"
+                },
+                {
+                    "date": 1658318427725,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,14 +15,14 @@\n \t\t<Stack.Navigator\r\n \t\t\tscreenOptions={{\r\n \t\t\t\theaderShadowVisible: true,\r\n \t\t\t\theaderBackTitleVisible: false,\r\n-\t\t\t\tnavigationBarColor: \"white\"\r\n \t\t\t\theaderTintColor: isDarkMode === \"dark\" ? \"white\" : \"black\",\r\n \t\t\t\theaderStyle: {\r\n \t\t\t\t\tbackgroundColor:\r\n \t\t\t\t\t\tisDarkMode === \"dark\" ? \"rgb(6,6,6)\" : \"rgb(250,250,250)\",\r\n \t\t\t\t\tshadowColor: \"gray\",\r\n+\t\t\t\t\theaderShadowVisible: true,\r\n \t\t\t\t},\r\n \t\t\t}}\r\n \t\t>\r\n \t\t\t{screenName === \"Feed\" ? (\r\n"
+                },
+                {
+                    "date": 1658318441454,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -20,9 +20,9 @@\n \t\t\t\theaderStyle: {\r\n \t\t\t\t\tbackgroundColor:\r\n \t\t\t\t\t\tisDarkMode === \"dark\" ? \"rgb(6,6,6)\" : \"rgb(250,250,250)\",\r\n \t\t\t\t\tshadowColor: \"gray\",\r\n-\t\t\t\t\theaderShadowVisible: true,\r\n+\t\t\t\t\tborderBottomColor: white,\r\n \t\t\t\t},\r\n \t\t\t}}\r\n \t\t>\r\n \t\t\t{screenName === \"Feed\" ? (\r\n"
+                },
+                {
+                    "date": 1658318457375,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,10 +19,9 @@\n \t\t\t\theaderTintColor: isDarkMode === \"dark\" ? \"white\" : \"black\",\r\n \t\t\t\theaderStyle: {\r\n \t\t\t\t\tbackgroundColor:\r\n \t\t\t\t\t\tisDarkMode === \"dark\" ? \"rgb(6,6,6)\" : \"rgb(250,250,250)\",\r\n-\t\t\t\t\tshadowColor: \"gray\",\r\n-\t\t\t\t\tborderBottomColor: white,\r\n+\t\t\t\t\tshadowColor: \"rgba(255, 255, 255, 0.7)\",\r\n \t\t\t\t},\r\n \t\t\t}}\r\n \t\t>\r\n \t\t\t{screenName === \"Feed\" ? (\r\n"
+                },
+                {
+                    "date": 1658318464481,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,9 @@\n \t\t\t\theaderTintColor: isDarkMode === \"dark\" ? \"white\" : \"black\",\r\n \t\t\t\theaderStyle: {\r\n \t\t\t\t\tbackgroundColor:\r\n \t\t\t\t\t\tisDarkMode === \"dark\" ? \"rgb(6,6,6)\" : \"rgb(250,250,250)\",\r\n-\t\t\t\t\tshadowColor: \"rgba(255, 255, 255, 0.7)\",\r\n+\t\t\t\t\tshadowColor: \"rgba(255, 255, 255, 0.1)\",\r\n \t\t\t\t},\r\n \t\t\t}}\r\n \t\t>\r\n \t\t\t{screenName === \"Feed\" ? (\r\n"
+                },
+                {
+                    "date": 1658318470294,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -19,9 +19,8 @@\n \t\t\t\theaderTintColor: isDarkMode === \"dark\" ? \"white\" : \"black\",\r\n \t\t\t\theaderStyle: {\r\n \t\t\t\t\tbackgroundColor:\r\n \t\t\t\t\t\tisDarkMode === \"dark\" ? \"rgb(6,6,6)\" : \"rgb(250,250,250)\",\r\n-\t\t\t\t\tshadowColor: \"rgba(255, 255, 255, 0.1)\",\r\n \t\t\t\t},\r\n \t\t\t}}\r\n \t\t>\r\n \t\t\t{screenName === \"Feed\" ? (\r\n"
+                },
+                {
+                    "date": 1658318487684,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,9 @@\n \t\t\t\theaderBackTitleVisible: false,\r\n \t\t\t\theaderTintColor: isDarkMode === \"dark\" ? \"white\" : \"black\",\r\n \t\t\t\theaderStyle: {\r\n \t\t\t\t\tbackgroundColor:\r\n-\t\t\t\t\t\tisDarkMode === \"dark\" ? \"rgb(6,6,6)\" : \"rgb(250,250,250)\",\r\n+\t\t\t\t\t\tisDarkMode === \"dark\" ? \"rgba(0,0,0, 0.3)\" : \"rgb(250,250,250)\",\r\n \t\t\t\t},\r\n \t\t\t}}\r\n \t\t>\r\n \t\t\t{screenName === \"Feed\" ? (\r\n"
+                },
+                {
+                    "date": 1658318548312,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,10 +17,11 @@\n \t\t\t\theaderShadowVisible: true,\r\n \t\t\t\theaderBackTitleVisible: false,\r\n \t\t\t\theaderTintColor: isDarkMode === \"dark\" ? \"white\" : \"black\",\r\n \t\t\t\theaderStyle: {\r\n+\t\t\t\t\tshadowColor: \"white\",\r\n \t\t\t\t\tbackgroundColor:\r\n-\t\t\t\t\t\tisDarkMode === \"dark\" ? \"rgba(0,0,0, 0.3)\" : \"rgb(250,250,250)\",\r\n+\t\t\t\t\t\tisDarkMode === \"dark\" ? \"rgba(0,0,0, 0.9)\" : \"rgb(250,250,250)\",\r\n \t\t\t\t},\r\n \t\t\t}}\r\n \t\t>\r\n \t\t\t{screenName === \"Feed\" ? (\r\n"
+                },
+                {
+                    "date": 1658318570175,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,9 +17,9 @@\n \t\t\t\theaderShadowVisible: true,\r\n \t\t\t\theaderBackTitleVisible: false,\r\n \t\t\t\theaderTintColor: isDarkMode === \"dark\" ? \"white\" : \"black\",\r\n \t\t\t\theaderStyle: {\r\n-\t\t\t\t\tshadowColor: \"white\",\r\n+\t\t\t\t\tshadowColor: \"rgba(255, 255, 255, 0.3)\",\r\n \t\t\t\t\tbackgroundColor:\r\n \t\t\t\t\t\tisDarkMode === \"dark\" ? \"rgba(0,0,0, 0.9)\" : \"rgb(250,250,250)\",\r\n \t\t\t\t},\r\n \t\t\t}}\r\n"
+                },
+                {
+                    "date": 1658318581392,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,10 +18,9 @@\n \t\t\t\theaderBackTitleVisible: false,\r\n \t\t\t\theaderTintColor: isDarkMode === \"dark\" ? \"white\" : \"black\",\r\n \t\t\t\theaderStyle: {\r\n \t\t\t\t\tshadowColor: \"rgba(255, 255, 255, 0.3)\",\r\n-\t\t\t\t\tbackgroundColor:\r\n-\t\t\t\t\t\tisDarkMode === \"dark\" ? \"rgba(0,0,0, 0.9)\" : \"rgb(250,250,250)\",\r\n+\t\t\t\t\tbackgroundColor: \"blakc\",\r\n \t\t\t\t},\r\n \t\t\t}}\r\n \t\t>\r\n \t\t\t{screenName === \"Feed\" ? (\r\n"
+                },
+                {
+                    "date": 1658318602094,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,9 +18,10 @@\n \t\t\t\theaderBackTitleVisible: false,\r\n \t\t\t\theaderTintColor: isDarkMode === \"dark\" ? \"white\" : \"black\",\r\n \t\t\t\theaderStyle: {\r\n \t\t\t\t\tshadowColor: \"rgba(255, 255, 255, 0.3)\",\r\n-\t\t\t\t\tbackgroundColor: \"blakc\",\r\n+\t\t\t\t\tshadowBorderWidth: \"2px\",\r\n+\t\t\t\t\tbackgroundColor: \"black\",\r\n \t\t\t\t},\r\n \t\t\t}}\r\n \t\t>\r\n \t\t\t{screenName === \"Feed\" ? (\r\n"
+                },
+                {
+                    "date": 1658318626819,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,12 +15,11 @@\n \t\t<Stack.Navigator\r\n \t\t\tscreenOptions={{\r\n \t\t\t\theaderShadowVisible: true,\r\n \t\t\t\theaderBackTitleVisible: false,\r\n+\t\t\t\tshadowColor: \"white\",\r\n \t\t\t\theaderTintColor: isDarkMode === \"dark\" ? \"white\" : \"black\",\r\n \t\t\t\theaderStyle: {\r\n-\t\t\t\t\tshadowColor: \"rgba(255, 255, 255, 0.3)\",\r\n-\t\t\t\t\tshadowBorderWidth: \"2px\",\r\n \t\t\t\t\tbackgroundColor: \"black\",\r\n \t\t\t\t},\r\n \t\t\t}}\r\n \t\t>\r\n"
+                },
+                {
+                    "date": 1658318668396,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,9 +15,9 @@\n \t\t<Stack.Navigator\r\n \t\t\tscreenOptions={{\r\n \t\t\t\theaderShadowVisible: true,\r\n \t\t\t\theaderBackTitleVisible: false,\r\n-\t\t\t\tshadowColor: \"white\",\r\n+\t\t\t\tborderBottomWidth: \"2px\",\r\n \t\t\t\theaderTintColor: isDarkMode === \"dark\" ? \"white\" : \"black\",\r\n \t\t\t\theaderStyle: {\r\n \t\t\t\t\tbackgroundColor: \"black\",\r\n \t\t\t\t},\r\n"
+                },
+                {
+                    "date": 1658318675918,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,8 +15,9 @@\n \t\t<Stack.Navigator\r\n \t\t\tscreenOptions={{\r\n \t\t\t\theaderShadowVisible: true,\r\n \t\t\t\theaderBackTitleVisible: false,\r\n+\t\t\t\tborderBottomColor: \"white\",\r\n \t\t\t\tborderBottomWidth: \"2px\",\r\n \t\t\t\theaderTintColor: isDarkMode === \"dark\" ? \"white\" : \"black\",\r\n \t\t\t\theaderStyle: {\r\n \t\t\t\t\tbackgroundColor: \"black\",\r\n"
+                },
+                {
+                    "date": 1658318689974,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -15,10 +15,8 @@\n \t\t<Stack.Navigator\r\n \t\t\tscreenOptions={{\r\n \t\t\t\theaderShadowVisible: true,\r\n \t\t\t\theaderBackTitleVisible: false,\r\n-\t\t\t\tborderBottomColor: \"white\",\r\n-\t\t\t\tborderBottomWidth: \"2px\",\r\n \t\t\t\theaderTintColor: isDarkMode === \"dark\" ? \"white\" : \"black\",\r\n \t\t\t\theaderStyle: {\r\n \t\t\t\t\tbackgroundColor: \"black\",\r\n \t\t\t\t},\r\n"
+                },
+                {
+                    "date": 1658319171485,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n import { createNativeStackNavigator } from \"@react-navigation/native-stack\";\r\n import React from \"react\";\r\n+import { Image } from \"react-native\";\r\n import Feed from \"../screens/feed\";\r\n import Me from \"../screens/me\";\r\n import Notifications from \"../screens/notification\";\r\n import Photo from \"../screens/photo\";\r\n@@ -22,9 +23,15 @@\n \t\t\t\t},\r\n \t\t\t}}\r\n \t\t>\r\n \t\t\t{screenName === \"Feed\" ? (\r\n-\t\t\t\t<Stack.Screen name={\"Feed\"} component={Feed} />\r\n+\t\t\t\t<Stack.Screen\r\n+\t\t\t\t\tname={\"Feed\"}\r\n+\t\t\t\t\tcomponent={Feed}\r\n+\t\t\t\t\toptions={{\r\n+\t\t\t\t\t\theaderTitle: () => <Image source={require(\"../assets/logo.png\")} />,\r\n+\t\t\t\t\t}}\r\n+\t\t\t\t/>\r\n \t\t\t) : null}\r\n \t\t\t{screenName === \"Search\" ? (\r\n \t\t\t\t<Stack.Screen name={\"Search\"} component={Search} />\r\n \t\t\t) : null}\r\n"
+                },
+                {
+                    "date": 1658319202943,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -27,9 +27,14 @@\n \t\t\t\t<Stack.Screen\r\n \t\t\t\t\tname={\"Feed\"}\r\n \t\t\t\t\tcomponent={Feed}\r\n \t\t\t\t\toptions={{\r\n-\t\t\t\t\t\theaderTitle: () => <Image source={require(\"../assets/logo.png\")} />,\r\n+\t\t\t\t\t\theaderTitle: () => (\r\n+\t\t\t\t\t\t\t<Image\r\n+\t\t\t\t\t\t\t\tresizeMode=\"cover\"\r\n+\t\t\t\t\t\t\t\tsource={require(\"../assets/logo.png\")}\r\n+\t\t\t\t\t\t\t/>\r\n+\t\t\t\t\t\t),\r\n \t\t\t\t\t}}\r\n \t\t\t\t/>\r\n \t\t\t) : null}\r\n \t\t\t{screenName === \"Search\" ? (\r\n"
+                },
+                {
+                    "date": 1658319226529,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,12 @@\n \t\t\t\t\tcomponent={Feed}\r\n \t\t\t\t\toptions={{\r\n \t\t\t\t\t\theaderTitle: () => (\r\n \t\t\t\t\t\t\t<Image\r\n-\t\t\t\t\t\t\t\tresizeMode=\"cover\"\r\n+\t\t\t\t\t\t\t\tstyle={{\r\n+\t\t\t\t\t\t\t\t\tmaxHeight: 50,\r\n+\t\t\t\t\t\t\t\t}}\r\n+\t\t\t\t\t\t\t\tresizeMode=\"contain\"\r\n \t\t\t\t\t\t\t\tsource={require(\"../assets/logo.png\")}\r\n \t\t\t\t\t\t\t/>\r\n \t\t\t\t\t\t),\r\n \t\t\t\t\t}}\r\n"
+                },
+                {
+                    "date": 1658319234081,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n \t\t\t\t\toptions={{\r\n \t\t\t\t\t\theaderTitle: () => (\r\n \t\t\t\t\t\t\t<Image\r\n \t\t\t\t\t\t\t\tstyle={{\r\n-\t\t\t\t\t\t\t\t\tmaxHeight: 50,\r\n+\t\t\t\t\t\t\t\t\tmaxHeight: 40,\r\n \t\t\t\t\t\t\t\t}}\r\n \t\t\t\t\t\t\t\tresizeMode=\"contain\"\r\n \t\t\t\t\t\t\t\tsource={require(\"../assets/logo.png\")}\r\n \t\t\t\t\t\t\t/>\r\n"
+                },
+                {
+                    "date": 1658319258914,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n \t\t\t\t\toptions={{\r\n \t\t\t\t\t\theaderTitle: () => (\r\n \t\t\t\t\t\t\t<Image\r\n \t\t\t\t\t\t\t\tstyle={{\r\n-\t\t\t\t\t\t\t\t\tmaxHeight: 40,\r\n+\t\t\t\t\t\t\t\t\tmaxHeight: 20,\r\n \t\t\t\t\t\t\t\t}}\r\n \t\t\t\t\t\t\t\tresizeMode=\"contain\"\r\n \t\t\t\t\t\t\t\tsource={require(\"../assets/logo.png\")}\r\n \t\t\t\t\t\t\t/>\r\n"
+                },
+                {
+                    "date": 1658319265340,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -30,9 +30,9 @@\n \t\t\t\t\toptions={{\r\n \t\t\t\t\t\theaderTitle: () => (\r\n \t\t\t\t\t\t\t<Image\r\n \t\t\t\t\t\t\t\tstyle={{\r\n-\t\t\t\t\t\t\t\t\tmaxHeight: 20,\r\n+\t\t\t\t\t\t\t\t\tmaxHeight: 40,\r\n \t\t\t\t\t\t\t\t}}\r\n \t\t\t\t\t\t\t\tresizeMode=\"contain\"\r\n \t\t\t\t\t\t\t\tsource={require(\"../assets/logo.png\")}\r\n \t\t\t\t\t\t\t/>\r\n"
+                },
+                {
+                    "date": 1658319277432,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n \t\t\t\t\t\t\t<Image\r\n \t\t\t\t\t\t\t\tstyle={{\r\n \t\t\t\t\t\t\t\t\tmaxHeight: 40,\r\n \t\t\t\t\t\t\t\t}}\r\n-\t\t\t\t\t\t\t\tresizeMode=\"contain\"\r\n+\t\t\t\t\t\t\t\tresizeMode=\"cover\"\r\n \t\t\t\t\t\t\t\tsource={require(\"../assets/logo.png\")}\r\n \t\t\t\t\t\t\t/>\r\n \t\t\t\t\t\t),\r\n \t\t\t\t\t}}\r\n"
+                },
+                {
+                    "date": 1658319285315,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n \t\t\t\t\t\t\t<Image\r\n \t\t\t\t\t\t\t\tstyle={{\r\n \t\t\t\t\t\t\t\t\tmaxHeight: 40,\r\n \t\t\t\t\t\t\t\t}}\r\n-\t\t\t\t\t\t\t\tresizeMode=\"cover\"\r\n+\t\t\t\t\t\t\t\tresizeMode=\"stretch\"\r\n \t\t\t\t\t\t\t\tsource={require(\"../assets/logo.png\")}\r\n \t\t\t\t\t\t\t/>\r\n \t\t\t\t\t\t),\r\n \t\t\t\t\t}}\r\n"
+                },
+                {
+                    "date": 1658319291539,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -32,9 +32,9 @@\n \t\t\t\t\t\t\t<Image\r\n \t\t\t\t\t\t\t\tstyle={{\r\n \t\t\t\t\t\t\t\t\tmaxHeight: 40,\r\n \t\t\t\t\t\t\t\t}}\r\n-\t\t\t\t\t\t\t\tresizeMode=\"stretch\"\r\n+\t\t\t\t\t\t\t\tresizeMode=\"contain\"\r\n \t\t\t\t\t\t\t\tsource={require(\"../assets/logo.png\")}\r\n \t\t\t\t\t\t\t/>\r\n \t\t\t\t\t\t),\r\n \t\t\t\t\t}}\r\n"
+                },
+                {
+                    "date": 1658319308114,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,8 +31,9 @@\n \t\t\t\t\t\theaderTitle: () => (\r\n \t\t\t\t\t\t\t<Image\r\n \t\t\t\t\t\t\t\tstyle={{\r\n \t\t\t\t\t\t\t\t\tmaxHeight: 40,\r\n+\t\t\t\t\t\t\t\t\tmaxWidth: 50,\r\n \t\t\t\t\t\t\t\t}}\r\n \t\t\t\t\t\t\t\tresizeMode=\"contain\"\r\n \t\t\t\t\t\t\t\tsource={require(\"../assets/logo.png\")}\r\n \t\t\t\t\t\t\t/>\r\n"
+                },
+                {
+                    "date": 1658319314856,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n \t\t\t\t\t\theaderTitle: () => (\r\n \t\t\t\t\t\t\t<Image\r\n \t\t\t\t\t\t\t\tstyle={{\r\n \t\t\t\t\t\t\t\t\tmaxHeight: 40,\r\n-\t\t\t\t\t\t\t\t\tmaxWidth: 50,\r\n+\t\t\t\t\t\t\t\t\tmaxWidth: 120,\r\n \t\t\t\t\t\t\t\t}}\r\n \t\t\t\t\t\t\t\tresizeMode=\"contain\"\r\n \t\t\t\t\t\t\t\tsource={require(\"../assets/logo.png\")}\r\n \t\t\t\t\t\t\t/>\r\n"
+                }
+            ],
+            "date": 1658317125155,
+            "name": "Commit-0",
+            "content": "import { createNativeStackNavigator } from \"@react-navigation/native-stack\";\r\nimport React from \"react\";\r\nimport Feed from \"../screens/feed\";\r\nimport Me from \"../screens/me\";\r\nimport Notifications from \"../screens/notification\";\r\nimport Photo from \"../screens/photo\";\r\nimport Profile from \"../screens/profile\";\r\nimport Search from \"../screens/search\";\r\n\r\nconst Stack = createNativeStackNavigator();\r\n\r\nexport default function StackNavFactory({ screenName }) {\r\n\treturn (\r\n\t\t<Stack.Navigator>\r\n\t\t\t{screenName === \"Feed\" ? (\r\n\t\t\t\t<Stack.Screen name={\"Feed\"} component={Feed} />\r\n\t\t\t) : null}\r\n\t\t\t{screenName === \"Search\" ? (\r\n\t\t\t\t<Stack.Screen name={\"Search\"} component={Search} />\r\n\t\t\t) : null}\r\n\t\t\t{screenName === \"Notifications\" ? (\r\n\t\t\t\t<Stack.Screen name={\"Notifications\"} component={Notifications} />\r\n\t\t\t) : null}\r\n\t\t\t{screenName === \"Me\" ? <Stack.Screen name={\"Me\"} component={Me} /> : null}\r\n\t\t\t<Stack.Screen name=\"Profile\" component={Profile}></Stack.Screen>\r\n\t\t\t<Stack.Screen name=\"Photo\" component={Photo}></Stack.Screen>\r\n\t\t</Stack.Navigator>\r\n\t);\r\n}\r\n"
+        }
+    ]
+}

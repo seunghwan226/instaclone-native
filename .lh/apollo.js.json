@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 15,
+            "activePatchIndex": 23,
             "patches": [
                 {
                     "date": 1658142185723,
@@ -68,6 +68,38 @@
                 {
                     "date": 1658288393943,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -13,9 +13,9 @@\n \tauthVar(Authorization);\r\n };\r\n \r\n const client = new ApolloClient({\r\n-\turi: \"https://7585-111-91-152-107.jp.ngrok.io/graphql\",\r\n+\turi: \"https://fb2b-111-91-152-107.jp.ngrok.io/graphql\",\r\n \tcache: new InMemoryCache(),\r\n });\r\n \r\n export default client;\r\n"
+                },
+                {
+                    "date": 1658319482856,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -12,10 +12,14 @@\n \tisLoggedInVar(true);\r\n \tauthVar(Authorization);\r\n };\r\n \r\n+const httpLink = createHttpLink({\r\n+\turi: \"https://fb2b-111-91-152-107.jp.ngrok.io/graphql\",\r\n+});\r\n+\r\n const client = new ApolloClient({\r\n-\turi: \"https://fb2b-111-91-152-107.jp.ngrok.io/graphql\",\r\n+\tlink: httpLink,\r\n \tcache: new InMemoryCache(),\r\n });\r\n \r\n export default client;\r\n"
+                },
+                {
+                    "date": 1658319528200,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,9 @@\n import { ApolloClient, InMemoryCache, makeVar } from \"@apollo/client\";\r\n import AsyncStorage from \"@react-native-async-storage/async-storage\";\r\n+import {setContext} = \"@apollo/client/link/context\"\r\n \r\n+\r\n export const isLoggedInVar = makeVar(false);\r\n export const authVar = makeVar(\"\");\r\n \r\n export const logUserIn = async (Authorization) => {\r\n@@ -16,8 +18,10 @@\n const httpLink = createHttpLink({\r\n \turi: \"https://fb2b-111-91-152-107.jp.ngrok.io/graphql\",\r\n });\r\n \r\n+const authLink = setContext\r\n+\r\n const client = new ApolloClient({\r\n \tlink: httpLink,\r\n \tcache: new InMemoryCache(),\r\n });\r\n"
+                },
+                {
+                    "date": 1658319535748,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,8 @@\n import { ApolloClient, InMemoryCache, makeVar } from \"@apollo/client\";\r\n import AsyncStorage from \"@react-native-async-storage/async-storage\";\r\n-import {setContext} = \"@apollo/client/link/context\"\r\n+import { setContext } from \"@apollo/client/link/context\";\r\n \r\n-\r\n export const isLoggedInVar = makeVar(false);\r\n export const authVar = makeVar(\"\");\r\n \r\n export const logUserIn = async (Authorization) => {\r\n@@ -18,9 +17,9 @@\n const httpLink = createHttpLink({\r\n \turi: \"https://fb2b-111-91-152-107.jp.ngrok.io/graphql\",\r\n });\r\n \r\n-const authLink = setContext\r\n+const authLink = setContext;\r\n \r\n const client = new ApolloClient({\r\n \tlink: httpLink,\r\n \tcache: new InMemoryCache(),\r\n"
+                },
+                {
+                    "date": 1658319552448,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,10 @@\n-import { ApolloClient, InMemoryCache, makeVar } from \"@apollo/client\";\r\n+import {\r\n+\tApolloClient,\r\n+\tInMemoryCache,\r\n+\tmakeVar,\r\n+\tcreateHttpLink,\r\n+} from \"@apollo/client\";\r\n import AsyncStorage from \"@react-native-async-storage/async-storage\";\r\n import { setContext } from \"@apollo/client/link/context\";\r\n \r\n export const isLoggedInVar = makeVar(false);\r\n"
+                },
+                {
+                    "date": 1658319630965,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,12 +22,19 @@\n const httpLink = createHttpLink({\r\n \turi: \"https://fb2b-111-91-152-107.jp.ngrok.io/graphql\",\r\n });\r\n \r\n-const authLink = setContext;\r\n+const authLink = setContext((_, { headers }) => {\r\n+\treturn {\r\n+\t\theaders: {\r\n+\t\t\t...headers,\r\n+\t\t\ttoken: authVar(),\r\n+\t\t},\r\n+\t};\r\n+});\r\n \r\n const client = new ApolloClient({\r\n-\tlink: httpLink,\r\n+\tlink: authLink.concat(httpLink),\r\n \tcache: new InMemoryCache(),\r\n });\r\n \r\n export default client;\r\n"
+                },
+                {
+                    "date": 1658319695762,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -18,8 +18,12 @@\n \tisLoggedInVar(true);\r\n \tauthVar(Authorization);\r\n };\r\n \r\n+export const logUserOut = async () => {\r\n+\tawait AsyncStorage.multiRemove([\"Authorization\", \"loggedIn\"]);\r\n+};\r\n+\r\n const httpLink = createHttpLink({\r\n \turi: \"https://fb2b-111-91-152-107.jp.ngrok.io/graphql\",\r\n });\r\n \r\n"
+                },
+                {
+                    "date": 1658319764302,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,18 +10,17 @@\n export const isLoggedInVar = makeVar(false);\r\n export const authVar = makeVar(\"\");\r\n \r\n export const logUserIn = async (Authorization) => {\r\n-\tawait AsyncStorage.multiSet([\r\n-\t\t[\"Authorization\", JSON.stringify(Authorization)],\r\n-\t\t[\"loggedIn\", JSON.stringify(\"yes\")],\r\n-\t]);\r\n+\tawait AsyncStorage.setItem(\"Authorization\", Authorization);\r\n \tisLoggedInVar(true);\r\n \tauthVar(Authorization);\r\n };\r\n \r\n export const logUserOut = async () => {\r\n-\tawait AsyncStorage.multiRemove([\"Authorization\", \"loggedIn\"]);\r\n+\tawait AsyncStorage.removeItem(\"Authorization\");\r\n+\tisLoggedInVar(false);\r\n+\tauthVar(null);\r\n };\r\n \r\n const httpLink = createHttpLink({\r\n \turi: \"https://fb2b-111-91-152-107.jp.ngrok.io/graphql\",\r\n"
+                },
+                {
+                    "date": 1658319982023,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n const authLink = setContext((_, { headers }) => {\r\n \treturn {\r\n \t\theaders: {\r\n \t\t\t...headers,\r\n-\t\t\ttoken: authVar(),\r\n+\t\t\tAuthorization: authVar(),\r\n \t\t},\r\n \t};\r\n });\r\n \r\n"
                 }
             ],
             "date": 1658142185723,

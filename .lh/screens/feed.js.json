@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 4,
+            "activePatchIndex": 16,
             "patches": [
                 {
                     "date": 1658146222999,
@@ -24,6 +24,54 @@
                 {
                     "date": 1658239732327,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,9 +1,16 @@\n import { Text, View } from \"react-native\";\r\n \r\n export default function Feed() {\r\n \treturn (\r\n-\t\t<View style={{ backgroundColor: \"black\", flex: 1 }}>\r\n+\t\t<View\r\n+\t\t\tstyle={{\r\n+\t\t\t\tbackgroundColor: \"black\",\r\n+\t\t\t\tflex: 1,\r\n+\t\t\t\talignItems: \"center\",\r\n+\t\t\t\tjustifyContent: \"center\",\r\n+\t\t\t}}\r\n+\t\t>\r\n \t\t\t<Text style={{ color: \"white\" }}>Feed</Text>\r\n \t\t</View>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1658316523020,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,8 @@\n \t\t\t\talignItems: \"center\",\r\n \t\t\t\tjustifyContent: \"center\",\r\n \t\t\t}}\r\n \t\t>\r\n-\t\t\t<Text style={{ color: \"white\" }}>Feed</Text>\r\n+\t\t\t<Text style={{ color: \"white\" }}>Photo</Text>\r\n \t\t</View>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1658316820317,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n-import { Text, View } from \"react-native\";\r\n+import { Text, TouchableOpacity, View } from \"react-native\";\r\n \r\n-export default function Feed() {\r\n+export default function Feed({ navigation }) {\r\n \treturn (\r\n \t\t<View\r\n \t\t\tstyle={{\r\n \t\t\t\tbackgroundColor: \"black\",\r\n@@ -9,8 +9,10 @@\n \t\t\t\talignItems: \"center\",\r\n \t\t\t\tjustifyContent: \"center\",\r\n \t\t\t}}\r\n \t\t>\r\n-\t\t\t<Text style={{ color: \"white\" }}>Photo</Text>\r\n+\t\t\t<TouchableOpacity onPress={() => navigation.navigate(\"Photo\")}>\r\n+\t\t\t\t<Text style={{ color: \"white\" }}>Photo</Text>\r\n+\t\t\t</TouchableOpacity>\r\n \t\t</View>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1658319800767,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,6 @@\n import { Text, TouchableOpacity, View } from \"react-native\";\r\n+import { logUserOut } from \"../apollo\";\r\n \r\n export default function Feed({ navigation }) {\r\n \treturn (\r\n \t\t<View\r\n@@ -9,9 +10,9 @@\n \t\t\t\talignItems: \"center\",\r\n \t\t\t\tjustifyContent: \"center\",\r\n \t\t\t}}\r\n \t\t>\r\n-\t\t\t<TouchableOpacity onPress={() => navigation.navigate(\"Photo\")}>\r\n+\t\t\t<TouchableOpacity onPress={() => logUserOut()}>\r\n \t\t\t\t<Text style={{ color: \"white\" }}>Photo</Text>\r\n \t\t\t</TouchableOpacity>\r\n \t\t</View>\r\n \t);\r\n"
+                },
+                {
+                    "date": 1658319823822,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,10 +10,8 @@\n \t\t\t\talignItems: \"center\",\r\n \t\t\t\tjustifyContent: \"center\",\r\n \t\t\t}}\r\n \t\t>\r\n-\t\t\t<TouchableOpacity onPress={() => logUserOut()}>\r\n-\t\t\t\t<Text style={{ color: \"white\" }}>Photo</Text>\r\n-\t\t\t</TouchableOpacity>\r\n+\t\t\t<Text style={{ color: \"white\" }}>Photo</Text>\r\n \t\t</View>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1658319839714,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n import { Text, TouchableOpacity, View } from \"react-native\";\r\n import { logUserOut } from \"../apollo\";\r\n \r\n export default function Feed({ navigation }) {\r\n+\tconst { data } = useQuery(FEED_QUERY);\r\n \treturn (\r\n \t\t<View\r\n \t\t\tstyle={{\r\n \t\t\t\tbackgroundColor: \"black\",\r\n"
+                },
+                {
+                    "date": 1658319871886,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,27 @@\n import { Text, TouchableOpacity, View } from \"react-native\";\r\n import { logUserOut } from \"../apollo\";\r\n-\r\n+import { gql } from \"@apollo/client/core\";\r\n+const FEED_QUERY = gql`\r\n+\tquery seeFeed {\r\n+\t\tseeFeed {\r\n+\t\t\t...PhotoFragment\r\n+\t\t\tuser {\r\n+\t\t\t\tuserName\r\n+\t\t\t\tavatar\r\n+\t\t\t}\r\n+\t\t\tfile\r\n+\t\t\tcaption\r\n+\t\t\tcreatedAt\r\n+\t\t\tisMine\r\n+\t\t\tcomments {\r\n+\t\t\t\t...CommentFragment\r\n+\t\t\t}\r\n+\t\t}\r\n+\t}\r\n+\t${PHOTO_FRAGMENT}\r\n+\t${COMMENT_FRAGMENT}\r\n+`;\r\n export default function Feed({ navigation }) {\r\n \tconst { data } = useQuery(FEED_QUERY);\r\n \treturn (\r\n \t\t<View\r\n"
+                },
+                {
+                    "date": 1658319877484,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,10 +17,10 @@\n \t\t\t\t...CommentFragment\r\n \t\t\t}\r\n \t\t}\r\n \t}\r\n-\t${PHOTO_FRAGMENT}\r\n-\t${COMMENT_FRAGMENT}\r\n+\t// ${PHOTO_FRAGMENT}\r\n+\t// ${COMMENT_FRAGMENT}\r\n `;\r\n export default function Feed({ navigation }) {\r\n \tconst { data } = useQuery(FEED_QUERY);\r\n \treturn (\r\n"
+                },
+                {
+                    "date": 1658319905513,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,31 @@\n import { Text, TouchableOpacity, View } from \"react-native\";\r\n import { logUserOut } from \"../apollo\";\r\n import { gql } from \"@apollo/client/core\";\r\n+\r\n+export const PHOTO_FRAGMENT = gql`\r\n+\tfragment PhotoFragment on Photo {\r\n+\t\tid\r\n+\t\tfile\r\n+\t\tlikes\r\n+\t\tcommentNumber\r\n+\t\tisLiked\r\n+\t}\r\n+`;\r\n+\r\n+export const COMMENT_FRAGMENT = gql`\r\n+\tfragment CommentFragment on Comment {\r\n+\t\tid\r\n+\t\tuser {\r\n+\t\t\tuserName\r\n+\t\t\tavatar\r\n+\t\t}\r\n+\t\tpayload\r\n+\t\tisMine\r\n+\t\tcreatedAt\r\n+\t}\r\n+`;\r\n+\r\n const FEED_QUERY = gql`\r\n \tquery seeFeed {\r\n \t\tseeFeed {\r\n \t\t\t...PhotoFragment\r\n"
+                },
+                {
+                    "date": 1658319923057,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -41,10 +41,10 @@\n \t\t\t\t...CommentFragment\r\n \t\t\t}\r\n \t\t}\r\n \t}\r\n-\t// ${PHOTO_FRAGMENT}\r\n-\t// ${COMMENT_FRAGMENT}\r\n+\t${PHOTO_FRAGMENT}\r\n+\t${COMMENT_FRAGMENT}\r\n `;\r\n export default function Feed({ navigation }) {\r\n \tconst { data } = useQuery(FEED_QUERY);\r\n \treturn (\r\n"
+                },
+                {
+                    "date": 1658319941506,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,8 +46,9 @@\n \t${COMMENT_FRAGMENT}\r\n `;\r\n export default function Feed({ navigation }) {\r\n \tconst { data } = useQuery(FEED_QUERY);\r\n+\tconsole.log(data);\r\n \treturn (\r\n \t\t<View\r\n \t\t\tstyle={{\r\n \t\t\t\tbackgroundColor: \"black\",\r\n"
+                },
+                {
+                    "date": 1658320036049,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n import { Text, TouchableOpacity, View } from \"react-native\";\r\n import { logUserOut } from \"../apollo\";\r\n import { gql } from \"@apollo/client/core\";\r\n+import { useQuery } from \"@apollo/client/react\";\r\n \r\n export const PHOTO_FRAGMENT = gql`\r\n \tfragment PhotoFragment on Photo {\r\n \t\tid\r\n"
+                },
+                {
+                    "date": 1658320083353,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -57,8 +57,10 @@\n \t\t\t\talignItems: \"center\",\r\n \t\t\t\tjustifyContent: \"center\",\r\n \t\t\t}}\r\n \t\t>\r\n-\t\t\t<Text style={{ color: \"white\" }}>Photo</Text>\r\n+\t\t\t<TouchableOpacity onPress={() => logUserOut()}>\r\n+\t\t\t\t<Text style={{ color: \"white\" }}>Photo</Text>\r\n+\t\t\t</TouchableOpacity>\r\n \t\t</View>\r\n \t);\r\n }\r\n"
                 }
             ],
             "date": 1658146222999,

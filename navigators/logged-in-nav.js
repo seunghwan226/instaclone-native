@@ -8,7 +8,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { View } from "react-native";
 import TabIcon from "../components/nav/tab-icon";
 import Me from "../screens/me";
-import StackNavFactory from "../components/nav/stack-nav-factory";
+import StackNavFactory from "./stack-nav-factory";
 
 const Tabs = createBottomTabNavigator();
 
