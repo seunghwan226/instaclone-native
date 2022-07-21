@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 16,
+            "activePatchIndex": 31,
             "patches": [
                 {
                     "date": 1658146222999,
@@ -72,6 +72,66 @@
                 {
                     "date": 1658320083353,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -57,8 +57,10 @@\n \t\t\t\talignItems: \"center\",\r\n \t\t\t\tjustifyContent: \"center\",\r\n \t\t\t}}\r\n \t\t>\r\n-\t\t\t<Text style={{ color: \"white\" }}>Photo</Text>\r\n+\t\t\t<TouchableOpacity onPress={() => logUserOut()}>\r\n+\t\t\t\t<Text style={{ color: \"white\" }}>Photo</Text>\r\n+\t\t\t</TouchableOpacity>\r\n \t\t</View>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1658325066255,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,5 @@\n-import { Text, TouchableOpacity, View } from \"react-native\";\r\n+import { ScrollView, Text, TouchableOpacity, View } from \"react-native\";\r\n import { logUserOut } from \"../apollo\";\r\n import { gql } from \"@apollo/client/core\";\r\n import { useQuery } from \"@apollo/client/react\";\r\n \r\n@@ -57,10 +57,12 @@\n \t\t\t\talignItems: \"center\",\r\n \t\t\t\tjustifyContent: \"center\",\r\n \t\t\t}}\r\n \t\t>\r\n-\t\t\t<TouchableOpacity onPress={() => logUserOut()}>\r\n-\t\t\t\t<Text style={{ color: \"white\" }}>Photo</Text>\r\n-\t\t\t</TouchableOpacity>\r\n+\t\t\t<ScrollView>\r\n+\t\t\t\t<View style={{ height: 2000, backgroundColorblue }}>\r\n+\t\t\t\t\t<Text>super big</Text>\r\n+\t\t\t\t</View>\r\n+\t\t\t</ScrollView>\r\n \t\t</View>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1658325098085,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -58,9 +58,9 @@\n \t\t\t\tjustifyContent: \"center\",\r\n \t\t\t}}\r\n \t\t>\r\n \t\t\t<ScrollView>\r\n-\t\t\t\t<View style={{ height: 2000, backgroundColorblue }}>\r\n+\t\t\t\t<View style={{ height: 2000, backgroundColor=\"blue\" }}>\r\n \t\t\t\t\t<Text>super big</Text>\r\n \t\t\t\t</View>\r\n \t\t\t</ScrollView>\r\n \t\t</View>\r\n"
+                },
+                {
+                    "date": 1658325107897,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -58,9 +58,10 @@\n \t\t\t\tjustifyContent: \"center\",\r\n \t\t\t}}\r\n \t\t>\r\n \t\t\t<ScrollView>\r\n-\t\t\t\t<View style={{ height: 2000, backgroundColor=\"blue\" }}>\r\n+\t\t\t\t<View style={{ height: 2000, backgroundColor:\"blue\" }}>\r\n+\t\t\t\t<View style={{ height: 2000, backgroundColor:\"blue\" }}>\r\n \t\t\t\t\t<Text>super big</Text>\r\n \t\t\t\t</View>\r\n \t\t\t</ScrollView>\r\n \t\t</View>\r\n"
+                },
+                {
+                    "date": 1658325151684,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -58,10 +58,9 @@\n \t\t\t\tjustifyContent: \"center\",\r\n \t\t\t}}\r\n \t\t>\r\n \t\t\t<ScrollView>\r\n-\t\t\t\t<View style={{ height: 2000, backgroundColor:\"blue\" }}>\r\n-\t\t\t\t<View style={{ height: 2000, backgroundColor:\"blue\" }}>\r\n+\t\t\t\t<View style={{ height: 2000, flex: 1, backgroundColor: \"blue\" }}>\r\n \t\t\t\t\t<Text>super big</Text>\r\n \t\t\t\t</View>\r\n \t\t\t</ScrollView>\r\n \t\t</View>\r\n"
+                },
+                {
+                    "date": 1658325373886,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -46,9 +46,9 @@\n \t${PHOTO_FRAGMENT}\r\n \t${COMMENT_FRAGMENT}\r\n `;\r\n export default function Feed({ navigation }) {\r\n-\tconst { data } = useQuery(FEED_QUERY);\r\n+\tconst { data, loading } = useQuery(FEED_QUERY);\r\n \tconsole.log(data);\r\n \treturn (\r\n \t\t<View\r\n \t\t\tstyle={{\r\n"
+                },
+                {
+                    "date": 1658325413030,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,5 +1,11 @@\n-import { ScrollView, Text, TouchableOpacity, View } from \"react-native\";\r\n+import {\r\n+\tActivityIndicator,\r\n+\tScrollView,\r\n+\tText,\r\n+\tTouchableOpacity,\r\n+\tView,\r\n+} from \"react-native\";\r\n import { logUserOut } from \"../apollo\";\r\n import { gql } from \"@apollo/client/core\";\r\n import { useQuery } from \"@apollo/client/react\";\r\n \r\n@@ -47,9 +53,8 @@\n \t${COMMENT_FRAGMENT}\r\n `;\r\n export default function Feed({ navigation }) {\r\n \tconst { data, loading } = useQuery(FEED_QUERY);\r\n-\tconsole.log(data);\r\n \treturn (\r\n \t\t<View\r\n \t\t\tstyle={{\r\n \t\t\t\tbackgroundColor: \"black\",\r\n@@ -57,12 +62,8 @@\n \t\t\t\talignItems: \"center\",\r\n \t\t\t\tjustifyContent: \"center\",\r\n \t\t\t}}\r\n \t\t>\r\n-\t\t\t<ScrollView>\r\n-\t\t\t\t<View style={{ height: 2000, flex: 1, backgroundColor: \"blue\" }}>\r\n-\t\t\t\t\t<Text>super big</Text>\r\n-\t\t\t\t</View>\r\n-\t\t\t</ScrollView>\r\n+\t\t\t{loading ? <ActivityIndicator color=\"white\" /> : null}\r\n \t\t</View>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1658325419591,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -62,8 +62,8 @@\n \t\t\t\talignItems: \"center\",\r\n \t\t\t\tjustifyContent: \"center\",\r\n \t\t\t}}\r\n \t\t>\r\n-\t\t\t{loading ? <ActivityIndicator color=\"white\" /> : null}\r\n+\t\t\t{true ? <ActivityIndicator color=\"white\" /> : null}\r\n \t\t</View>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1658325439066,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -62,8 +62,8 @@\n \t\t\t\talignItems: \"center\",\r\n \t\t\t\tjustifyContent: \"center\",\r\n \t\t\t}}\r\n \t\t>\r\n-\t\t\t{true ? <ActivityIndicator color=\"white\" /> : null}\r\n+\t\t\t{loading ? <ActivityIndicator color=\"white\" /> : null}\r\n \t\t</View>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1658325606207,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -7,8 +7,9 @@\n } from \"react-native\";\r\n import { logUserOut } from \"../apollo\";\r\n import { gql } from \"@apollo/client/core\";\r\n import { useQuery } from \"@apollo/client/react\";\r\n+import ScreenLayout from \"../components/screen-layout\";\r\n \r\n export const PHOTO_FRAGMENT = gql`\r\n \tfragment PhotoFragment on Photo {\r\n \t\tid\r\n@@ -54,16 +55,9 @@\n `;\r\n export default function Feed({ navigation }) {\r\n \tconst { data, loading } = useQuery(FEED_QUERY);\r\n \treturn (\r\n-\t\t<View\r\n-\t\t\tstyle={{\r\n-\t\t\t\tbackgroundColor: \"black\",\r\n-\t\t\t\tflex: 1,\r\n-\t\t\t\talignItems: \"center\",\r\n-\t\t\t\tjustifyContent: \"center\",\r\n-\t\t\t}}\r\n-\t\t>\r\n-\t\t\t{loading ? <ActivityIndicator color=\"white\" /> : null}\r\n-\t\t</View>\r\n+\t\t<ScreenLayout loading={loading}>\r\n+\t\t\t<Text style={{ color: \"white\" }}>Loaded</Text>\r\n+\t\t</ScreenLayout>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1658325794166,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,6 +1,7 @@\n import {\r\n \tActivityIndicator,\r\n+\tFlatList,\r\n \tScrollView,\r\n \tText,\r\n \tTouchableOpacity,\r\n \tView,\r\n@@ -54,10 +55,21 @@\n \t${COMMENT_FRAGMENT}\r\n `;\r\n export default function Feed({ navigation }) {\r\n \tconst { data, loading } = useQuery(FEED_QUERY);\r\n+\tconst renderPhoto = ({ item: photo }) => {\r\n+\t\treturn (\r\n+\t\t\t<View style={{ flex: 1 }}>\r\n+\t\t\t\t<Text>{photo.caption}</Text>\r\n+\t\t\t</View>\r\n+\t\t);\r\n+\t};\r\n \treturn (\r\n \t\t<ScreenLayout loading={loading}>\r\n-\t\t\t<Text style={{ color: \"white\" }}>Loaded</Text>\r\n+\t\t\t<FlatList\r\n+\t\t\t\tdata={data?.seeFeed}\r\n+\t\t\t\tkeyExtractor={(item) => item.id}\r\n+\t\t\t\trenderItem={render}\r\n+\t\t\t/>\r\n \t\t</ScreenLayout>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1658325801464,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -67,9 +67,9 @@\n \t\t<ScreenLayout loading={loading}>\r\n \t\t\t<FlatList\r\n \t\t\t\tdata={data?.seeFeed}\r\n \t\t\t\tkeyExtractor={(item) => item.id}\r\n-\t\t\t\trenderItem={render}\r\n+\t\t\t\trenderItem={renderPhoto}\r\n \t\t\t/>\r\n \t\t</ScreenLayout>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1658325815710,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,8 +56,9 @@\n `;\r\n export default function Feed({ navigation }) {\r\n \tconst { data, loading } = useQuery(FEED_QUERY);\r\n \tconst renderPhoto = ({ item: photo }) => {\r\n+\t\tconsole.log(photo);\r\n \t\treturn (\r\n \t\t\t<View style={{ flex: 1 }}>\r\n \t\t\t\t<Text>{photo.caption}</Text>\r\n \t\t\t</View>\r\n"
+                },
+                {
+                    "date": 1658325832274,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -70,7 +70,8 @@\n \t\t\t\tdata={data?.seeFeed}\r\n \t\t\t\tkeyExtractor={(item) => item.id}\r\n \t\t\t\trenderItem={renderPhoto}\r\n \t\t\t/>\r\n+\t\t\t123\r\n \t\t</ScreenLayout>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1658325841090,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -70,8 +70,7 @@\n \t\t\t\tdata={data?.seeFeed}\r\n \t\t\t\tkeyExtractor={(item) => item.id}\r\n \t\t\t\trenderItem={renderPhoto}\r\n \t\t\t/>\r\n-\t\t\t123\r\n \t\t</ScreenLayout>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1658325866650,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -67,9 +67,9 @@\n \treturn (\r\n \t\t<ScreenLayout loading={loading}>\r\n \t\t\t<FlatList\r\n \t\t\t\tdata={data?.seeFeed}\r\n-\t\t\t\tkeyExtractor={(item) => item.id}\r\n+\t\t\t\tkeyExtractor={(item) => \"\" + item.id}\r\n \t\t\t\trenderItem={renderPhoto}\r\n \t\t\t/>\r\n \t\t</ScreenLayout>\r\n \t);\r\n"
                 }
             ],
             "date": 1658146222999,

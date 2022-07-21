@@ -1,7 +1,15 @@
-import { Text, TouchableOpacity, View } from "react-native";
+import {
+	ActivityIndicator,
+	FlatList,
+	ScrollView,
+	Text,
+	TouchableOpacity,
+	View,
+} from "react-native";
 import { logUserOut } from "../apollo";
 import { gql } from "@apollo/client/core";
 import { useQuery } from "@apollo/client/react";
+import ScreenLayout from "../components/screen-layout";
 
 export const PHOTO_FRAGMENT = gql`
 	fragment PhotoFragment on Photo {
@@ -47,20 +55,22 @@ const FEED_QUERY = gql`
 	${COMMENT_FRAGMENT}
 `;
 export default function Feed({ navigation }) {
-	const { data } = useQuery(FEED_QUERY);
-	console.log(data);
+	const { data, loading } = useQuery(FEED_QUERY);
+	const renderPhoto = ({ item: photo }) => {
+		console.log(photo);
+		return (
+			<View style={{ flex: 1 }}>
+				<Text>{photo.caption}</Text>
+			</View>
+		);
+	};
 	return (
-		<View
-			style={{
-				backgroundColor: "black",
-				flex: 1,
-				alignItems: "center",
-				justifyContent: "center",
-			}}
-		>
-			<TouchableOpacity onPress={() => logUserOut()}>
-				<Text style={{ color: "white" }}>Photo</Text>
-			</TouchableOpacity>
-		</View>
+		<ScreenLayout loading={loading}>
+			<FlatList
+				data={data?.seeFeed}
+				keyExtractor={(item) => "" + item.id}
+				renderItem={renderPhoto}
+			/>
+		</ScreenLayout>
 	);
 }
