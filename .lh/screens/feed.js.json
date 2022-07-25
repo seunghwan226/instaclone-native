@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 33,
+            "activePatchIndex": 48,
             "patches": [
                 {
                     "date": 1658146222999,
@@ -140,6 +140,66 @@
                 {
                     "date": 1658585314133,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -62,11 +62,13 @@\n \t};\r\n \treturn (\r\n \t\t<ScreenLayout loading={loading}>\r\n \t\t\t<FlatList\r\n+\t\t\t\tstyle={{ width: \"100%\" }}\r\n \t\t\t\tdata={data?.seeFeed}\r\n \t\t\t\tkeyExtractor={(item) => \"\" + item.id}\r\n \t\t\t\trenderItem={renderPhoto}\r\n+\t\t\t\tshowsVerticalScrollIndicator={false}\r\n \t\t\t/>\r\n \t\t</ScreenLayout>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1658741892127,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -62,8 +62,9 @@\n \t};\r\n \treturn (\r\n \t\t<ScreenLayout loading={loading}>\r\n \t\t\t<FlatList\r\n+\t\t\t\trefreshing={true}\r\n \t\t\t\tstyle={{ width: \"100%\" }}\r\n \t\t\t\tdata={data?.seeFeed}\r\n \t\t\t\tkeyExtractor={(item) => \"\" + item.id}\r\n \t\t\t\trenderItem={renderPhoto}\r\n"
+                },
+                {
+                    "date": 1658741932763,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,8 +10,9 @@\n import { gql } from \"@apollo/client/core\";\r\n import { useQuery } from \"@apollo/client/react\";\r\n import ScreenLayout from \"../components/screen-layout\";\r\n import Photo from \"../components/photo\";\r\n+import { useState } from \"react\";\r\n \r\n export const PHOTO_FRAGMENT = gql`\r\n \tfragment PhotoFragment on Photo {\r\n \t\tid\r\n@@ -59,12 +60,14 @@\n \tconst { data, loading } = useQuery(FEED_QUERY);\r\n \tconst renderPhoto = ({ item: photo }) => {\r\n \t\treturn <Photo {...photo} />;\r\n \t};\r\n+\tconst [refreshing, setRefreshing] = useState(false);\r\n \treturn (\r\n \t\t<ScreenLayout loading={loading}>\r\n \t\t\t<FlatList\r\n \t\t\t\trefreshing={true}\r\n+\t\t\t\tonRefresh={setRefreshing(true)}\r\n \t\t\t\tstyle={{ width: \"100%\" }}\r\n \t\t\t\tdata={data?.seeFeed}\r\n \t\t\t\tkeyExtractor={(item) => \"\" + item.id}\r\n \t\t\t\trenderItem={renderPhoto}\r\n"
+                },
+                {
+                    "date": 1658741948851,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -64,9 +64,9 @@\n \tconst [refreshing, setRefreshing] = useState(false);\r\n \treturn (\r\n \t\t<ScreenLayout loading={loading}>\r\n \t\t\t<FlatList\r\n-\t\t\t\trefreshing={true}\r\n+\t\t\t\trefreshing={refreshing}\r\n \t\t\t\tonRefresh={setRefreshing(true)}\r\n \t\t\t\tstyle={{ width: \"100%\" }}\r\n \t\t\t\tdata={data?.seeFeed}\r\n \t\t\t\tkeyExtractor={(item) => \"\" + item.id}\r\n"
+                },
+                {
+                    "date": 1658741974694,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -10,9 +10,9 @@\n import { gql } from \"@apollo/client/core\";\r\n import { useQuery } from \"@apollo/client/react\";\r\n import ScreenLayout from \"../components/screen-layout\";\r\n import Photo from \"../components/photo\";\r\n-import { useState } from \"react\";\r\n+import React, { useState } from \"react\";\r\n \r\n export const PHOTO_FRAGMENT = gql`\r\n \tfragment PhotoFragment on Photo {\r\n \t\tid\r\n"
+                },
+                {
+                    "date": 1658741989081,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -65,9 +65,9 @@\n \treturn (\r\n \t\t<ScreenLayout loading={loading}>\r\n \t\t\t<FlatList\r\n \t\t\t\trefreshing={refreshing}\r\n-\t\t\t\tonRefresh={setRefreshing(true)}\r\n+\t\t\t\tonRefresh={() => setRefreshing(true)}\r\n \t\t\t\tstyle={{ width: \"100%\" }}\r\n \t\t\t\tdata={data?.seeFeed}\r\n \t\t\t\tkeyExtractor={(item) => \"\" + item.id}\r\n \t\t\t\trenderItem={renderPhoto}\r\n"
+                },
+                {
+                    "date": 1658742111840,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -64,8 +64,9 @@\n \tconst [refreshing, setRefreshing] = useState(false);\r\n \treturn (\r\n \t\t<ScreenLayout loading={loading}>\r\n \t\t\t<FlatList\r\n+\t\t\tcolor=white\r\n \t\t\t\trefreshing={refreshing}\r\n \t\t\t\tonRefresh={() => setRefreshing(true)}\r\n \t\t\t\tstyle={{ width: \"100%\" }}\r\n \t\t\t\tdata={data?.seeFeed}\r\n"
+                },
+                {
+                    "date": 1658742122326,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -64,9 +64,9 @@\n \tconst [refreshing, setRefreshing] = useState(false);\r\n \treturn (\r\n \t\t<ScreenLayout loading={loading}>\r\n \t\t\t<FlatList\r\n-\t\t\tcolor=white\r\n+\t\t\t\tcolor=\"white\"\r\n \t\t\t\trefreshing={refreshing}\r\n \t\t\t\tonRefresh={() => setRefreshing(true)}\r\n \t\t\t\tstyle={{ width: \"100%\" }}\r\n \t\t\t\tdata={data?.seeFeed}\r\n"
+                },
+                {
+                    "date": 1658742152236,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -64,10 +64,9 @@\n \tconst [refreshing, setRefreshing] = useState(false);\r\n \treturn (\r\n \t\t<ScreenLayout loading={loading}>\r\n \t\t\t<FlatList\r\n-\t\t\t\tcolor=\"white\"\r\n-\t\t\t\trefreshing={refreshing}\r\n+\t\t\t\trefreshing={true}\r\n \t\t\t\tonRefresh={() => setRefreshing(true)}\r\n \t\t\t\tstyle={{ width: \"100%\" }}\r\n \t\t\t\tdata={data?.seeFeed}\r\n \t\t\t\tkeyExtractor={(item) => \"\" + item.id}\r\n"
+                },
+                {
+                    "date": 1658742209548,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,18 +56,18 @@\n \t${PHOTO_FRAGMENT}\r\n \t${COMMENT_FRAGMENT}\r\n `;\r\n export default function Feed({ navigation }) {\r\n-\tconst { data, loading } = useQuery(FEED_QUERY);\r\n+\tconst { data, loading, refetch } = useQuery(FEED_QUERY);\r\n \tconst renderPhoto = ({ item: photo }) => {\r\n \t\treturn <Photo {...photo} />;\r\n \t};\r\n \tconst [refreshing, setRefreshing] = useState(false);\r\n \treturn (\r\n \t\t<ScreenLayout loading={loading}>\r\n \t\t\t<FlatList\r\n-\t\t\t\trefreshing={true}\r\n-\t\t\t\tonRefresh={() => setRefreshing(true)}\r\n+\t\t\t\trefreshing={refreshing}\r\n+\t\t\t\tonRefresh={refetch}\r\n \t\t\t\tstyle={{ width: \"100%\" }}\r\n \t\t\t\tdata={data?.seeFeed}\r\n \t\t\t\tkeyExtractor={(item) => \"\" + item.id}\r\n \t\t\t\trenderItem={renderPhoto}\r\n"
+                },
+                {
+                    "date": 1658742249913,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,9 +60,9 @@\n \tconst { data, loading, refetch } = useQuery(FEED_QUERY);\r\n \tconst renderPhoto = ({ item: photo }) => {\r\n \t\treturn <Photo {...photo} />;\r\n \t};\r\n-\tconst [refreshing, setRefreshing] = useState(false);\r\n+\tconst [refreshing, setRefreshing] = useState(true);\r\n \treturn (\r\n \t\t<ScreenLayout loading={loading}>\r\n \t\t\t<FlatList\r\n \t\t\t\trefreshing={refreshing}\r\n"
+                },
+                {
+                    "date": 1658742270744,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,9 +60,9 @@\n \tconst { data, loading, refetch } = useQuery(FEED_QUERY);\r\n \tconst renderPhoto = ({ item: photo }) => {\r\n \t\treturn <Photo {...photo} />;\r\n \t};\r\n-\tconst [refreshing, setRefreshing] = useState(true);\r\n+\tconst [refreshing, setRefreshing] = useState(false);\r\n \treturn (\r\n \t\t<ScreenLayout loading={loading}>\r\n \t\t\t<FlatList\r\n \t\t\t\trefreshing={refreshing}\r\n"
+                },
+                {
+                    "date": 1658742414508,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n import {\r\n \tActivityIndicator,\r\n \tFlatList,\r\n+\tRefreshControl,\r\n \tScrollView,\r\n \tText,\r\n \tTouchableOpacity,\r\n \tView,\r\n@@ -64,10 +65,11 @@\n \tconst [refreshing, setRefreshing] = useState(false);\r\n \treturn (\r\n \t\t<ScreenLayout loading={loading}>\r\n \t\t\t<FlatList\r\n-\t\t\t\trefreshing={refreshing}\r\n-\t\t\t\tonRefresh={refetch}\r\n+\t\t\t\trefreshControl={\r\n+\t\t\t\t\t<RefreshControl refreshing={refreshing} onRefresh={refetch} />\r\n+\t\t\t\t}\r\n \t\t\t\tstyle={{ width: \"100%\" }}\r\n \t\t\t\tdata={data?.seeFeed}\r\n \t\t\t\tkeyExtractor={(item) => \"\" + item.id}\r\n \t\t\t\trenderItem={renderPhoto}\r\n"
+                },
+                {
+                    "date": 1658742439538,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -66,9 +66,13 @@\n \treturn (\r\n \t\t<ScreenLayout loading={loading}>\r\n \t\t\t<FlatList\r\n \t\t\t\trefreshControl={\r\n-\t\t\t\t\t<RefreshControl refreshing={refreshing} onRefresh={refetch} />\r\n+\t\t\t\t\t<RefreshControl\r\n+\t\t\t\t\t\trefreshing={refreshing}\r\n+\t\t\t\t\t\tonRefresh={refetch}\r\n+\t\t\t\t\t\tcolors={\"white\"}\r\n+\t\t\t\t\t/>\r\n \t\t\t\t}\r\n \t\t\t\tstyle={{ width: \"100%\" }}\r\n \t\t\t\tdata={data?.seeFeed}\r\n \t\t\t\tkeyExtractor={(item) => \"\" + item.id}\r\n"
+                },
+                {
+                    "date": 1658742482568,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -69,9 +69,9 @@\n \t\t\t\trefreshControl={\r\n \t\t\t\t\t<RefreshControl\r\n \t\t\t\t\t\trefreshing={refreshing}\r\n \t\t\t\t\t\tonRefresh={refetch}\r\n-\t\t\t\t\t\tcolors={\"white\"}\r\n+\t\t\t\t\t\ttintColor=\"white\"\r\n \t\t\t\t\t/>\r\n \t\t\t\t}\r\n \t\t\t\tstyle={{ width: \"100%\" }}\r\n \t\t\t\tdata={data?.seeFeed}\r\n"
+                },
+                {
+                    "date": 1658742572920,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -61,8 +61,13 @@\n \tconst { data, loading, refetch } = useQuery(FEED_QUERY);\r\n \tconst renderPhoto = ({ item: photo }) => {\r\n \t\treturn <Photo {...photo} />;\r\n \t};\r\n+\tconst refresh = async () => {\r\n+\t\tsetRefreshing(true);\r\n+\t\tawait refetch();\r\n+\t\tsetRefreshing(false);\r\n+\t};\r\n \tconst [refreshing, setRefreshing] = useState(false);\r\n \treturn (\r\n \t\t<ScreenLayout loading={loading}>\r\n \t\t\t<FlatList\r\n"
                 }
             ],
             "date": 1658146222999,

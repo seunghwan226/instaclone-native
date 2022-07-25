@@ -1,6 +1,7 @@
 import {
 	ActivityIndicator,
 	FlatList,
+	RefreshControl,
 	ScrollView,
 	Text,
 	TouchableOpacity,
@@ -11,6 +12,7 @@ import { gql } from "@apollo/client/core";
 import { useQuery } from "@apollo/client/react";
 import ScreenLayout from "../components/screen-layout";
 import Photo from "../components/photo";
+import React, { useState } from "react";
 
 export const PHOTO_FRAGMENT = gql`
 	fragment PhotoFragment on Photo {
@@ -56,13 +58,26 @@ const FEED_QUERY = gql`
 	${COMMENT_FRAGMENT}
 `;
 export default function Feed({ navigation }) {
-	const { data, loading } = useQuery(FEED_QUERY);
+	const { data, loading, refetch } = useQuery(FEED_QUERY);
 	const renderPhoto = ({ item: photo }) => {
 		return <Photo {...photo} />;
 	};
+	const refresh = async () => {
+		setRefreshing(true);
+		await refetch();
+		setRefreshing(false);
+	};
+	const [refreshing, setRefreshing] = useState(false);
 	return (
 		<ScreenLayout loading={loading}>
 			<FlatList
+				refreshControl={
+					<RefreshControl
+						refreshing={refreshing}
+						onRefresh={refetch}
+						tintColor="white"
+					/>
+				}
 				style={{ width: "100%" }}
 				data={data?.seeFeed}
 				keyExtractor={(item) => "" + item.id}
