@@ -2,7 +2,7 @@ import { Text, View } from "react-native";
 import { TouchableOpacity } from "react-native";
 import { logUserOut } from "../apollo";
 
-export default function Me() {
+export default function Comments() {
 	return (
 		<View
 			style={{
@@ -13,7 +13,7 @@ export default function Me() {
 			}}
 		>
 			<TouchableOpacity onPress={() => logUserOut()}>
-				<Text style={{ color: "white" }}>Me</Text>
+				<Text style={{ color: "white" }}>Comments</Text>
 			</TouchableOpacity>
 		</View>
 	);

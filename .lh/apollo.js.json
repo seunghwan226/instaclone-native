@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 23,
+            "activePatchIndex": 24,
             "patches": [
                 {
                     "date": 1658142185723,
@@ -100,6 +100,10 @@
                 {
                     "date": 1658319982023,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -29,9 +29,9 @@\n const authLink = setContext((_, { headers }) => {\r\n \treturn {\r\n \t\theaders: {\r\n \t\t\t...headers,\r\n-\t\t\ttoken: authVar(),\r\n+\t\t\tAuthorization: authVar(),\r\n \t\t},\r\n \t};\r\n });\r\n \r\n"
+                },
+                {
+                    "date": 1658727453053,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n \tauthVar(null);\r\n };\r\n \r\n const httpLink = createHttpLink({\r\n-\turi: \"https://fb2b-111-91-152-107.jp.ngrok.io/graphql\",\r\n+\turi: \"https://1432-111-91-152-107.jp.ngrok.io/graphql\",\r\n });\r\n \r\n const authLink = setContext((_, { headers }) => {\r\n \treturn {\r\n"
                 }
             ],
             "date": 1658142185723,

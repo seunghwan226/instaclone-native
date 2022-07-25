@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 50,
+            "activePatchIndex": 52,
             "patches": [
                 {
                     "date": 1658317125155,
@@ -208,6 +208,14 @@
                 {
                     "date": 1658319314856,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -31,9 +31,9 @@\n \t\t\t\t\t\theaderTitle: () => (\r\n \t\t\t\t\t\t\t<Image\r\n \t\t\t\t\t\t\t\tstyle={{\r\n \t\t\t\t\t\t\t\t\tmaxHeight: 40,\r\n-\t\t\t\t\t\t\t\t\tmaxWidth: 50,\r\n+\t\t\t\t\t\t\t\t\tmaxWidth: 120,\r\n \t\t\t\t\t\t\t\t}}\r\n \t\t\t\t\t\t\t\tresizeMode=\"contain\"\r\n \t\t\t\t\t\t\t\tsource={require(\"../assets/logo.png\")}\r\n \t\t\t\t\t\t\t/>\r\n"
+                },
+                {
+                    "date": 1658741112285,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,8 +1,9 @@\n import { createNativeStackNavigator } from \"@react-navigation/native-stack\";\r\n import React from \"react\";\r\n import { Image } from \"react-native\";\r\n import Feed from \"../screens/feed\";\r\n+import Likes from \"../screens/likes\";\r\n import Me from \"../screens/me\";\r\n import Notifications from \"../screens/notification\";\r\n import Photo from \"../screens/photo\";\r\n import Profile from \"../screens/profile\";\r\n@@ -49,7 +50,8 @@\n \t\t\t) : null}\r\n \t\t\t{screenName === \"Me\" ? <Stack.Screen name={\"Me\"} component={Me} /> : null}\r\n \t\t\t<Stack.Screen name=\"Profile\" component={Profile}></Stack.Screen>\r\n \t\t\t<Stack.Screen name=\"Photo\" component={Photo}></Stack.Screen>\r\n+\t\t\t<Stack.Screen name=\"Likes\" component={Likes}></Stack.Screen>\r\n \t\t</Stack.Navigator>\r\n \t);\r\n }\r\n"
+                },
+                {
+                    "date": 1658741734338,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,8 @@\n import { createNativeStackNavigator } from \"@react-navigation/native-stack\";\r\n import React from \"react\";\r\n import { Image } from \"react-native\";\r\n+import Comments from \"../screens/comments\";\r\n import Feed from \"../screens/feed\";\r\n import Likes from \"../screens/likes\";\r\n import Me from \"../screens/me\";\r\n import Notifications from \"../screens/notification\";\r\n@@ -51,7 +52,8 @@\n \t\t\t{screenName === \"Me\" ? <Stack.Screen name={\"Me\"} component={Me} /> : null}\r\n \t\t\t<Stack.Screen name=\"Profile\" component={Profile}></Stack.Screen>\r\n \t\t\t<Stack.Screen name=\"Photo\" component={Photo}></Stack.Screen>\r\n \t\t\t<Stack.Screen name=\"Likes\" component={Likes}></Stack.Screen>\r\n+\t\t\t<Stack.Screen name=\"Comments\" component={Comments}></Stack.Screen>\r\n \t\t</Stack.Navigator>\r\n \t);\r\n }\r\n"
                 }
             ],
             "date": 1658317125155,

@@ -1,0 +1,18 @@
+{
+    "sourceFile": "screens/likes.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1658741091007,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1658741091007,
+            "name": "Commit-0",
+            "content": "import { Text, View } from \"react-native\";\r\nimport { TouchableOpacity } from \"react-native\";\r\nimport { logUserOut } from \"../apollo\";\r\n\r\nexport default function Likes() {\r\n\treturn (\r\n\t\t<View\r\n\t\t\tstyle={{\r\n\t\t\t\tbackgroundColor: \"black\",\r\n\t\t\t\tflex: 1,\r\n\t\t\t\talignItems: \"center\",\r\n\t\t\t\tjustifyContent: \"center\",\r\n\t\t\t}}\r\n\t\t>\r\n\t\t\t<TouchableOpacity onPress={() => logUserOut()}>\r\n\t\t\t\t<Text style={{ color: \"white\" }}>Likes</Text>\r\n\t\t\t</TouchableOpacity>\r\n\t\t</View>\r\n\t);\r\n}\r\n"
+        }
+    ]
+}
