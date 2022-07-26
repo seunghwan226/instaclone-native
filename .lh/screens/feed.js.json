@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 48,
+            "activePatchIndex": 65,
             "patches": [
                 {
                     "date": 1658146222999,
@@ -200,6 +200,74 @@
                 {
                     "date": 1658742572920,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -61,8 +61,13 @@\n \tconst { data, loading, refetch } = useQuery(FEED_QUERY);\r\n \tconst renderPhoto = ({ item: photo }) => {\r\n \t\treturn <Photo {...photo} />;\r\n \t};\r\n+\tconst refresh = async () => {\r\n+\t\tsetRefreshing(true);\r\n+\t\tawait refetch();\r\n+\t\tsetRefreshing(false);\r\n+\t};\r\n \tconst [refreshing, setRefreshing] = useState(false);\r\n \treturn (\r\n \t\t<ScreenLayout loading={loading}>\r\n \t\t\t<FlatList\r\n"
+                },
+                {
+                    "date": 1658845121821,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -77,8 +77,9 @@\n \t\t\t\t\t\tonRefresh={refetch}\r\n \t\t\t\t\t\ttintColor=\"white\"\r\n \t\t\t\t\t/>\r\n \t\t\t\t}\r\n+\t\t\t\tonEndReached={() => console.log(\"end reached\")}\r\n \t\t\t\tstyle={{ width: \"100%\" }}\r\n \t\t\t\tdata={data?.seeFeed}\r\n \t\t\t\tkeyExtractor={(item) => \"\" + item.id}\r\n \t\t\t\trenderItem={renderPhoto}\r\n"
+                },
+                {
+                    "date": 1658845971148,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -77,8 +77,9 @@\n \t\t\t\t\t\tonRefresh={refetch}\r\n \t\t\t\t\t\ttintColor=\"white\"\r\n \t\t\t\t\t/>\r\n \t\t\t\t}\r\n+\t\t\t\tonEndReachedThreshold={1}\r\n \t\t\t\tonEndReached={() => console.log(\"end reached\")}\r\n \t\t\t\tstyle={{ width: \"100%\" }}\r\n \t\t\t\tdata={data?.seeFeed}\r\n \t\t\t\tkeyExtractor={(item) => \"\" + item.id}\r\n"
+                },
+                {
+                    "date": 1658846006359,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -56,9 +56,10 @@\n \t}\r\n \t${PHOTO_FRAGMENT}\r\n \t${COMMENT_FRAGMENT}\r\n `;\r\n-export default function Feed({ navigation }) {\r\n+export default function Feed() {\r\n+\tconst [offset, setOffset] = useState(0);\r\n \tconst { data, loading, refetch } = useQuery(FEED_QUERY);\r\n \tconst renderPhoto = ({ item: photo }) => {\r\n \t\treturn <Photo {...photo} />;\r\n \t};\r\n"
+                },
+                {
+                    "date": 1658846050641,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -79,9 +79,9 @@\n \t\t\t\t\t\ttintColor=\"white\"\r\n \t\t\t\t\t/>\r\n \t\t\t\t}\r\n \t\t\t\tonEndReachedThreshold={1}\r\n-\t\t\t\tonEndReached={() => console.log(\"end reached\")}\r\n+\t\t\t\tonEndReached={() => setOffset(2)}\r\n \t\t\t\tstyle={{ width: \"100%\" }}\r\n \t\t\t\tdata={data?.seeFeed}\r\n \t\t\t\tkeyExtractor={(item) => \"\" + item.id}\r\n \t\t\t\trenderItem={renderPhoto}\r\n"
+                },
+                {
+                    "date": 1658846129738,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -78,9 +78,9 @@\n \t\t\t\t\t\tonRefresh={refetch}\r\n \t\t\t\t\t\ttintColor=\"white\"\r\n \t\t\t\t\t/>\r\n \t\t\t\t}\r\n-\t\t\t\tonEndReachedThreshold={1}\r\n+\t\t\t\tonEndReachedThreshold={0}\r\n \t\t\t\tonEndReached={() => setOffset(2)}\r\n \t\t\t\tstyle={{ width: \"100%\" }}\r\n \t\t\t\tdata={data?.seeFeed}\r\n \t\t\t\tkeyExtractor={(item) => \"\" + item.id}\r\n"
+                },
+                {
+                    "date": 1658846274341,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -58,9 +58,13 @@\n \t${COMMENT_FRAGMENT}\r\n `;\r\n export default function Feed() {\r\n \tconst [offset, setOffset] = useState(0);\r\n-\tconst { data, loading, refetch } = useQuery(FEED_QUERY);\r\n+\tconst { data, loading, refetch } = useQuery(FEED_QUERY, {\r\n+\t\tvariables: {\r\n+\t\t\toffset,\r\n+\t\t},\r\n+\t});\r\n \tconst renderPhoto = ({ item: photo }) => {\r\n \t\treturn <Photo {...photo} />;\r\n \t};\r\n \tconst refresh = async () => {\r\n"
+                },
+                {
+                    "date": 1658846289151,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -83,9 +83,9 @@\n \t\t\t\t\t\ttintColor=\"white\"\r\n \t\t\t\t\t/>\r\n \t\t\t\t}\r\n \t\t\t\tonEndReachedThreshold={0}\r\n-\t\t\t\tonEndReached={() => setOffset(2)}\r\n+\t\t\t\tonEndReached={() => setOffset(1)}\r\n \t\t\t\tstyle={{ width: \"100%\" }}\r\n \t\t\t\tdata={data?.seeFeed}\r\n \t\t\t\tkeyExtractor={(item) => \"\" + item.id}\r\n \t\t\t\trenderItem={renderPhoto}\r\n"
+                },
+                {
+                    "date": 1658846300851,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,10 +82,8 @@\n \t\t\t\t\t\tonRefresh={refetch}\r\n \t\t\t\t\t\ttintColor=\"white\"\r\n \t\t\t\t\t/>\r\n \t\t\t\t}\r\n-\t\t\t\tonEndReachedThreshold={0}\r\n-\t\t\t\tonEndReached={() => setOffset(1)}\r\n \t\t\t\tstyle={{ width: \"100%\" }}\r\n \t\t\t\tdata={data?.seeFeed}\r\n \t\t\t\tkeyExtractor={(item) => \"\" + item.id}\r\n \t\t\t\trenderItem={renderPhoto}\r\n"
+                },
+                {
+                    "date": 1658846316100,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,8 +82,10 @@\n \t\t\t\t\t\tonRefresh={refetch}\r\n \t\t\t\t\t\ttintColor=\"white\"\r\n \t\t\t\t\t/>\r\n \t\t\t\t}\r\n+\t\t\t\tonEndReachedThreshold={0}\r\n+\t\t\t\tonEndReached={() => setOffset(2)}\r\n \t\t\t\tstyle={{ width: \"100%\" }}\r\n \t\t\t\tdata={data?.seeFeed}\r\n \t\t\t\tkeyExtractor={(item) => \"\" + item.id}\r\n \t\t\t\trenderItem={renderPhoto}\r\n"
+                },
+                {
+                    "date": 1658846341324,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -83,9 +83,9 @@\n \t\t\t\t\t\ttintColor=\"white\"\r\n \t\t\t\t\t/>\r\n \t\t\t\t}\r\n \t\t\t\tonEndReachedThreshold={0}\r\n-\t\t\t\tonEndReached={() => setOffset(2)}\r\n+\t\t\t\tonEndReached={() => setOffset(1)}\r\n \t\t\t\tstyle={{ width: \"100%\" }}\r\n \t\t\t\tdata={data?.seeFeed}\r\n \t\t\t\tkeyExtractor={(item) => \"\" + item.id}\r\n \t\t\t\trenderItem={renderPhoto}\r\n"
+                },
+                {
+                    "date": 1658846395962,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -83,9 +83,9 @@\n \t\t\t\t\t\ttintColor=\"white\"\r\n \t\t\t\t\t/>\r\n \t\t\t\t}\r\n \t\t\t\tonEndReachedThreshold={0}\r\n-\t\t\t\tonEndReached={() => setOffset(1)}\r\n+\t\t\t\tonEndReached={() => setOffset(2)}\r\n \t\t\t\tstyle={{ width: \"100%\" }}\r\n \t\t\t\tdata={data?.seeFeed}\r\n \t\t\t\tkeyExtractor={(item) => \"\" + item.id}\r\n \t\t\t\trenderItem={renderPhoto}\r\n"
+                },
+                {
+                    "date": 1658846533111,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,10 +37,10 @@\n \t}\r\n `;\r\n \r\n const FEED_QUERY = gql`\r\n-\tquery seeFeed {\r\n-\t\tseeFeed {\r\n+\tquery seeFeed($offset: Int!) {\r\n+\t\tseeFeed(offset: $offset) {\r\n \t\t\t...PhotoFragment\r\n \t\t\tuser {\r\n \t\t\t\tuserName\r\n \t\t\t\tavatar\r\n"
+                },
+                {
+                    "date": 1658846625278,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -58,9 +58,9 @@\n \t${COMMENT_FRAGMENT}\r\n `;\r\n export default function Feed() {\r\n \tconst [offset, setOffset] = useState(0);\r\n-\tconst { data, loading, refetch } = useQuery(FEED_QUERY, {\r\n+\tconst { data, loading, refetch, fetchMore } = useQuery(FEED_QUERY, {\r\n \t\tvariables: {\r\n \t\t\toffset,\r\n \t\t},\r\n \t});\r\n@@ -83,9 +83,15 @@\n \t\t\t\t\t\ttintColor=\"white\"\r\n \t\t\t\t\t/>\r\n \t\t\t\t}\r\n \t\t\t\tonEndReachedThreshold={0}\r\n-\t\t\t\tonEndReached={() => setOffset(2)}\r\n+\t\t\t\tonEndReached={() =>\r\n+\t\t\t\t\tfetchMore({\r\n+\t\t\t\t\t\tvariables: {\r\n+\t\t\t\t\t\t\toffset: 2,\r\n+\t\t\t\t\t\t},\r\n+\t\t\t\t\t})\r\n+\t\t\t\t}\r\n \t\t\t\tstyle={{ width: \"100%\" }}\r\n \t\t\t\tdata={data?.seeFeed}\r\n \t\t\t\tkeyExtractor={(item) => \"\" + item.id}\r\n \t\t\t\trenderItem={renderPhoto}\r\n"
+                },
+                {
+                    "date": 1658846637410,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -86,9 +86,9 @@\n \t\t\t\tonEndReachedThreshold={0}\r\n \t\t\t\tonEndReached={() =>\r\n \t\t\t\t\tfetchMore({\r\n \t\t\t\t\t\tvariables: {\r\n-\t\t\t\t\t\t\toffset: 2,\r\n+\t\t\t\t\t\t\toffset: data?.seeFeed?.length,\r\n \t\t\t\t\t\t},\r\n \t\t\t\t\t})\r\n \t\t\t\t}\r\n \t\t\t\tstyle={{ width: \"100%\" }}\r\n"
+                },
+                {
+                    "date": 1658846666943,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -60,9 +60,9 @@\n export default function Feed() {\r\n \tconst [offset, setOffset] = useState(0);\r\n \tconst { data, loading, refetch, fetchMore } = useQuery(FEED_QUERY, {\r\n \t\tvariables: {\r\n-\t\t\toffset,\r\n+\t\t\toffset: 0,\r\n \t\t},\r\n \t});\r\n \tconst renderPhoto = ({ item: photo }) => {\r\n \t\treturn <Photo {...photo} />;\r\n"
+                },
+                {
+                    "date": 1658847266620,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,9 +82,9 @@\n \t\t\t\t\t\tonRefresh={refetch}\r\n \t\t\t\t\t\ttintColor=\"white\"\r\n \t\t\t\t\t/>\r\n \t\t\t\t}\r\n-\t\t\t\tonEndReachedThreshold={0}\r\n+\t\t\t\tonEndReachedThreshold={0.5}\r\n \t\t\t\tonEndReached={() =>\r\n \t\t\t\t\tfetchMore({\r\n \t\t\t\t\t\tvariables: {\r\n \t\t\t\t\t\t\toffset: data?.seeFeed?.length,\r\n"
+                },
+                {
+                    "date": 1658847288862,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -82,9 +82,9 @@\n \t\t\t\t\t\tonRefresh={refetch}\r\n \t\t\t\t\t\ttintColor=\"white\"\r\n \t\t\t\t\t/>\r\n \t\t\t\t}\r\n-\t\t\t\tonEndReachedThreshold={0.5}\r\n+\t\t\t\tonEndReachedThreshold={0.05}\r\n \t\t\t\tonEndReached={() =>\r\n \t\t\t\t\tfetchMore({\r\n \t\t\t\t\t\tvariables: {\r\n \t\t\t\t\t\t\toffset: data?.seeFeed?.length,\r\n"
                 }
             ],
             "date": 1658146222999,

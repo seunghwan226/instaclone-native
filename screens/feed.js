@@ -38,8 +38,8 @@ export const COMMENT_FRAGMENT = gql`
 `;
 
 const FEED_QUERY = gql`
-	query seeFeed {
-		seeFeed {
+	query seeFeed($offset: Int!) {
+		seeFeed(offset: $offset) {
 			...PhotoFragment
 			user {
 				userName
@@ -57,8 +57,13 @@ const FEED_QUERY = gql`
 	${PHOTO_FRAGMENT}
 	${COMMENT_FRAGMENT}
 `;
-export default function Feed({ navigation }) {
-	const { data, loading, refetch } = useQuery(FEED_QUERY);
+export default function Feed() {
+	const [offset, setOffset] = useState(0);
+	const { data, loading, refetch, fetchMore } = useQuery(FEED_QUERY, {
+		variables: {
+			offset: 0,
+		},
+	});
 	const renderPhoto = ({ item: photo }) => {
 		return <Photo {...photo} />;
 	};
@@ -77,6 +82,14 @@ export default function Feed({ navigation }) {
 						onRefresh={refetch}
 						tintColor="white"
 					/>
+				}
+				onEndReachedThreshold={0.05}
+				onEndReached={() =>
+					fetchMore({
+						variables: {
+							offset: data?.seeFeed?.length,
+						},
+					})
 				}
 				style={{ width: "100%" }}
 				data={data?.seeFeed}

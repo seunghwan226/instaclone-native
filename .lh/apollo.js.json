@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 24,
+            "activePatchIndex": 30,
             "patches": [
                 {
                     "date": 1658142185723,
@@ -104,6 +104,30 @@
                 {
                     "date": 1658727453053,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n \tauthVar(null);\r\n };\r\n \r\n const httpLink = createHttpLink({\r\n-\turi: \"https://fb2b-111-91-152-107.jp.ngrok.io/graphql\",\r\n+\turi: \"https://1432-111-91-152-107.jp.ngrok.io/graphql\",\r\n });\r\n \r\n const authLink = setContext((_, { headers }) => {\r\n \treturn {\r\n"
+                },
+                {
+                    "date": 1658845241084,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -22,9 +22,9 @@\n \tauthVar(null);\r\n };\r\n \r\n const httpLink = createHttpLink({\r\n-\turi: \"https://1432-111-91-152-107.jp.ngrok.io/graphql\",\r\n+\turi: \"https://2019-111-91-152-107.jp.ngrok.io/graphql\",\r\n });\r\n \r\n const authLink = setContext((_, { headers }) => {\r\n \treturn {\r\n"
+                },
+                {
+                    "date": 1658846963058,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -36,8 +36,18 @@\n });\r\n \r\n const client = new ApolloClient({\r\n \tlink: authLink.concat(httpLink),\r\n-\tcache: new InMemoryCache(),\r\n+\tcache: new InMemoryCache({\r\n+\t\ttypePolicies: {\r\n+\t\t\tQuery: {\r\n+\t\t\t\tfields: {\r\n+\t\t\t\t\tseeFeed: {\r\n+\t\t\t\t\t\tkeyArgs: false,\r\n+\t\t\t\t\t},\r\n+\t\t\t\t},\r\n+\t\t\t},\r\n+\t\t},\r\n+\t}),\r\n });\r\n \r\n export default client;\r\n"
+                },
+                {
+                    "date": 1658847049464,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -50,4 +50,5 @@\n \t}),\r\n });\r\n \r\n export default client;\r\n+`\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1658847141325,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,13 +42,15 @@\n \t\t\tQuery: {\r\n \t\t\t\tfields: {\r\n \t\t\t\t\tseeFeed: {\r\n \t\t\t\t\t\tkeyArgs: false,\r\n+\t\t\t\t\t\tmerge(existing = [], incoming = []) {\r\n+\t\t\t\t\t\t\treturn [...existing, ...incoming];\r\n+\t\t\t\t\t\t},\r\n \t\t\t\t\t},\r\n \t\t\t\t},\r\n \t\t\t},\r\n \t\t},\r\n \t}),\r\n });\r\n\\ No newline at end of file\n \r\n export default client;\r\n-`\n"
+                },
+                {
+                    "date": 1658847349933,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,8 +5,9 @@\n \tcreateHttpLink,\r\n } from \"@apollo/client\";\r\n import AsyncStorage from \"@react-native-async-storage/async-storage\";\r\n import { setContext } from \"@apollo/client/link/context\";\r\n+import { offsetLimitPagination } from \"@apollo/client/utilities\";\r\n \r\n export const isLoggedInVar = makeVar(false);\r\n export const authVar = makeVar(\"\");\r\n \r\n@@ -40,17 +41,12 @@\n \tcache: new InMemoryCache({\r\n \t\ttypePolicies: {\r\n \t\t\tQuery: {\r\n \t\t\t\tfields: {\r\n-\t\t\t\t\tseeFeed: {\r\n-\t\t\t\t\t\tkeyArgs: false,\r\n-\t\t\t\t\t\tmerge(existing = [], incoming = []) {\r\n-\t\t\t\t\t\t\treturn [...existing, ...incoming];\r\n-\t\t\t\t\t\t},\r\n-\t\t\t\t\t},\r\n+\t\t\t\t\tseeFeed: offsetLimitPagination(),\r\n \t\t\t\t},\r\n \t\t\t},\r\n \t\t},\r\n \t}),\r\n });\r\n \r\n\\ No newline at end of file\n-export default client;\n+export default client;\r\n"
+                },
+                {
+                    "date": 1658847363043,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,11 +42,17 @@\n \t\ttypePolicies: {\r\n \t\t\tQuery: {\r\n \t\t\t\tfields: {\r\n \t\t\t\t\tseeFeed: offsetLimitPagination(),\r\n+\t\t\t\t\t// {\r\n+\t\t\t\t\t// \tkeyArgs: false,\r\n+\t\t\t\t\t// \tmerge(existing = [], incoming = []) {\r\n+\t\t\t\t\t// \t\treturn [...existing, ...incoming];\r\n+\t\t\t\t\t// \t},\r\n+\t\t\t\t\t// },\r\n \t\t\t\t},\r\n\\ No newline at end of file\n \t\t\t},\r\n \t\t},\r\n \t}),\r\n });\r\n \r\n-export default client;\n+export default client;\r\n"
                 }
             ],
             "date": 1658142185723,
