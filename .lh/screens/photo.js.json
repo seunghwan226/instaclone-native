@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 3,
+            "activePatchIndex": 5,
             "patches": [
                 {
                     "date": 1658289883718,
@@ -20,6 +20,14 @@
                 {
                     "date": 1658290966639,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,7 @@\n import { Text, TouchableOpacity, View } from \"react-native\";\r\n \r\n-export default function Photo() {\r\n+export default function Photo({ navigation }) {\r\n \treturn (\r\n \t\t<View\r\n \t\t\tstyle={{\r\n \t\t\t\tbackgroundColor: \"black\",\r\n"
+                },
+                {
+                    "date": 1660660735909,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,7 +1,68 @@\n import { Text, TouchableOpacity, View } from \"react-native\";\r\n+const TOGGLE_LIKE_MUTATION = gql`\r\n+\tmutation toggleLike($id: Int!) {\r\n+\t\ttoggleLike(id: $id) {\r\n+\t\t\tok\r\n+\t\t\terror\r\n+\t\t}\r\n+\t}\r\n+`;\r\n+export default function Photo({ navigation }) {\r\n+\tconst updateToggleLike = (cache, result) => {\r\n+\t\tconst {\r\n+\t\t\tdata: {\r\n+\t\t\t\ttoggleLike: { ok },\r\n+\t\t\t},\r\n+\t\t} = result;\r\n+\t\tif (ok) {\r\n+\t\t\tconst photoId = `Photo:${id}`;\r\n+\t\t\tcache.modify({\r\n+\t\t\t\tid: photoId,\r\n+\t\t\t\tfields: {\r\n+\t\t\t\t\tisLiked(prev) {\r\n+\t\t\t\t\t\treturn !prev;\r\n+\t\t\t\t\t},\r\n+\t\t\t\t\tlikes(prev) {\r\n+\t\t\t\t\t\tif (isLiked) {\r\n+\t\t\t\t\t\t\treturn prev - 1;\r\n+\t\t\t\t\t\t}\r\n+\t\t\t\t\t\treturn prev + 1;\r\n+\t\t\t\t\t},\r\n+\t\t\t\t},\r\n+\t\t\t});\r\n+\t\t\t// const fragment = gql`\r\n+\t\t\t// \tfragment BSName on Photo {\r\n+\t\t\t// \t\tisLiked\r\n+\t\t\t// \t\tlikes\r\n+\t\t\t// \t}\r\n+\t\t\t// `;\r\n \r\n-export default function Photo({ navigation }) {\r\n+\t\t\t// const readResult = cache.readFragment({\r\n+\t\t\t// \tid: fragmentId,\r\n+\t\t\t// \tfragment,\r\n+\t\t\t// });\r\n+\r\n+\t\t\t// if (\"isLiked\" in readResult && \"likes\" in readResult) {\r\n+\t\t\t// \tconst { isLiked: readIsLiked, likes: readLikes } = readResult;\r\n+\t\t\t// \tcache.writeFragment({\r\n+\t\t\t// \t\tid: fragmentId,\r\n+\t\t\t// \t\tfragment,\r\n+\t\t\t// \t\tdata: {\r\n+\t\t\t// \t\t\tisLiked: !readIsLiked,\r\n+\t\t\t// \t\t\tlikes: readIsLiked ? readLikes - 1 : readLikes + 1,\r\n+\t\t\t// \t\t},\r\n+\t\t\t// \t});\r\n+\t\t\t// }\r\n+\t\t}\r\n+\t};\r\n+\r\n+\tconst [toggleLikeMutation] = useMutation(TOGGLE_LIKE_MUTATION, {\r\n+\t\tvariables: {\r\n+\t\t\tid,\r\n+\t\t},\r\n+\t\tupdate: updateToggleLike,\r\n+\t});\r\n \treturn (\r\n \t\t<View\r\n \t\t\tstyle={{\r\n \t\t\t\tbackgroundColor: \"black\",\r\n"
+                },
+                {
+                    "date": 1660660744705,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,5 @@\n+import { gql } from \"@apollo/client\";\r\n import { Text, TouchableOpacity, View } from \"react-native\";\r\n const TOGGLE_LIKE_MUTATION = gql`\r\n \tmutation toggleLike($id: Int!) {\r\n \t\ttoggleLike(id: $id) {\r\n"
                 }
             ],
             "date": 1658289883718,

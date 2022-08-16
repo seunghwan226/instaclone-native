@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 30,
+            "activePatchIndex": 31,
             "patches": [
                 {
                     "date": 1658142185723,
@@ -128,6 +128,10 @@
                 {
                     "date": 1658847363043,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,11 +42,17 @@\n \t\ttypePolicies: {\r\n \t\t\tQuery: {\r\n \t\t\t\tfields: {\r\n \t\t\t\t\tseeFeed: offsetLimitPagination(),\r\n+\t\t\t\t\t// {\r\n+\t\t\t\t\t// \tkeyArgs: false,\r\n+\t\t\t\t\t// \tmerge(existing = [], incoming = []) {\r\n+\t\t\t\t\t// \t\treturn [...existing, ...incoming];\r\n+\t\t\t\t\t// \t},\r\n+\t\t\t\t\t// },\r\n \t\t\t\t},\r\n\\ No newline at end of file\n \t\t\t},\r\n \t\t},\r\n \t}),\r\n });\r\n \r\n-export default client;\n+export default client;\r\n"
+                },
+                {
+                    "date": 1660661164713,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -35,8 +35,10 @@\n \t\t},\r\n \t};\r\n });\r\n \r\n+export const cache = new InMemoryCache();\r\n+\r\n const client = new ApolloClient({\r\n \tlink: authLink.concat(httpLink),\r\n \tcache: new InMemoryCache({\r\n \t\ttypePolicies: {\r\n@@ -54,5 +56,5 @@\n \t\t},\r\n \t}),\r\n });\r\n \r\n-export default client;\n\\ No newline at end of file\n+export default client;\r\n"
                 }
             ],
             "date": 1658142185723,

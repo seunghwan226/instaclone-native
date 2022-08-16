@@ -6,10 +6,11 @@ import * as SplashScreen from "expo-splash-screen";
 import { Asset } from "expo-asset";
 import LoggedOutNav from "./navigators/logged-out-nav";
 import { NavigationContainer } from "@react-navigation/native";
-import client, { authVar, isLoggedInVar } from "./apollo";
+import client, { authVar, isLoggedInVar, cache } from "./apollo";
 import { ApolloProvider, useReactiveVar } from "@apollo/client";
 import LoggedInNav from "./navigators/logged-in-nav";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { AsyncStorageWrapper, persistCache } from "apollo3-cache-persist";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -17,7 +18,7 @@ export default function App() {
 	const [loading, setLoading] = useState(true);
 	const isLoggedIn = useReactiveVar(isLoggedInVar);
 
-	const preloadAssets = () => {
+	const preloadAssets = async () => {
 		const fontToLoad = [Ionicons.font];
 		const fontPromises = fontToLoad.map((font) => Font.loadAsync(font));
 		const imagesToLoad = [
@@ -25,6 +26,7 @@ export default function App() {
 			"http://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/840px-Instagram_logo.svg.png",
 		];
 		const imagePromises = imagesToLoad.map((image) => Asset.loadAsync(image));
+
 		return Promise.all([...fontPromises, ...imagePromises]);
 	};
 
@@ -43,6 +45,10 @@ export default function App() {
 	}, []);
 
 	const onLayoutRootView = useCallback(async () => {
+		await persistCache({
+			cache,
+			storage: new AsyncStorageWrapper(AsyncStorage),
+		});
 		const auth = await AsyncStorage.getItem("Authorization");
 		if (auth) {
 			isLoggedInVar(true);

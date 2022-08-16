@@ -3,7 +3,7 @@
     "activeCommit": 0,
     "commits": [
         {
-            "activePatchIndex": 122,
+            "activePatchIndex": 128,
             "patches": [
                 {
                     "date": 1657720865138,
@@ -496,6 +496,30 @@
                 {
                     "date": 1658220606438,
                     "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n import * as SplashScreen from \"expo-splash-screen\";\n import { Asset } from \"expo-asset\";\n import LoggedOutNav from \"./navigators/logged-out-nav\";\n import { NavigationContainer } from \"@react-navigation/native\";\n-import client, { isLoggedInVar } from \"./apollo\";\n+import client, { authVar, isLoggedInVar } from \"./apollo\";\n import { ApolloProvider, useReactiveVar } from \"@apollo/client\";\n import LoggedInNav from \"./navigators/logged-in-nav\";\n import AsyncStorage from \"@react-native-async-storage/async-storage\";\n \n@@ -45,8 +45,9 @@\n \tconst onLayoutRootView = useCallback(async () => {\n \t\tconst auth = await AsyncStorage.getItem(\"Authorization\");\n \t\tif (auth) {\n \t\t\tisLoggedInVar(true);\n+\t\t\tauthVar(auth);\n \t\t}\n \t\tif (loading) {\n \t\t\tawait SplashScreen.hideAsync();\n \t\t}\n"
+                },
+                {
+                    "date": 1660661258250,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,8 +9,9 @@\n import client, { authVar, isLoggedInVar } from \"./apollo\";\n import { ApolloProvider, useReactiveVar } from \"@apollo/client\";\n import LoggedInNav from \"./navigators/logged-in-nav\";\n import AsyncStorage from \"@react-native-async-storage/async-storage\";\n+import { AsyncStorageWrapper, persistCache } from \"apollo3-cache-persist\";\n \n SplashScreen.preventAutoHideAsync();\n \n export default function App() {\n@@ -24,8 +25,13 @@\n \t\t\trequire(\"./assets/icon.png\"),\n \t\t\t\"http://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/840px-Instagram_logo.svg.png\",\n \t\t];\n \t\tconst imagePromises = imagesToLoad.map((image) => Asset.loadAsync(image));\n+\t\t\n+\t\tawait persistCache({\n+\t\t\tcache,\n+\t\t\tstorage: new AsyncStorageWrapper(AsyncStorage)\n+\t\t})\n \t\treturn Promise.all([...fontPromises, ...imagePromises]);\n \t};\n \n \tuseEffect(() => {\n"
+                },
+                {
+                    "date": 1660661264872,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -17,21 +17,21 @@\n export default function App() {\n \tconst [loading, setLoading] = useState(true);\n \tconst isLoggedIn = useReactiveVar(isLoggedInVar);\n \n-\tconst preloadAssets = () => {\n+\tconst preloadAssets = async () => {\n \t\tconst fontToLoad = [Ionicons.font];\n \t\tconst fontPromises = fontToLoad.map((font) => Font.loadAsync(font));\n \t\tconst imagesToLoad = [\n \t\t\trequire(\"./assets/icon.png\"),\n \t\t\t\"http://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/840px-Instagram_logo.svg.png\",\n \t\t];\n \t\tconst imagePromises = imagesToLoad.map((image) => Asset.loadAsync(image));\n-\t\t\n+\n \t\tawait persistCache({\n \t\t\tcache,\n-\t\t\tstorage: new AsyncStorageWrapper(AsyncStorage)\n-\t\t})\n+\t\t\tstorage: new AsyncStorageWrapper(AsyncStorage),\n+\t\t});\n \t\treturn Promise.all([...fontPromises, ...imagePromises]);\n \t};\n \n \tuseEffect(() => {\n"
+                },
+                {
+                    "date": 1660661339612,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -26,12 +26,8 @@\n \t\t\t\"http://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/840px-Instagram_logo.svg.png\",\n \t\t];\n \t\tconst imagePromises = imagesToLoad.map((image) => Asset.loadAsync(image));\n \n-\t\tawait persistCache({\n-\t\t\tcache,\n-\t\t\tstorage: new AsyncStorageWrapper(AsyncStorage),\n-\t\t});\n \t\treturn Promise.all([...fontPromises, ...imagePromises]);\n \t};\n \n \tuseEffect(() => {\n@@ -56,8 +52,13 @@\n \t\t}\n \t\tif (loading) {\n \t\t\tawait SplashScreen.hideAsync();\n \t\t}\n+\n+\t\tawait persistCache({\n+\t\t\tcache,\n+\t\t\tstorage: new AsyncStorageWrapper(AsyncStorage),\n+\t\t});\n \t}, [loading]);\n \n \tif (loading) {\n \t\treturn <View onLayout={onLayoutRootView}></View>;\n"
+                },
+                {
+                    "date": 1660661402964,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -55,9 +55,9 @@\n \t\t}\n \n \t\tawait persistCache({\n \t\t\tcache,\n-\t\t\tstorage: new AsyncStorageWrapper(AsyncStorage),\n+\t\t\tstorage: new AsyncStorageWrapper(await AsyncStorage),\n \t\t});\n \t}, [loading]);\n \n \tif (loading) {\n"
+                },
+                {
+                    "date": 1660661416641,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -44,21 +44,20 @@\n \t\tprepare();\n \t}, []);\n \n \tconst onLayoutRootView = useCallback(async () => {\n+\t\tawait persistCache({\n+\t\t\tcache,\n+\t\t\tstorage: new AsyncStorageWrapper(AsyncStorage),\n+\t\t});\n \t\tconst auth = await AsyncStorage.getItem(\"Authorization\");\n \t\tif (auth) {\n \t\t\tisLoggedInVar(true);\n \t\t\tauthVar(auth);\n \t\t}\n \t\tif (loading) {\n \t\t\tawait SplashScreen.hideAsync();\n \t\t}\n-\n-\t\tawait persistCache({\n-\t\t\tcache,\n-\t\t\tstorage: new AsyncStorageWrapper(await AsyncStorage),\n-\t\t});\n \t}, [loading]);\n \n \tif (loading) {\n \t\treturn <View onLayout={onLayoutRootView}></View>;\n"
+                },
+                {
+                    "date": 1660661506211,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -5,9 +5,9 @@\n import * as SplashScreen from \"expo-splash-screen\";\n import { Asset } from \"expo-asset\";\n import LoggedOutNav from \"./navigators/logged-out-nav\";\n import { NavigationContainer } from \"@react-navigation/native\";\n-import client, { authVar, isLoggedInVar } from \"./apollo\";\n+import client, { authVar, isLoggedInVar, cache } from \"./apollo\";\n import { ApolloProvider, useReactiveVar } from \"@apollo/client\";\n import LoggedInNav from \"./navigators/logged-in-nav\";\n import AsyncStorage from \"@react-native-async-storage/async-storage\";\n import { AsyncStorageWrapper, persistCache } from \"apollo3-cache-persist\";\n"
                 }
             ],
             "date": 1657720865138,
